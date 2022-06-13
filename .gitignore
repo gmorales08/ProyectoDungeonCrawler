@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+
+# AGREGADOS
+
+# Undo files
+*.un~
+
+# ToDo list
+toDo

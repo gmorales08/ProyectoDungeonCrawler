@@ -15,11 +15,11 @@
 
 // LIMPIAR PANTALLA
 //
-// Limpia la pantalla, valido para cualquier sistema
+// Limpia la pantalla, valido para bash
 //
-// Tambien cambia el color a blanco sobre negro, por si la terminal estuviese configurada en otro color
-// El cambio de color funciona en bash
-
+// Tambien cambia el color a blanco sobre negro, por si la terminal estuviese configurada en otro color,
+// y oculta el prompt de la terminal
+//
 void limpiarPantalla();
 
 

@@ -1,6 +1,5 @@
-#include <cstdio>
-#include <string>
 #include <iostream>
+#include <string>
 #include "utilidadesDeTerminal.h"
 
 
@@ -17,9 +16,11 @@
 
 void limpiarPantalla() {
 
-	printf("\033[H\033[J");
-	printf("\033[38;5;231m");
-	printf("\033[48;5;016m");
+	#ifdef __linux__
+	std::cout << "\033[H\033[J"   << std::endl; // Limpia la pantalla
+	std::cout << "\033[38;5;231m" << std::endl; // Letras blancas
+	std::cout << "\033[48;5;016m" << std::endl; // Fondo negro
+	#endif //__linux__
 }
 
 
