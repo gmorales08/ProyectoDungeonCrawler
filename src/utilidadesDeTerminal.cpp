@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "utilidadesDeTerminal.h"
+#include "../include/utilidadesDeTerminal.h"
 
 
 /*void configurarVentana() {

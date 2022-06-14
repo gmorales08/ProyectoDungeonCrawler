@@ -1,5 +1,5 @@
-#include "utilidadesDeTerminal.h"
-#include "pantallaInicio.h"
+#include "../include/utilidadesDeTerminal.h"
+#include "../include/pantallaInicio.h"
 
 
 int main() {
