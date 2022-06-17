@@ -4,7 +4,7 @@
 
 int main() {
 
-	cargarPantalla(canvasPantallaInicio, opcionesPantallaInicio, imprimirLog(""));
+	menuPantallaInicio(cargarPantalla(canvasPantallaInicio, opcionesPantallaInicio, ""));
 
 	return 0;
 }

@@ -1,7 +1,6 @@
 #include <limits>
 #include "../../include/utilidadesDeTerminal.h"
 #include "../../include/pantallas.h"
-#include "../../include/pantallaInicio.h"
 
 
 void limpiarBufferEntrada() {
@@ -11,10 +10,12 @@ void limpiarBufferEntrada() {
 }
 
 
-std::string imprimirLog(std::string mensaje) {
+std::string imprimirLog(int tipoDeMensaje, std::string mensaje) {
 
-	if (mensaje == "") return "\n";
-	else return  (imprimirRojo("Mensaje del Sistema: ") + mensaje);
+	if (tipoDeMensaje == 0)  mensaje = imprimirAmarillo("Mensaje del Sistema: ") + mensaje;
+	else if (tipoDeMensaje == 1) mensaje = imprimirRojo("Mensaje del Sistema: ") + mensaje;
+
+	return mensaje;
 }
 
 
@@ -28,21 +29,26 @@ bool validarOpcion(std::string opcion, std::vector<std::string> opcionesMenu) {
 }
 
 
-void cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log) {
-
+std::string cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log) {
 
 	limpiarPantalla();
 	std::cout << canvasPantalla;
-	std::cout << log            << "\n";
+	std::cout << log << "\n\n";
 	std::cout << "Opcion: ";
 	
 	std::string opcion;
 	std::cin >> opcion;
 	limpiarBufferEntrada();
 
-	if (validarOpcion(opcion, opcionesMenu)) 
-		menuPantallaInicio(opcion);
-	else 
-		cargarPantalla(canvasPantalla, opcionesMenu, imprimirLog("Opcion no permitida\n")); 
+	if (validarOpcion(opcion, opcionesMenu)) return opcion;
+	else return cargarPantalla(canvasPantalla, opcionesMenu, imprimirLog(1, "Opcion no permitida")); 
+}
 
+
+void imprimirPantallaEstatica(std::string canvasPantalla) {
+
+	limpiarPantalla();
+	std::cout << canvasPantalla;
+	std::cout << "\n\nPulse intro para continuar...";
+	limpiarBufferEntrada();
 }

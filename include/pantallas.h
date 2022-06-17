@@ -21,9 +21,12 @@ void limpiarBufferEntrada();
 // Funcion para imprimir un "Mensaje del Sistema" en la parte inferior de la pantalla
 // Se usara para controlar errores e imprimir informacion relacionada con la entrada de datos
 // 
-// Si se pasa una cadena vacia como parametro, no imprime nada
+// El primer parametro "tipoDeMensaje" sirve para saber el color del mensaje a imprimir:
 //
-std::string imprimirLog(std::string mensaje);
+//     0: aviso -> imprime un mensaje amarillo
+//     1: error -> imprime un mensaje rojo
+//
+std::string imprimirLog(int tipoDeMensaje, std::string mensaje);
 
 
 // VALIDAR OPCION
@@ -38,6 +41,7 @@ bool validarOpcion(std::string opcion, std::vector<std::string> opcionesMenu);
 // CARGAR PANTALLA
 //
 // Carga la pantalla en cuestion y ejecuta su menu
+// Ademas devuelve la opcion seleccionada para luego pasarla al menu como parametro
 //
 // Se pasa por parametro:
 //     
@@ -47,7 +51,16 @@ bool validarOpcion(std::string opcion, std::vector<std::string> opcionesMenu);
 //     
 //     log: mensaje para imprimir en el log en caso de que sea necesario
 //
-void cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log);
+std::string cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log);
+
+
+// IMPRIMIR PANTALLA ESTATICA
+//
+// Imprime una pantalla donde no haya que seleccionar ninguna opcion
+//
+// Se para por parametro el canvas de la pantalla
+//
+void imprimirPantallaEstatica(std::string canvasPantalla);
 
 
 #endif // PANTALLAS

@@ -37,6 +37,9 @@
 # Undo files
 *.un~
 
+# Swap files
+*.swp
+
 # ToDo list
 toDo
 
