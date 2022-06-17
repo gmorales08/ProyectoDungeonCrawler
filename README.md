@@ -2,7 +2,8 @@
 Juego Dungeon Crawler de terminal hecho en C++
 
 
-# ESTRUCTURA DEL PROYECTO
+ESTRUCTURA DEL PROYECTO
+-----------------------
 
 ```bash
 ProyectoDungeonCrawler/
