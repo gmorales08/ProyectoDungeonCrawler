@@ -1,10 +1,10 @@
-#include "../include/utilidadesDeTerminal.h"
+#include "../include/pantallas.h"
 #include "../include/pantallaInicio.h"
 
 
 int main() {
 
-	menuPantallaInicio();
+	cargarPantalla(canvasPantallaInicio, opcionesPantallaInicio, imprimirLog(""));
 
 	return 0;
 }

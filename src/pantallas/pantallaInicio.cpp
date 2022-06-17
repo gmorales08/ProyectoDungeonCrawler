@@ -1,45 +1,18 @@
-#include <iostream>
-#include <limits>
-
 #include "../../include/utilidadesDeTerminal.h"
 #include "../../include/pantallaInicio.h"
 
 
-void imprimirPantallaInicio() {
+void menuPantallaInicio(std::string opcion) {
 
-	limpiarPantalla();
+	if (opcion == "1") { //JUGAR
 	
-	std::cout << canvasPantallaInicio;
-}
+	} else if (opcion == "2") { //COMO JUGAR
+	
+	} else if (opcion == "3") {
 
+		limpiarPantalla();
+		std::cout << imprimirAmarillo("Gracias por jugar!\nHasta pronto\n");
+		pausar(2);
+	}
 
-void menuPantallaInicio() {
-
-	int opcionSeleccionadaPantallaInicio; 
-
-	do {
-		
-		imprimirPantallaInicio();
-		std::cin >> opcionSeleccionadaPantallaInicio;
-
-		switch (opcionSeleccionadaPantallaInicio) {
-
-			case 1: //jugar();
-				break;
-			
-			case 2: //comoJugar();
-				break;
-
-			case 3: 
-				break;
-
-			default:
-				//poner un mensaje en el log
-				std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		}
-
-	} while (opcionSeleccionadaPantallaInicio != 3);
-
-	// detener programa y mostrar despedida
 }

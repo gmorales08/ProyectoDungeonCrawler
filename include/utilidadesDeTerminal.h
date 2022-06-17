@@ -3,14 +3,8 @@
 
 
 #include <string>
-
-
-// ! FUNCION DESCARTADA 
-// CONFIGURAR VENTANA 
-//
-// Configura la venta de terminal para que tenga 24 filas y 80 columnas
-
-//void configurarVentana();
+#include <chrono> // Para pausar()
+#include <thread> // Para pausar()
 
 
 // LIMPIAR PANTALLA
@@ -21,6 +15,18 @@
 // y oculta el prompt de la terminal
 //
 void limpiarPantalla();
+
+
+// PAUSAR
+//
+// Pausa la ejecucion del programa x segundos
+// 
+// El numero de segundo se pasa por paramentro
+// El de tipo float para poder pasar valores decimales
+// Como luego se va a convertir a milisegundos en float, el maximo de decimales es 3
+// Este metodo hace uso de <thread> y <chrono> para funcionar
+//
+void pausar(float segundos);
 
 
 // IMPRIMIR DE COLORES
@@ -42,8 +48,7 @@ void limpiarPantalla();
 //  | YELLOW  - #FFFF00 -     226     |
 //  | WHITE   - #FFFFFF -     231     |
 //  +---------------------------------+
-
-
+//
 std::string imprimirAzul(std::string texto);
 std::string imprimirVerde(std::string texto);
 std::string imprimirCyan(std::string texto);
@@ -51,7 +56,6 @@ std::string imprimirRojo(std::string texto);
 std::string imprimirMagenta(std::string texto);
 std::string imprimirAmarillo(std::string texto);
 std::string imprimirBlanco(std::string texto);
-
 
 
 #endif //UTILIDADES_DE_TERMINAL

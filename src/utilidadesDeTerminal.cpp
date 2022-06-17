@@ -1,17 +1,5 @@
 #include <iostream>
-#include <string>
 #include "../include/utilidadesDeTerminal.h"
-
-
-/*void configurarVentana() {
-
-	#ifdef __linux__
-
-	system("resize -s 24 80");  //termimal pequeña
-	//system("resize -s 43 132"); terminal grande	
-
-	#endif //__linux__
-}*/
 
 
 void limpiarPantalla() {
@@ -21,6 +9,12 @@ void limpiarPantalla() {
 	std::cout << "\033[38;5;231m" << std::endl; // Letras blancas
 	std::cout << "\033[48;5;016m" << std::endl; // Fondo negro
 	#endif //__linux__
+}
+
+
+void pausar(float segundos) {
+
+	std::this_thread::sleep_for(std::chrono::milliseconds((long) segundos * 1000));
 }
 
 

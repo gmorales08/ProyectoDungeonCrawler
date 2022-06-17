@@ -3,21 +3,11 @@
 
 
 #include <iostream>
+#include <vector>
 
 
-//NO SE USA
-//#define FILAS 24                      // Numero de filas que va a tener la ventana de inicio
-//#define COLUMNAS 80                   // Numero de columnas que va a tener la ventana de inicio
-//#define CARACTER_HORIZONTAL       "─" ///////////////////
-//#define CARACTER_VERTICAL         "│" // Caracteres    //
-//#define CARACTER_ESQUINA_SUP_DCHA "┐" // para dibujar  //
-//#define CARACTER_ESQUINA_SUP_IZDA "┌" // los bordes    //
-//#define CARACTER_ESQUINA_INF_DCHA "┘" // de la ventana //
-//#define CARACTER_ESQUINA_INF_IZDA "└" ///////////////////
-//FIN NO SE USA
 
 const std::string canvasPantallaInicio = "┌─────────────────────────────────────────────────────────────────────────────┐\n"
-	                                     "│                                                                             │\n"
  	                                     "│                   ___                                                       │\n"
                                          "│                  |  _ \\ _   _ _ __   __ _  ___  ___  _ __                   │\n"
                                          "│                  | | | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\                  │\n"
@@ -37,17 +27,9 @@ const std::string canvasPantallaInicio = "┌───────────�
  	                                     "│                                                                             │\n"
  	                                     "│                                 3. SALIR                                    │\n"
  	                                     "│                                                                             │\n"
- 	                                     "└─────────────────────────────────────────────────────────────────────────────┘\n"
-	                                     "Opcion: ";
+ 	                                     "└─────────────────────────────────────────────────────────────────────────────┘\n";
 
-
-// IMPRIMIR PANTALLA INICIO
-//
-// Imprime una ventana de FILAS x COLUMNAS
-//
-// Las constantes FILAS y COLUMNAS valen por defecto 24 y 80 respectivamente
-//
-void imprimirPantallaInicio();
+const std::vector<std::string> opcionesPantallaInicio = {"1", "2", "3"};
 
 
 // MENU PANTALLA INICIO
@@ -60,13 +42,7 @@ void imprimirPantallaInicio();
 //	2: ¿COMO SE JUEGA?
 //	3: SALIR
 //
-// Cualquier entrada que no sea 1, 2 o 3 volvera a llamar a imprimirPantallaInicio()
-//
-void menuPantallaInicio();
-
-
-
+void menuPantallaInicio(std::string opcion);
 
 
 #endif //PANTALLA_INICIO
-
