@@ -1,0 +1,124 @@
+
+
+
+
+
+"┌─────────────────────────────────────────────────────────────────────────────┐\n"
+"│                                                                             │\n"
+"│                            ┌──────────────────┐                             │\n"
+"│                            │ CALCULO DEL DANO │                             │\n"
+"│                            └──────────────────┘                             │\n"
+"│                                                                             │\n"
+"│ Existen dos tipos de dano, el fisico y el magico.                           │\n"
+"│ El fisico se calcula a patir del ataque fisico del personaje y el arma que  │\n"
+"│ empune, y el magico se calcula a partir del ataque magico.                  │\n"
+"│                                                                             │\n"
+"│ La reduccion de dano de un ataque fisico, se calcula a partir de la defensa │\n"
+"│ fisica, y la reduccion de un ataque magico, con la defensa magica.          │\n"
+"│                                                                             │\n" 
+"│ Si realizamos un ataque fisico, existe la posibilidad de fallar el ataque.  │\n"   
+"│ Esto se determina con la precision del arma.                                │\n"                     
+"│ Por otra parte, los ataques magicos siempre aciertan.                       │\n"
+"│                                                                             │\n"
+"│ Los ataque fisicos tambien pueden ser criticos, lo que hara un dano mucho   │\n"
+"│ mayor. Este parametro tambien lo determina el arma.                         │\n"
+"│                                                                             │\n"
+"└─────────────────────────────────────────────────────────────────────────────┘\n";
+
+
+
+
+"┌─────────────────────────────────────────────────────────────────────────────┐\n"
+"│                                                                             │\n"
+"│                         ┌────────────────────────┐                          │\n"
+"│                         │ AFINIDADES ELEMENTALES │                          │\n"
+"│                         └────────────────────────┘                          │\n"
+"│                                                                             │\n"
+"│ Existen cinco elementos, de los cuales cada uno es debil o fuerte contra    │\n"
+"│ otro.                                                                       │\n"
+"│                                                                             │\n"
+"│                                   tierra                                    │\n"
+"│                                                                             │\n"
+"│                                ↗           ↘                                │\n"
+"│                                                                             │\n"
+"│                           hielo            rayo                             │\n" 
+"│                                                                             │\n"   
+"│                             ↑                ↓                              │\n"
+"│                                                                             │\n"                     
+"│                           fuego     ←      agua                             │\n"
+"│                                                                             │\n"
+"│                                                                             │\n"
+"└─────────────────────────────────────────────────────────────────────────────┘\n";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
