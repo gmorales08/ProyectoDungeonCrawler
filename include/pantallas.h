@@ -26,7 +26,12 @@ void limpiarBufferEntrada();
 //     0: aviso -> imprime un mensaje amarillo
 //     1: error -> imprime un mensaje rojo
 //
+//
+// La segunda variante de imprimirLog, sirve para imprimir dos lineas de texto
+// El mensaje que ira en la segunda linea, se le pasa como tercer parametro.
+//
 std::string imprimirLog(int tipoDeMensaje, std::string mensaje);
+std::string imprimirLog(int tipoDeMensaje, std::string mensaje1, std::string mensaje2);
 
 
 // VALIDAR OPCION
@@ -51,8 +56,19 @@ bool validarOpcion(std::string opcion, std::vector<std::string> opcionesMenu);
 //     
 //     log: mensaje para imprimir en el log en caso de que sea necesario
 //
+//
+// Alternativa: Tambien se le puede pasar un cuarto parametro para especificar el mensaje de error que se mostrara:
+//
+//     logError: string con el error a mostrar en el log
+//
+//
+// Alternativa: Si se le pasa solo el canvas y el mensaje de log, leera la entrada de datos sin hacer comprobaciones
+//
+//     se va a usar para leer cadenas de texto, como por ejemplo, el nombre del personaje.
+//
 std::string cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log);
-
+std::string cargarPantalla(std::string canvasPantalla, std::vector<std::string> opcionesMenu, std::string log, std::string logError);
+std::string cargarPantalla(std::string canvasPantalla, std::string log);
 
 // IMPRIMIR PANTALLA ESTATICA
 //
