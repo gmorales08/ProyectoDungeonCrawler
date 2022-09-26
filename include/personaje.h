@@ -5,14 +5,18 @@
 #include <iostream>
 
 
-// ENUMERADOS
+// CLASE PERSONAJE
 //
-// Se utilizaran para saber la raza, clase, subclase y elemento del personaje
+// Clase padre de las clases Jugador y Enemigo que contiene atributos y metodos comunes
 //
-enum Raza     {Humano = 1, Enano = 2, Elfo = 3, Ogro = 4, Triton = 5, Licantropo = 6};
-enum Clase    {Guerrero = 1, Mago = 2, Monje = 3, Clerigo = 4, Ladron = 5, Trovador = 6};
-enum Subclase {Herrero = 1, Alquimista = 2, Gladiador = 3, Boticario = 4, Druida = 5, Mercenario = 6};
+
+
+// ENUMERADO ELEMENTO
+//
+// Se utilizara para saber el elemento del personaje
+//
 enum Elemento {Agua, Fuego, Hielo, Tierra, Rayo, Neutro};
+
 
 // PERSONAJE
 //
@@ -24,11 +28,11 @@ public:
 
 	// CONSTRUCTOR
 	//
-	// Se le pasa los valores elegidos en pantallaCreacionPersonaje y genera todos los atributos del personaje nuevo.
+	// Contiene el nombre del Jugador o Enemigo que se va a crear
 	//
-	Personaje(std::string _nombre, int _raza, int _clase, int _subclase);
+	Personaje(std::string _nombre);
 
-private:
+protected:
 
 	std::string nombre;
 	int vida;
@@ -39,15 +43,15 @@ private:
 	int velocidad;
 	int precision;
 	int critico;
-	Raza raza;
-	Clase clase;
-	Subclase subclase;
 	Elemento elemento;
+	
+
+	// TIRAR DADOS
+	//
+	// Metodo que simula la tirada de x dados y suma su puntuacion
+	// El numero de dados se pasa por parametro
+	//
+	int tirarDados(int numeroDeDados);
 };
-
-
-
-
-
 
 #endif //PERSONAJE

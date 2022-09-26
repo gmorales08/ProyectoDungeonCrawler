@@ -60,4 +60,12 @@ const std::vector<std::string> opcionesSeleccionArma = {"1", "2", "3", "4", "5",
 void menuCreacionPersonaje(std::string opcion);
 
 
+// MENU SELECCION ARMA
+//
+// Carga el menu de seleccion de arma
+//
+// Cuando se selecciona el arma, se carga la pantalla de informacion del personaje y se crea el personaje con los parametros seleccionados
+//
+void menuSeleccionArma(std::string opcion);
+
 #endif //PANTALLA_CREACION_PERSONAJE

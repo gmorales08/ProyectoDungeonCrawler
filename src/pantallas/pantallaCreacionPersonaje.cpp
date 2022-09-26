@@ -2,7 +2,8 @@
 
 
 std::string seleccionActual = "";
-std::vector<int> seleccionActualNumerica = {0, 0, 0}; 
+std::string nombrePersonaje = "Personaje";
+std::vector<int> seleccionActualNumerica = {0, 0, 0, 0}; // Contiene {Raza, Clase, Subclase, Arma} 
 std::string mensajeLog = "";
 bool raza = false, clase = false, subclase = false;
 
@@ -159,9 +160,9 @@ void menuCreacionPersonaje(std::string opcion) {
 		
 		if (opcion == "s" || opcion == "S") {
 
-			std::string nombrePersonaje = cargarPantalla(canvasCreacionPersonaje, "Introduzca el nombre del personaje\n");
+			nombrePersonaje = cargarPantalla(canvasCreacionPersonaje, "Introduzca el nombre del personaje\n");
 				
-			//Pasar por parametro a otra pantalla los valores del personaje, para crearlo en la siguiente pantalla, no esta
+			menuSeleccionArma(cargarPantalla(canvasSeleccionArma, opcionesSeleccionArma, imprimirLog(0, "Personaje actual: "  + seleccionActual, "Seleccione un arma (1-10) "), "Personaje actual: " + seleccionActual + "\nDebe escribir un numero del 1 al 10")); 
 
 		} else if (opcion == "n" || opcion == "N") {
 
@@ -183,7 +184,82 @@ void menuCreacionPersonaje(std::string opcion) {
 
 	menuCreacionPersonaje(cargarPantalla(canvasCreacionPersonaje, opcionesCreacionPersonaje, 
 				imprimirLog(0, "Seleccion actual: " + seleccionActual, mensajeLog),
-				"Seleccion actual: " + seleccionActual + "\nDebe escribir un numero del 1 al 6"));
+	 			"Seleccion actual: " + seleccionActual + "\nDebe escribir un numero del 1 al 6"));
 
 	}
+	
+}
+
+
+void menuSeleccionArma(std::string opcion) {
+
+	mensajeLog = "Es correcta su seleccion? (s/n)";
+	std::string seleccionActualArma = "";
+
+	if (opcion == "1") {
+
+		seleccionActualArma = "Espada.";
+		seleccionActualNumerica[3] = 1;
+	
+	} else if (opcion == "2") {
+	
+		seleccionActualArma = "Estoque.";
+		seleccionActualNumerica[3] = 2;
+	
+	} else if (opcion == "3") {
+		
+		seleccionActualArma = "Daga.";
+		seleccionActualNumerica[3] = 3;
+	
+	} else if (opcion == "4") {
+		
+		seleccionActualArma = "Mandoble.";
+		seleccionActualNumerica[3] = 4;
+	
+	} else if (opcion == "5") {
+		
+		seleccionActualArma = "Baculo.";
+		seleccionActualNumerica[3] = 5;
+	
+	} else if (opcion == "6") {
+		
+		seleccionActualArma = "Hacha";
+		seleccionActualNumerica[3] = 6;
+	
+	} else if (opcion == "7") {
+		
+		seleccionActualArma = "Lanza";
+		seleccionActualNumerica[3] = 7;
+	
+	} else if (opcion == "8") {
+		
+		seleccionActualArma = "Arco";
+		seleccionActualNumerica[3] = 8;
+	
+	} else if (opcion == "9") {
+		
+		seleccionActualArma = "Martillo";
+		seleccionActualNumerica[3] = 9;
+	
+	} else if (opcion == "10") {
+		
+		seleccionActualArma = "Garras";
+		seleccionActualNumerica[3] = 10;
+	
+	}
+	
+
+	if (opcion == "s" || opcion == "S") {
+
+
+	} else if (opcion == "n" || opcion == "N") {
+			
+		menuSeleccionArma(cargarPantalla(canvasSeleccionArma, opcionesSeleccionArma, imprimirLog(0, "Personaje actual: "  + seleccionActual + " " + seleccionActualArma, "Seleccione un arma (1-10) "), "Personaje actual: " + seleccionActual + " " + seleccionActualArma + "\nDebe escribir un numero del 1 al 10")); 
+
+	} else {
+
+		menuSeleccionArma(cargarPantalla(canvasSeleccionArma, {"s", "S", "n", "N"}, 
+				imprimirLog(0, "Seleccion actual: " + seleccionActual + " " + seleccionActualArma, mensajeLog),
+				"Seleccion actual: " + seleccionActual + " " + seleccionActualArma + "\nEs correcta su seleccion? Debe escribir s o n"));
+		}	
 }
