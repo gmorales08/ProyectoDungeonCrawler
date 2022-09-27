@@ -39,6 +39,7 @@
 
 # Swap files
 *.swp
+*.swo
 
 # ToDo list
 toDo
