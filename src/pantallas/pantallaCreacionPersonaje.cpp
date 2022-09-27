@@ -1,4 +1,5 @@
 #include "../../include/pantallaCreacionPersonaje.h"
+#include "../../include/jugador.h"
 
 
 std::string seleccionActual = "";
@@ -134,7 +135,7 @@ void menuCreacionPersonaje(std::string opcion) {
 
 		if (!raza) 	{
 
-			seleccionActual += "Licantropo, ";
+			seleccionActual += "Bestia, ";
 			seleccionActualNumerica[0] = 6;
 			mensajeLog = "Elija una clase (1-6)";
 			raza = true;
@@ -251,7 +252,8 @@ void menuSeleccionArma(std::string opcion) {
 
 	if (opcion == "s" || opcion == "S") {
 
-
+		Jugador jugador (nombrePersonaje, seleccionActualNumerica[0], seleccionActualNumerica[1], seleccionActualNumerica[2], seleccionActualNumerica[3]);
+		//pasar jugador a pantalla de informacion !!!!!!!!!!!!!!!!!!!!!!!!!!
 	} else if (opcion == "n" || opcion == "N") {
 			
 		menuSeleccionArma(cargarPantalla(canvasSeleccionArma, opcionesSeleccionArma, imprimirLog(0, "Personaje actual: "  + seleccionActual + " " + seleccionActualArma, "Seleccione un arma (1-10) "), "Personaje actual: " + seleccionActual + " " + seleccionActualArma + "\nDebe escribir un numero del 1 al 10")); 

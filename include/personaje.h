@@ -32,6 +32,27 @@ public:
 	//
 	Personaje(std::string _nombre);
 
+	// Getters
+	std::string getNombre();
+	int getVida();
+	int getAtaqueFisico();
+	int getAtaqueMagico();
+	int getDefensaFisica();
+	int getDefensaMagica();
+	int getVelocidad();
+	int getPrecision();
+	int getCritico();
+
+	// Setters
+	void setVida(int vida);
+	void setAtaqueFisico(int ataqueFisico);
+	void setAtaqueMagico(int ataqueMagico);
+	void setDefensaFisica(int defensaFisica);
+	void setDefensaMagica(int defensaMagica);
+	void setVelocidad(int velocidad);
+	void setPrecision(int precision);
+	void setCritico(int critico);
+
 protected:
 
 	std::string nombre;
@@ -46,12 +67,18 @@ protected:
 	Elemento elemento;
 	
 
-	// TIRAR DADOS
+	// TIRAR DADO
 	//
-	// Metodo que simula la tirada de x dados y suma su puntuacion
-	// El numero de dados se pasa por parametro
+	// Metodo que simula la tirada de 1 dado y devuelve su puntuacion
 	//
-	int tirarDados(int numeroDeDados);
+	int tirarDado();
+
+	// ESCOGER DADOS
+	//
+	// Metodo que simula la tirada de x dados y devuelve la suma de los tres resultados mas altos.
+	//
+	int escogerDados(int numeroTiradas);
+
 };
 
 #endif //PERSONAJE

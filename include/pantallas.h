@@ -5,9 +5,20 @@
 #include <iostream>
 #include <vector>
 
-
 // CABECERA DONDE SE VAN A INCLUIR FUNCIONES QUE SE UTILICEN EN TODAS LAS PANTALLAS
 
+
+// CONSTANTE ANCHOPANTALLA
+//
+// El ancho que mide el layout del programa
+//
+const int anchoPantalla = 80;
+
+// CONSTANTES CARACTERES 
+//
+// Algunos caracteres especiales que se imprimiran en pantalla
+//
+const std::string bloque = "█";
 
 // LIMPIAR BUFFER ENTRADA
 //
@@ -77,6 +88,34 @@ std::string cargarPantalla(std::string canvasPantalla, std::string log);
 // Se para por parametro el canvas de la pantalla
 //
 void imprimirPantallaEstatica(std::string canvasPantalla);
+
+
+// CENTRAR TEXTO
+//
+// Centra el texto pasado por parametro en una linea cuya longitud tambien se pasa por parametro. Devuelve un string con el texto centrado.
+//
+// Ademas, imprime antes y despues de la linea los caracteres de borde "|"
+//
+// Se pasa por parametro:
+//
+//     texto: el string que queremos ubicar en el centro de la linea
+//
+//     longitudLinea: el tamano de la linea donde se centra el texto
+//
+// Ejemplo: centrarTexto("texto", 10);
+//
+//     $ | texto  |
+//     Nº12345678910 -> en total son 10 caracteres incluyendo los bordes "|", espacios y el texto.
+//
+// Nota: si el numero de espacios a distribuir a los laterales del texto es impar, el texto siempre se situara mas cerca de la izquierda (ver ejemplo anterior).
+// 
+// Nota: se hara uso de la constante anchoPantalla para indicar la longitud de la linea en caso de querer ocupar todo el layout.
+//
+//
+// Alternativa: tambien se le puede indicar cual es el caracter inicial y final que queremos que imprima, en vez de |
+//
+std::string centrarTexto(std::string texto, int longitudLinea);
+std::string centrarTexto(std::string texto, int longitudLinea, std::string caracterInicial, std::string caracterFinal);
 
 
 #endif // PANTALLAS
