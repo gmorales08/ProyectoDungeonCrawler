@@ -96,24 +96,26 @@ void imprimirPantallaEstatica(std::string canvasPantalla) {
 
 std::string centrarTexto(std::string texto, int longitudLinea) {
 	
-	std::string lineaADevolver = "|";
+	std::string lineaADevolver = "│";
 	int espaciosDcha, espaciosIzda;
 	bool numeroEspaciosImpar;
 
-	if (texto.length() <= 78) { // Comprobamos que el texto cabe en una linea
+	if (texto.length() <= (long unsigned int) longitudLinea) { // Comprobamos que el texto cabe en una linea
 
 		espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
 		if ((longitudLinea - 2 - texto.length()) % 2 == 0) espaciosDcha = espaciosIzda; // Comprobamos si el numero de espacios disponible es par o impar
 		else espaciosDcha = espaciosIzda + 1;
-	}
+	
+	} else { return ""; } // Si la linea no cabe, no la imprime
 
 	for (int i = 0; i < espaciosIzda; i++) lineaADevolver += " ";
 	lineaADevolver += texto;
 	for (int i = 0; i < espaciosDcha; i++) lineaADevolver += " ";
-	lineaADevolver += "|";
+	lineaADevolver += "│";
 
 	return lineaADevolver;
 }
+
 
 std::string centrarTexto(std::string texto, int longitudLinea, std::string caracterInicial, std::string caracterFinal) {
 
@@ -121,12 +123,14 @@ std::string centrarTexto(std::string texto, int longitudLinea, std::string carac
 	int espaciosDcha, espaciosIzda;
 	bool numeroEspaciosImpar;
 
-	if (texto.length() <= 78) { // Comprobamos que el texto cabe en una linea
+	if (texto.length() <= (long unsigned int) longitudLinea) { // Comprobamos que el texto cabe en una linea
 
 		espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
 		if ((longitudLinea - 2 - texto.length()) % 2 == 0) espaciosDcha = espaciosIzda; // Comprobamos si el numero de espacios disponible es par o impar
 		else espaciosDcha = espaciosIzda + 1;
-	}
+	
+	} else { return ""; } // Si la linea no cabe, no la imprime
+
 
 	for (int i = 0; i < espaciosIzda; i++) lineaADevolver += " ";
 	lineaADevolver += texto;

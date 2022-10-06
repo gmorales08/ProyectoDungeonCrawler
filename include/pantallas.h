@@ -12,13 +12,14 @@
 //
 // El ancho que mide el layout del programa
 //
-const int anchoPantalla = 80;
+const int ANCHOPANTALLA = 79;
 
 // CONSTANTES CARACTERES 
 //
 // Algunos caracteres especiales que se imprimiran en pantalla
 //
-const std::string bloque = "█";
+const std::string TUBERIA = "│";
+const std::string BLOQUE = "█";
 
 // LIMPIAR BUFFER ENTRADA
 //

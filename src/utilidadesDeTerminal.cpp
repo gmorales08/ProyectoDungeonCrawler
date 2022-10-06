@@ -41,10 +41,10 @@ std::string imprimirMagenta(std::string texto) {
 }
 std::string imprimirAmarillo(std::string texto) {
 
-	return ("\033[38;5;0226m" + texto + "\033[38;5;231m");
+	return ("\033[38;5;226m" + texto + "\033[38;5;231m");
 }
 
 std::string imprimirBlanco(std::string texto) {
 	
-	return ("\033[38;5;231m" + texto);
+	return ("\033[38;5;231m" + texto + "\033[38;5;231m");
 }

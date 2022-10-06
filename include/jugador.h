@@ -34,6 +34,15 @@ public:
 	Arma getArma();
 	std::string getAfinidades();
 
+	// GETTERS TO_STRING
+	//
+	// Se usaran para imprimir informacion del personaje en pantalla
+	//
+	std::string getRazaString();
+	std::string getClaseString();
+	std::string getSubClaseString();
+	std::string getArmaString();
+
 	/* Setters // Pendiente de saber si durante la partida se puede modificar el personaje
 	void setRaza(Raza raza);
 	void setClase(Clase clase);
@@ -51,9 +60,9 @@ private:
 	
 	// OBTENER ELEMENTO
 	//
-	// Metodo para obtener el elemento correspondiente a la raza pasada por parametro
+	// Metodo para obtener el elemento correspondiente a la raza del jugador
 	//
-	Elemento obtenerElemento(Raza raza);
+	Elemento obtenerElemento();
 	
 	// OBTENER AFINIDADES
 	//
@@ -63,6 +72,25 @@ private:
 	//
 	std::string obtenerAfinidades(Raza raza, Clase clase, Subclase subclase);
 
+
+	// GENERAR ATRIBUTOS
+	//
+	// Genera los atributos del personaje.
+	//
+	// Primero determina el numero de dados que tirara por cada atributo.
+	// Luego tira los dados y asigna el valor a cada atributo.
+	//
+	// Establece la precision y el porcentaje critico en base al arma que se pasa como parametro.
+	//
+	void generarAtributos(Clase clase, Subclase subclase, Arma arma);
+	
+	// GENERAR HABILIDADES
+	//
+	// Genera las habilidades del jugador en base a su raza, clase y subclase.
+	//
+	//  
+	//
+	void generarHabilidades();
 };
 
 

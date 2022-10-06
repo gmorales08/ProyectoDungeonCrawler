@@ -3,6 +3,7 @@
 
 
 #include "pantallas.h"
+#include "pantallaInformacionPersonaje.h"
 
 
 const std::string canvasCreacionPersonaje = "┌─────────────────────────────────────────────────────────────────────────────┐\n"

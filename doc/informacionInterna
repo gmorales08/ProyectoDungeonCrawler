@@ -1,0 +1,26 @@
+Estadisticas armas:
+
+[Precision, critico] %
+
+espada   [ 95, 15]
+estoque  [100, 10] 
+daga     [ 90, 20] 
+mandoble [ 90, 20]
+baculo   [ 90, 20]
+hacha    [ 90, 20]
+lanza    [ 95, 15]
+arco     [100, 10]
+martillo [ 90, 20]
+garras   [ 95, 15]
+
+
+Establecer vida: tirar 5 dados escogiendo los tres mejores, sumar el resultado, repetirlo otra vez sumando el resultado y multiplicar por 10.
+
+
+
+Estadisticas habilidades:
+
+
+
+
+

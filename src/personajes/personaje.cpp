@@ -1,7 +1,9 @@
+#include "../../include/utilidadesDeTerminal.h"
 #include "../../include/personaje.h"
-#include <vector>
+#include <vector> 
 #include <algorithm>
 #include <ctime>
+
 
 Personaje::Personaje(std::string _nombre) {
 	
@@ -11,6 +13,7 @@ Personaje::Personaje(std::string _nombre) {
 // Getters
 std::string Personaje::getNombre()        { return nombre; }
 int         Personaje::getVida()          { return vida; }
+int         Personaje::getVidaMaxima()    { return vidaMaxima; }
 int         Personaje::getAtaqueFisico()  { return ataqueFisico; }
 int         Personaje::getAtaqueMagico()  { return ataqueMagico; }
 int         Personaje::getDefensaFisica() { return defensaFisica; }
@@ -19,8 +22,30 @@ int         Personaje::getVelocidad()     { return velocidad; }
 int         Personaje::getPrecision()     { return precision; }
 int         Personaje::getCritico()       { return critico; }
 
+Elemento Personaje::getElemento()                  { return elemento; }
+std::vector<Habilidad> Personaje::getHabilidades() { return habilidades; }
+
+std::string Personaje::getElementoString() {
+
+	std::string elementoString = "";
+	switch(getElemento()) {
+
+		case Agua:   elementoString = imprimirAzul("Agua");     break;
+		case Fuego:  elementoString = imprimirRojo("Fuego");    break;
+		case Hielo:  elementoString = imprimirCyan("Hielo");    break;
+		case Tierra: elementoString = imprimirVerde("Tierra");  break;
+		case Rayo:   elementoString = imprimirAmarillo("Rayo"); break;
+		case Neutro: elementoString = imprimirBlanco("Neutro"); break;
+	}
+
+
+	return elementoString;
+}
+
+
 // Setters
 void Personaje::setVida(int _vida)                   { vida = _vida; }
+void Personaje::setVidaMaxima(int _vidaMaxima)       { vidaMaxima = _vidaMaxima; }
 void Personaje::setAtaqueFisico(int _ataqueFisico)   { ataqueFisico = _ataqueFisico; }
 void Personaje::setAtaqueMagico(int _ataqueMagico)   { ataqueMagico = _ataqueMagico; }
 void Personaje::setDefensaFisica(int _defensaFisica) { defensaFisica = _defensaFisica; }
@@ -28,6 +53,34 @@ void Personaje::setDefensaMagica(int _defensaMagica) { defensaMagica = _defensaM
 void Personaje::setVelocidad(int _velocidad)         { velocidad = _velocidad; }
 void Personaje::setPrecision(int _precision)         { precision = _precision; }
 void Personaje::setCritico(int _critico)             { critico = _critico; }
+
+
+std::string Personaje::generarBarraDeVida() {
+
+	std::string vida = "";
+
+	//1. Calcular el % de vida que le queda al personaje
+	
+	int porcentajeVida = (getVida() * 100) / getVidaMaxima();
+
+	//2. Imprimimos un "█" por cada 5% de vida 
+	
+	int contador = porcentajeVida;
+	while (contador > 0) {
+
+		vida += "█";
+		contador -= 5;
+	}
+
+	//3. Imprimos el color correspondiente al % de vida restante
+	
+	if (porcentajeVida > 50) { vida = imprimirVerde(vida); }
+	else if (porcentajeVida <= 50 && porcentajeVida > 25) { vida = imprimirAmarillo(vida); }
+	else if (porcentajeVida <= 25) { vida = imprimirRojo(vida); }
+
+
+	return vida;
+}
 
 
 int Personaje::tirarDado() {
