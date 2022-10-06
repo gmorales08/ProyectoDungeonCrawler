@@ -40,6 +40,7 @@
 # Swap files
 *.swp
 *.swo
+*.cpp.swo
 
 # ToDo list
 toDo
