@@ -26,12 +26,10 @@ ProyectoDungeonCrawler/
 ```
 
 ## Objetivo del juego
----
 
 ![objetivoDelJuego](doc/img/objetivoDelJuego.png)
 
 ## Pantallas
----
 
 A continuación se muestran las pantallas más importantes del juego. 
 

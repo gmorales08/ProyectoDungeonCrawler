@@ -1,4 +1,4 @@
-TARGET      := programa
+TARGET      := pdg
 INCLUDE_DIR := ./include
 BUILD_DIR   := ./bin
 SOURCE_DIR  := ./src
