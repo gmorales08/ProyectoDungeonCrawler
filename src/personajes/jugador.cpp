@@ -1,190 +1,172 @@
-#include "../../include/jugador.h"
+#include "../../include/jugador.hpp"
 
 
-Jugador::Jugador(std::string _nombre, int _raza, int _clase, int _subclase, int _arma) : Personaje(_nombre) {
-
-	raza =     (Raza)_raza;
-	clase =    (Clase)_clase;
-	subclase = (Subclase)_subclase;
-	arma =     (Arma)_arma;
-	elemento = obtenerElemento();
-	
+Jugador::Jugador(std::string _nombre, int _raza, int _clase, int _subclase,
+                 int _arma) : Personaje(_nombre) {
+	raza =       (Jugador::Jugador::Raza)_raza;
+	clase =      (Jugador::Clase)_clase;
+	subclase =   (Jugador::Subclase)_subclase;
+	arma =       (Jugador::Arma)_arma;
+	elemento =   obtenerElemento();
 	afinidades = obtenerAfinidades(raza, clase, subclase);
 
 	generarAtributos(clase, subclase, arma);
 	generarHabilidades();
 };
 
-
-Raza        Jugador::getRaza()       { return raza; }
-Clase       Jugador::getClase()      { return clase; }
-Subclase    Jugador::getSubClase()   { return subclase; }
-Arma        Jugador::getArma()       { return arma; }
-std::string Jugador::getAfinidades() { return afinidades; }
-
+Jugador::Raza        Jugador::getRaza()       { return raza; }
+Jugador::Clase       Jugador::getClase()      { return clase; }
+Jugador::Subclase    Jugador::getSubclase()   { return subclase; }
+Jugador::Arma        Jugador::getArma()       { return arma; }
+std::string          Jugador::getAfinidades() { return afinidades; }
 
 std::string Jugador::getRazaString() {
-
-	std::string razaString = "";	
+	std::string razaString = "";
 	switch (getRaza()) {
-
-		case Humano: razaString = "Humano"; break; 
-		case Enano:  razaString = "Enano";  break;
-		case Elfo:   razaString = "Elfo";   break;
-		case Ogro:   razaString = "Ogro";   break;
-		case Triton: razaString = "Triton"; break;
-		case Bestia: razaString = "Bestia"; break;
+		case HUMANO: razaString = "Humano"; break;
+		case ENANO:  razaString = "Enano";  break;
+		case ELFO:   razaString = "Elfo";   break;
+		case OGRO:   razaString = "Ogro";   break;
+		case TRITON: razaString = "Triton"; break;
+		case BESTIA: razaString = "Bestia"; break;
 	}
 
 	return razaString;
 }
 
 std::string Jugador::getClaseString() {
-
 	std::string claseString = "";
 	switch (getClase()) {
-		
-		case Guerrero: claseString = "Guerrero"; break;
-		case Mago:     claseString = "Mago";     break;
-		case Monje:    claseString = "Monje";    break;
-		case Clerigo:  claseString = "Clerigo";  break;
-		case Ladron:   claseString = "Ladron";   break;
-		case Trovador: claseString = "Trovador"; break;
+		case GUERRERO: claseString = "GUERRERO"; break;
+		case MAGO:     claseString = "MAGO";     break;
+		case MONJE:    claseString = "MONJE";    break;
+		case CLERIGO:  claseString = "CLERIGO";  break;
+		case LADRON:   claseString = "LADRON";   break;
+		case TROVADOR: claseString = "TROVADOR"; break;
 	}
 
 	return claseString;
 }
 
-std::string Jugador::getSubClaseString() {
-
+std::string Jugador::getSubclaseString() {
 	std::string subClaseString = "";
-	switch (getSubClase()) {
-		
-		case Herrero:    subClaseString = "Herrero";    break;
-		case Alquimista: subClaseString = "Alquimista"; break;
-		case Gladiador:  subClaseString = "Gladiador";  break;
-		case Boticario:  subClaseString = "Boticario";  break;
-		case Druida:     subClaseString = "Druida";     break;
-		case Mercenario: subClaseString = "Mercenario"; break;
+	switch (getSubclase()) {
+		case HERRERO:    subClaseString = "HERRERO";    break;
+		case ALQUIMISTA: subClaseString = "ALQUIMISTA"; break;
+		case GLADIADOR:  subClaseString = "GLADIADOR";  break;
+		case BOTICARIO:  subClaseString = "BOTICARIO";  break;
+		case DRUIDA:     subClaseString = "DRUIDA";     break;
+		case MERCENARIO: subClaseString = "MERCENARIO"; break;
 	}
 
 	return subClaseString;
 }
 
 std::string Jugador::getArmaString() {
-
 	std::string armaString = "";
 	switch (getArma()) {
-
-		case Espada:   armaString = "Espada";   break;
-		case Estoque:  armaString = "Estoque";  break;
-		case Daga:     armaString = "Daga";     break;
-		case Mandoble: armaString = "Mandoble"; break;
-		case Baculo:   armaString = "Baculo";   break;
-		case Hacha:    armaString = "Hacha";    break;
-		case Lanza:    armaString = "Lanza";    break;
-		case Arco:     armaString = "Arco";     break;
-		case Martillo: armaString = "Martillo"; break;
-		case Garras:   armaString = "Garras";   break;
+		case ESPADA:   armaString = "ESPADA";   break;
+		case ESTOQUE:  armaString = "ESTOQUE";  break;
+		case DAGA:     armaString = "DAGA";     break;
+		case MANDOBLE: armaString = "MANDOBLE"; break;
+		case BACULO:   armaString = "BACULO";   break;
+		case HACHA:    armaString = "HACHA";    break;
+		case LANZA:    armaString = "LANZA";    break;
+		case ARCO:     armaString = "ARCO";     break;
+		case MARTILLO: armaString = "MARTILLO"; break;
+		case GARRAS:   armaString = "GARRAS";   break;
 	}
 
 	return armaString;
 }
 
-
 Elemento Jugador::obtenerElemento() {
-
 	Elemento elementoPersonaje;
 	switch (getRaza()) {
-
-		case Humano: elementoPersonaje = Neutro; break;
-		case Enano:  elementoPersonaje = Tierra; break;
-		case Elfo:   elementoPersonaje = Hielo;  break;
-		case Ogro:   elementoPersonaje = Fuego;  break;
-		case Triton: elementoPersonaje = Agua;   break;
-		case Bestia: elementoPersonaje = Rayo;   break;
+		case HUMANO: elementoPersonaje = Neutro; break;
+		case ENANO:  elementoPersonaje = Tierra; break;
+		case ELFO:   elementoPersonaje = Hielo;  break;
+		case OGRO:   elementoPersonaje = Fuego;  break;
+		case TRITON: elementoPersonaje = Agua;   break;
+		case BESTIA: elementoPersonaje = Rayo;   break;
 	}
 
 	return elementoPersonaje;
 }
 
-std::string Jugador::obtenerAfinidades(Raza raza, Clase clase, Subclase subclase) {
-
+std::string Jugador::obtenerAfinidades(Jugador::Raza raza, Jugador::Clase clase,
+                                       Jugador::Subclase subclase) {
 	std::string afinidades = "";
-
 	switch (raza) {
-
-		case Humano: afinidades += "Espada, ";    break;
-		case Enano:  afinidades += "Martillos, "; break;
-		case Elfo:   afinidades += "Arcos, ";     break;
-		case Ogro:   afinidades += "Hachas, ";    break;
-		case Triton: afinidades += "Lanzas, ";    break;
-		case Bestia: afinidades += "Garras, ";    break;
+		case HUMANO: afinidades += "ESPADA, ";    break;
+		case ENANO:  afinidades += "MARTILLOs, "; break;
+		case ELFO:   afinidades += "ARCOs, ";     break;
+		case OGRO:   afinidades += "HACHAs, ";    break;
+        case TRITON: afinidades += "LANZAs, ";    break;
+        case BESTIA: afinidades += "GARRAS, ";    break;
 	}
 
 	switch (clase) {
-
-		case Guerrero: afinidades += "mandobles, "; break;
-		case Mago:     afinidades += "baculos, ";   break;
-		case Monje:    afinidades += "garras, ";    break;
-		case Clerigo:  afinidades += "baculos, ";   break;
-		case Ladron:   afinidades += "dagas, ";     break;
-		case Trovador: afinidades += "estoques, ";  break;
+		case GUERRERO: afinidades += "mandobles, "; break;
+		case MAGO:     afinidades += "baculos, ";   break;
+		case MONJE:    afinidades += "garras, ";    break;
+		case CLERIGO:  afinidades += "baculos, ";   break;
+		case LADRON:   afinidades += "dagas, ";     break;
+		case TROVADOR: afinidades += "estoques, ";  break;
 	}
 
 	switch (subclase) {
-
-		case Herrero:    afinidades += "martillos."; break;
-		case Alquimista: afinidades += "lanzas.";    break;
-		case Gladiador:  afinidades += "mandobles."; break;
-		case Boticario:  afinidades += "dagas.";     break;
-		case Druida:     afinidades += "arcos.";     break;
-		case Mercenario: afinidades += "espadas.";   break;
+		case HERRERO:    afinidades += "martillos."; break;
+		case ALQUIMISTA: afinidades += "lanzas.";    break;
+		case GLADIADOR:  afinidades += "mandobles."; break;
+		case BOTICARIO:  afinidades += "dagas.";     break;
+		case DRUIDA:     afinidades += "arcos.";     break;
+		case MERCENARIO: afinidades += "espadas.";   break;
 	}
 
 	return afinidades;
 }
 
-
-void Jugador::generarAtributos(Clase clase, Subclase subclase, Arma arma) {
-
-	int dadosAtaqueFisico = 3, dadosAtaqueMagico = 3, dadosDefensaFisica = 3, dadosDefensaMagica = 3, dadosVelocidad = 3;
-	int precision, critico;
+void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
+                               Jugador::Arma arma) {
+	int dadosAtaqueFisico  = 3;
+    int dadosAtaqueMagico  = 3;
+    int dadosDefensaFisica = 3;
+    int dadosDefensaMagica = 3;
+    int dadosVelocidad     = 3;
+	int precision;
+    int critico;
 
 	switch (clase) {
-
-		case Guerrero: dadosDefensaFisica += 1; break;
-		case Mago:     dadosAtaqueMagico  += 1; break;
-		case Monje:    dadosAtaqueFisico  += 1; break;
-		case Clerigo:  dadosDefensaMagica += 1; break;
-		case Ladron:   dadosVelocidad += 1;     break;
-		case Trovador: dadosVelocidad += 1;     break;
+		case GUERRERO: dadosDefensaFisica += 1; break;
+		case MAGO:     dadosAtaqueMagico  += 1; break;
+		case MONJE:    dadosAtaqueFisico  += 1; break;
+		case CLERIGO:  dadosDefensaMagica += 1; break;
+		case LADRON:   dadosVelocidad += 1;     break;
+		case TROVADOR: dadosVelocidad += 1;     break;
 	}
 
 	switch (subclase) {
-
-		case Herrero:    dadosDefensaFisica += 1; break;
-		case Alquimista: dadosAtaqueMagico  += 1; break;
-		case Gladiador:  dadosAtaqueFisico  += 1; break;
-		case Boticario:  dadosDefensaMagica += 1; break;
-		case Druida:     dadosDefensaMagica += 1; break;
-		case Mercenario: dadosVelocidad     += 1; break;
+		case HERRERO:    dadosDefensaFisica += 1; break;
+		case ALQUIMISTA: dadosAtaqueMagico  += 1; break;
+		case GLADIADOR:  dadosAtaqueFisico  += 1; break;
+		case BOTICARIO:  dadosDefensaMagica += 1; break;
+		case DRUIDA:     dadosDefensaMagica += 1; break;
+		case MERCENARIO: dadosVelocidad     += 1; break;
 	}
 
 	switch (arma) {
-		
-		case Espada:   setPrecision(95),  setCritico(15); break;
-		case Estoque:  setPrecision(100), setCritico(10); break;
-		case Daga:     setPrecision(90),  setCritico(20); break;
-		case Mandoble: setPrecision(90),  setCritico(20); break;
-		case Baculo:   setPrecision(90),  setCritico(20); break;
-		case Hacha:    setPrecision(90),  setCritico(20); break;
-		case Lanza:    setPrecision(95),  setCritico(15); break;
-		case Arco:     setPrecision(100), setCritico(10); break;
-		case Martillo: setPrecision(90),  setCritico(20); break;
-		case Garras:   setPrecision(95),  setCritico(15); break;
+		case ESPADA:   setPrecision(95),  setCritico(15); break;
+		case ESTOQUE:  setPrecision(100), setCritico(10); break;
+		case DAGA:     setPrecision(90),  setCritico(20); break;
+		case MANDOBLE: setPrecision(90),  setCritico(20); break;
+		case BACULO:   setPrecision(90),  setCritico(20); break;
+		case HACHA:    setPrecision(90),  setCritico(20); break;
+		case LANZA:    setPrecision(95),  setCritico(15); break;
+		case ARCO:     setPrecision(100), setCritico(10); break;
+		case MARTILLO: setPrecision(90),  setCritico(20); break;
+		case GARRAS:   setPrecision(95),  setCritico(15); break;
 	}
-
 
 	setVidaMaxima((escogerDados(3) + escogerDados(3)) * 10);
 	setVida(getVidaMaxima());
@@ -193,12 +175,9 @@ void Jugador::generarAtributos(Clase clase, Subclase subclase, Arma arma) {
 	setDefensaFisica(escogerDados(dadosDefensaFisica));
 	setDefensaMagica(escogerDados(dadosDefensaMagica));
 	setVelocidad(escogerDados(dadosVelocidad));
-	
 }
 
-
 void Jugador::generarHabilidades() {
-
 	Habilidad habilidad1 ("habilidad1", "descripcion habilidad 1", 5);
 	Habilidad habilidad2 ("habilidad2", "descripcion habilidad 2", 5);
 	Habilidad habilidad3 ("habilidad3", "descripcion habilidad 3", 5);
