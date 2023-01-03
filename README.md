@@ -4,13 +4,20 @@
 
 Se trata de un juego para terminal que funciona con comandos de entrada. Esta escrito en cpp.
 
-Terminales soportadas actualmente: bash.
+Terminales soportadas actualmente: bash, windows cmd.
 
 ## Como jugar
+
+### Para terminales bash:
 
 Primero hay que descargar el ejecutable `pdg` ubicado en `bin/`
 
 Una vez descargado se tiene que acceder desde la terminal al directorio donde se haya guardado el archivo, y ejecutarlo con `./pdg`
+
+### Para terminales windows:
+
+Ejecutar el script `pdg_win` ubicado en `bin/` para que se configure el cmd y pueda imprimir caracteres ANSI y UTF-8.
+
 
 ## Estructura del proyecto
 ---
