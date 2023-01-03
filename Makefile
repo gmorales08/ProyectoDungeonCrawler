@@ -1,23 +1,58 @@
-TARGET      := pdg
-INCLUDE_DIR := ./include
-BUILD_DIR   := ./bin
-SOURCE_DIR  := ./src
-CXX         := g++
-CXXFLAGS    := -Wall -I$(INCLUDE_DIR) 
-SRCS        := $(shell find $(SOURCE_DIR) -name '*.cpp')
-OBJS        := $(SRCS:%=$(BUILD_DIR)/%.o)
+PROGRAM     := pdg
+PROGRAM_EXE := pdg.exe
+BUILD_DIR   := bin
+INCLUDE_DIR := include 
+SOURCE_DIR  := src
+OBJ_DIR     := obj
+
+SRCS        := $(shell find $(SOURCE_DIR) -type f -name *.cpp)
+SUBDIRS     := $(shell find $(SOURCE_DIR) -type d)
+OBJS        := $(patsubst $(SOURCE_DIR)%,$(OBJ_DIR)%, \
+		          $(patsubst %.cpp,%.o,$(SRCS)))
+OBJSUBDIRS  := $(patsubst $(SOURCE_DIR)%,$(OBJ_DIR)%,$(SUBDIRS))
+
+CC          := g++
+CCFLAGS     := -Wall
+MINGW       := x86_64-w64-mingw32-g++-posix
+MINGWFLAGS  := -static #-static-libgcc -static-libstdc++
 
 
-all: $(BUILD_DIR)/$(TARGET) 
+all : elf run_elf
 
-$(BUILD_DIR)/$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) $? -o $@ && ./$(BUILD_DIR)/$(TARGET) 
+elf : $(PROGRAM)
 
-$(BUILD_DIR)/%.cpp.o: %.cpp
-	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $? -o $@
+run_elf :
+	./$(BUILD_DIR)/$(PROGRAM)
 
-clean:
-	rm -rf $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(SOURCE_DIR)
+exe : $(PROGRAM_EXE)
 
-.PHONY: all clean
+clean :
+	rm -rf $(OBJ_DIR)
+
+info : 
+	@echo 'BUILD_DIR:    ' $(BUILD_DIR)
+	@echo 'INCLUDE_DIR:  ' $(INCLUDE_DIR)
+	@echo 'SOURCE_DIR:   ' $(SOURCE_DIR)
+	@echo '  SUBDIRS:    ' $(SUBDIRS)
+	@echo 'OBJ_DIR:      ' $(OBJ_DIR)
+	@echo '  OBJSUBDIRS: ' $(OBJSUBDIRS)
+	@echo 
+	@echo 'SRCS:         ' $(SRCS)
+	@echo
+	@echo 'OBJS:         ' $(OBJS)
+
+
+$(PROGRAM) : $(OBJSUBDIRS) $(OBJS) 
+	$(CC) $(CCFLAGS) $(OBJS) -o $(BUILD_DIR)/$(PROGRAM)
+
+$(PROGRAM_EXE) : $(SRCS) 
+	$(MINGW) $(MINGWFLAGS) $(SRCS) -o $(BUILD_DIR)/win64/$(PROGRAM_EXE)
+
+$(OBJSUBDIRS) : 
+	mkdir -p $(OBJSUBDIRS)
+
+$(OBJ_DIR)/%.o : $(SOURCE_DIR)/%.cpp
+	$(CC) $(CCFLAGS) -c $^ -o $@
+
+
+.PHONY: clean all

@@ -41,9 +41,8 @@
 *.swp
 *.swo
 
-# ToDo list
-toDo
+# Todo list
+todo
 
-# Ejecutable para test
-abrir.sh
-
+# Dirs
+obj/
