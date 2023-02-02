@@ -83,6 +83,39 @@ void Personaje::setCritico(int _critico) {
 }
 /* Fin setters */
 
+/* Aumentar atributos */
+void Personaje::aumentarVida(int _vida) {
+    setVida(getVida() + _vida);
+}
+void Personaje::aumentarVidaMaxima(int _vida) {
+    setVidaMaxima(getVidaMaxima() + _vida);
+}
+void Personaje::aumentarAtaqueFisico(int _ataque) {
+    setAtaqueFisico(getAtaqueFisico() + _ataque);
+}
+void Personaje::aumentarAtaqueMagico(int _ataquem) {
+    setAtaqueMagico(getAtaqueMagico() + _ataquem);
+}
+void Personaje::aumentarDefensaFisica(int _defensa) {
+    setDefensaFisica(getDefensaFisica() + _defensa);
+}
+void Personaje::aumentarDefensaMagica(int _defensam) {
+    setDefensaMagica(getDefensaMagica() + _defensam);
+}
+void Personaje::aumentarVelocidad(int _velocidad) {
+    setVelocidad(getVelocidad() + _velocidad);
+}
+void Personaje::aumentarEvasion(int _evasion) {
+    setEvasion(getEvasion() + _evasion);
+}
+void Personaje::aumentarPrecision(int _precision) {
+    setPrecision(getPrecision() + _precision);
+}
+void Personaje::aumentarCritico(int _critico) {
+    setCritico(getCritico() + _critico);
+}
+/* Fin modificar atributos */
+
 std::string Personaje::generarBarraDeVida() {
 	std::string vida = "";
 

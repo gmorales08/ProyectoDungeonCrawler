@@ -61,6 +61,23 @@ public:
     void setPrecision(int precision);
     void setCritico(int critico);
 
+    /*
+     * AUMENTAR_ATRIBUTOS
+     *
+     * Aumenta o disminuye los atributos del personaje
+     * Para disminuir, pasar un valor negativo.
+     */
+    void aumentarVida(int vida);
+    void aumentarVidaMaxima(int vida);
+    void aumentarAtaqueFisico(int ataqueFisico);
+    void aumentarAtaqueMagico(int ataqueMagico);
+    void aumentarDefensaFisica(int defensaFisica);
+    void aumentarDefensaMagica(int defensaMagica);
+    void aumentarVelocidad(int velocidad);
+    void aumentarEvasion(int evasion);
+    void aumentarPrecision(int precision);
+    void aumentarCritico(int critico);
+
     /* GENERAR_BARRA_DE_VIDA
     *
     * Metodo para imprimir una cadena de caracteres "█" que representan la vida
@@ -98,7 +115,7 @@ public:
      * resultados mas altos.
      *
      * Sobrecarga: se puede indicar el numero de dados que se escogen en la
-     * tirada. 
+     * tirada.
 	 */
 	static int escogerDados(int numeroTiradas);
     static int escogerDados(int numeroTiradas, int dadosAEscoger);

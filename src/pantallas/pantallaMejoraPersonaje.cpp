@@ -357,7 +357,7 @@ std::string pantallaPersonajeMejorado(Jugador& jugador,
     int cantidadMejoraDefensaM  = Personaje::tirarDados(atributosAMejorar[4]);
     int cantidadMejoraVelocidad = Personaje::tirarDados(atributosAMejorar[5]);
     int cantidadMejoraEvasion   = Personaje::tirarDados(atributosAMejorar[6]);
- 
+
     std::string pantallaMejora = "";
     pantallaMejora.append(
     "┌─────────────────────────────────────────────────────────────────────────────┐\n");
@@ -489,16 +489,14 @@ std::string pantallaPersonajeMejorado(Jugador& jugador,
     "└─────────────────────────────────────────────────────────────────────────────┘\n");
 
     /* Asignacion de valores de las mejoras  al jugador */
-    jugador.setVida(jugador.getVida() + cantidadMejoraVida);
-    jugador.setVidaMaxima(jugador.getVida());
-    jugador.setAtaqueFisico(jugador.getAtaqueFisico() + cantidadMejoraAtaque);
-    jugador.setAtaqueMagico(jugador.getAtaqueMagico() + cantidadMejoraAtaqueM);
-    jugador.setDefensaFisica(jugador.getDefensaFisica() +
-            cantidadMejoraDefensa);
-    jugador.setDefensaMagica(jugador.getDefensaMagica() +
-            cantidadMejoraDefensaM);
-    jugador.setVelocidad(jugador.getVelocidad() + cantidadMejoraVelocidad);
-    jugador.setEvasion(jugador.getEvasion() + cantidadMejoraEvasion);
+    jugador.aumentarVida(cantidadMejoraVida);
+    jugador.aumentarVidaMaxima(cantidadMejoraVida);
+    jugador.aumentarAtaqueFisico(cantidadMejoraAtaque);
+    jugador.aumentarAtaqueMagico(cantidadMejoraAtaqueM);
+    jugador.aumentarDefensaFisica(cantidadMejoraDefensa);
+    jugador.aumentarDefensaMagica(cantidadMejoraDefensaM);
+    jugador.aumentarVelocidad(cantidadMejoraVelocidad);
+    jugador.aumentarEvasion(cantidadMejoraEvasion);
 
     return pantallaMejora;
 }

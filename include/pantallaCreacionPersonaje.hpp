@@ -103,4 +103,12 @@ void menuCreacionPersonaje(std::string opcion);
  */
 void menuSeleccionArma(std::string opcion);
 
+/*
+ * NUMERO_ALEATORIO
+ *
+ * Genera un numero aleatorio en el rango especificado.
+ * Se va a usar para decidir los atributos del personaje aleatorio.
+ */
+int numeroAleatorio(int min, int max);
+
 #endif // PANTALLA_CREACION_PERSONAJE

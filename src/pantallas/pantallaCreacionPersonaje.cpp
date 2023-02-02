@@ -1,5 +1,6 @@
 #include "../../include/pantallaCreacionPersonaje.hpp"
 #include "../../include/pantallaMejoraPersonaje.hpp"
+#include <random>
 
 
 std::string seleccionActual = "";
@@ -11,7 +12,40 @@ bool raza = false, clase = false, subclase = false;
 
 void menuTipoCreacionPersonaje(std::string opcion) {
     if (opcion == "a" || opcion == "A") {
-        std::cout << "Personaje aleatorio" << std::endl;
+        Jugador jugador("Aleatorio",
+                        numeroAleatorio(1,6),
+                        numeroAleatorio(1,6),
+                        numeroAleatorio(1,6),
+                        numeroAleatorio(1,10));
+
+        std::vector<int> mejoras = {
+            numeroAleatorio(1,7),
+            numeroAleatorio(1,7),
+            numeroAleatorio(1,7)
+        };
+        std::vector<int> atributosAMejorar = {0, 0, 0, 0, 0, 0, 0};
+        for (int i = 0; i < (int) mejoras.size(); i++) {
+            atributosAMejorar[mejoras[i] - 1]++;
+        }
+        imprimirPantallaEstatica(pantallaPersonajeMejorado(jugador, mejoras));
+/*         int cantidadMejoraVida      = Personaje::tirarDados(atributosAMejorar[0]) *
+            10;
+        int cantidadMejoraAtaque    = Personaje::tirarDados(atributosAMejorar[1]);
+        int cantidadMejoraAtaqueM   = Personaje::tirarDados(atributosAMejorar[2]);
+        int cantidadMejoraDefensa   = Personaje::tirarDados(atributosAMejorar[3]);
+        int cantidadMejoraDefensaM  = Personaje::tirarDados(atributosAMejorar[4]);
+        int cantidadMejoraVelocidad = Personaje::tirarDados(atributosAMejorar[5]);
+        int cantidadMejoraEvasion   = Personaje::tirarDados(atributosAMejorar[6]);
+        jugador.aumentarVida(cantidadMejoraVida);
+        jugador.aumentarVidaMaxima(cantidadMejoraVida);
+        jugador.aumentarAtaqueFisico(cantidadMejoraAtaque);
+        jugador.aumentarAtaqueMagico(cantidadMejoraAtaqueM);
+        jugador.aumentarDefensaFisica(cantidadMejoraDefensa);
+        jugador.aumentarDefensaMagica(cantidadMejoraDefensaM);
+        jugador.aumentarVelocidad(cantidadMejoraVelocidad);
+        jugador.aumentarEvasion(cantidadMejoraEvasion);
+ */
+        imprimirPantallaEstatica(pantallaInformacion(jugador));
     } else if (opcion == "m" || opcion == "M") {
         menuCreacionPersonaje(cargarPantalla(
             canvasCreacionPersonaje,
@@ -250,3 +284,10 @@ void menuSeleccionArma(std::string opcion) {
     }
 }
 
+int numeroAleatorio(int min, int max) {
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(min,max);
+
+    return dist6(rng);
+}
