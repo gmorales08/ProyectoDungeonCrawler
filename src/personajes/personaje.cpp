@@ -19,6 +19,7 @@ int         Personaje::getAtaqueMagico()  { return ataqueMagico; }
 int         Personaje::getDefensaFisica() { return defensaFisica; }
 int         Personaje::getDefensaMagica() { return defensaMagica; }
 int         Personaje::getVelocidad()     { return velocidad; }
+int         Personaje::getEvasion()       { return evasion;}
 int         Personaje::getPrecision()     { return precision; }
 int         Personaje::getCritico()       { return critico; }
 
@@ -69,6 +70,10 @@ void Personaje::setVelocidad(int _velocidad) {
     velocidad = _velocidad;
 }
 
+void Personaje::setEvasion(int _evasion) {
+    evasion = _evasion;
+}
+
 void Personaje::setPrecision(int _precision) {
     precision = _precision;
 }
@@ -109,6 +114,15 @@ int Personaje::tirarDado() {
     return dist6(rng);
 }
 
+int Personaje::tirarDados(int numeroDeDados) {
+    int suma = 0;
+    for (int i = 0; i < numeroDeDados; i++) {
+        suma += tirarDado();
+    }
+
+    return suma;
+}
+
 int Personaje::escogerDados(int numeroTiradas) {
     std::vector<int> numeros;
 
@@ -119,4 +133,20 @@ int Personaje::escogerDados(int numeroTiradas) {
 
 	return (numeros[numeros.size() - 1] + numeros[numeros.size() - 2] +
            numeros[numeros.size() - 3]);
+}
+
+int Personaje::escogerDados(int numeroTiradas, int dadosAEscoger) {
+    std::vector<int> numeros;
+
+    for (int i = 0; i < numeroTiradas; i++) {
+        numeros.push_back(tirarDado());
+    }
+    std::sort(numeros.begin(), numeros.end());
+
+    int sumaTotal = 0;
+    for (int i = 0; i < dadosAEscoger; i++) {
+        sumaTotal += (numeros[numeros.size()] - 1 - i);
+    }
+
+    return sumaTotal;
 }

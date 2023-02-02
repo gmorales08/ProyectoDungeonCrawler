@@ -97,8 +97,13 @@ std::string cargarPantalla(std::string canvasPantalla, std::string log);
  * Imprime una pantalla donde no haya que seleccionar ninguna opcion
  *
  * Se para por parametro el canvas de la pantalla
+ *
+ * Sobrecarga: se le puede pasar uno o dos mensaje de log para que los imprima
  */
 void imprimirPantallaEstatica(std::string canvasPantalla);
+void imprimirPantallaEstatica(std::string canvasPantalla, std::string log);
+void imprimirPantallaEstatica(std::string canvasPantalla, std::string log1,
+                              std::string log2);
 
 /* CENTRAR_TEXTO
  *

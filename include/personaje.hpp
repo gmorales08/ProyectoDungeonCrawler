@@ -37,6 +37,7 @@ public:
     int getDefensaFisica();
     int getDefensaMagica();
     int getVelocidad();
+    int getEvasion();
     int getPrecision();
     int getCritico();
     Elemento getElemento();
@@ -56,6 +57,7 @@ public:
     void setDefensaFisica(int defensaFisica);
     void setDefensaMagica(int defensaMagica);
     void setVelocidad(int velocidad);
+    void setEvasion(int evasion);
     void setPrecision(int precision);
     void setCritico(int critico);
 
@@ -78,6 +80,29 @@ public:
     */
     std::string generarBarraDeVida();
 
+    /* TIRAR_DADO
+	 *
+	 * Metodo que simula la tirada de 1 dado y devuelve su puntuacion
+	 */
+	static int tirarDado();
+
+    /* TIRAR_DADOS
+     *
+     * Tira el numero de dados pasado por parametro y devuelve la suma total
+     */
+    static int tirarDados(int numeroDeDados);
+
+	/* ESCOGER_DADOS
+	 *
+	 * Metodo que simula la tirada de x dados y devuelve la suma de los tres
+     * resultados mas altos.
+     *
+     * Sobrecarga: se puede indicar el numero de dados que se escogen en la
+     * tirada. 
+	 */
+	static int escogerDados(int numeroTiradas);
+    static int escogerDados(int numeroTiradas, int dadosAEscoger);
+
 protected:
 	std::string nombre;
 	int vida;
@@ -87,24 +112,12 @@ protected:
 	int defensaFisica;
 	int defensaMagica;
 	int velocidad;
+    int evasion;
 	int precision;
 	int critico;
 	Elemento elemento;
 
 	std::vector<Habilidad> habilidades; // Lista de habilidades del personaje
-
-	/* TIRAR_DADO
-	 *
-	 * Metodo que simula la tirada de 1 dado y devuelve su puntuacion
-	 */
-	int tirarDado();
-
-	/* ESCOGER DADOS
-	 *
-	 * Metodo que simula la tirada de x dados y devuelve la suma de los tres
-     * resultados mas altos.
-	 */
-	int escogerDados(int numeroTiradas);
 };
 
 #endif // PERSONAJE

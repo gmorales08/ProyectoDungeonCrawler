@@ -1,22 +1,24 @@
+#include <algorithm>
 #include "../../include/pantallaInformacionPersonaje.hpp"
 
 
-std::string pantallaInformacion(Jugador jugador) {
+std::string pantallaInformacion(Jugador& jugador) {
     std::string pantallaInformacion = "";
     pantallaInformacion.append(
     "┌─────────────────────────────────────────────────────────────────────────────┐\n");
     pantallaInformacion.append(centrarTexto("INFORMACION DEL PERSONAJE",
                                             anchoPantalla) + "\n");
     pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
-    pantallaInformacion.append(centrarTexto(jugador.getNombre(),
-                                            anchoPantalla) + "\n");
-    pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
-    pantallaInformacion.append(centrarTexto(jugador.getRazaString() + ", " +
-        jugador.getClaseString() + ", " + jugador.getSubclaseString(),
-                                            anchoPantalla) + "\n");
+    std::string infoJugador = jugador.getNombre() + ". " +
+        jugador.getRazaString() + ", " + jugador.getClaseString() + ", " +
+        jugador.getSubclaseString() + ".";
+    std::transform(infoJugador.begin(), infoJugador.end(), infoJugador.begin(),
+        ::toupper);
+    pantallaInformacion.append(centrarTexto(infoJugador, anchoPantalla) +
+        "\n");
     pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaInformacion.append(centrarTexto("Arma: " + jugador.getArmaString()
-        + ", Elemento: " + jugador.getElementoString() , anchoPantalla + 10) +
+        + ", Elemento: " + jugador.getElementoString(), anchoPantalla + 10) +
         "\n");
     /* Se anade 22 espacios al ancho de pantalla para que calcule correctamente
      * el ancho al anadir informacion del color a la cadena de texto (metodo
@@ -79,7 +81,7 @@ std::string pantallaInformacion(Jugador jugador) {
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
 
     pantallaInformacion.append(centrarTexto(
-        "Precision: " + std::to_string(jugador.getPrecision()) + "%",
+        "Velocidad: " + std::to_string(jugador.getVelocidad()),
         (anchoPantalla + 1) / 2, tuberia, " "));
     pantallaInformacion.append(centrarTexto(
         jugador.getHabilidades().at(3).getNombre() + ". Usos (" +
@@ -89,14 +91,15 @@ std::string pantallaInformacion(Jugador jugador) {
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
 
     pantallaInformacion.append(centrarTexto(
-        "Critico: " + std::to_string(jugador.getCritico()) + "%",
+        "Evasion: " + std::to_string(jugador.getEvasion()) + "%",
         (anchoPantalla + 1) / 2, tuberia, " "));
     pantallaInformacion.append(centrarTexto(
         jugador.getHabilidades().at(3).getDescripcion() + " " ,
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
 
-    pantallaInformacion.append(centrarTexto("", (anchoPantalla + 1) / 2,
-                                            tuberia, " "));
+    pantallaInformacion.append(centrarTexto(
+        "Precision: " + std::to_string(jugador.getPrecision()) + "%",
+        (anchoPantalla + 1) / 2, tuberia, " "));
     pantallaInformacion.append(centrarTexto(
         jugador.getHabilidades().at(4).getNombre() + ". Usos (" +
         std::to_string(jugador.getHabilidades().at(4).getUsosRestantes()) +
@@ -104,8 +107,9 @@ std::string pantallaInformacion(Jugador jugador) {
         ") ",
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
 
-    pantallaInformacion.append(centrarTexto("", (anchoPantalla + 1) / 2,
-                                            tuberia, " "));
+    pantallaInformacion.append(centrarTexto(
+        "Critico: " + std::to_string(jugador.getCritico()) + "%",
+        (anchoPantalla + 1) / 2, tuberia, " "));
     pantallaInformacion.append(centrarTexto(
         jugador.getHabilidades().at(4).getDescripcion() + " " ,
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
@@ -118,7 +122,8 @@ std::string pantallaInformacion(Jugador jugador) {
         + std::to_string(jugador.getHabilidades().at(5).getUsosTotales()) +
         ") ",
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
-
+    pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
+    //pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaInformacion.append(
     "└─────────────────────────────────────────────────────────────────────────────┘\n");
 

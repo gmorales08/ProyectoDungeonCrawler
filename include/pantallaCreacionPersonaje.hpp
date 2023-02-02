@@ -4,6 +4,31 @@
 #include "pantalla.hpp"
 #include "pantallaInformacionPersonaje.hpp"
 
+const std::string canvasTipoCreacionPersonaje =
+"┌─────────────────────────────────────────────────────────────────────────────┐\n"
+"│                                                                             │\n"
+"│                         ┌────────────────────────┐                          │\n"
+"│                         │ CREACION DEL PERSONAJE │                          │\n"
+"│                         └────────────────────────┘                          │\n"
+"│                                                                             │\n"
+"│                                                                             │\n"
+"│    Puede crear un personaje manualmente o generarlo de manera aleatoria.    │\n"
+"│                                                                             │\n"
+"│     Si lo crea manualmente elegira la raza, clase, subclase y arma del      │\n"
+"│   personaje, asi como los bonificadores adicionales sobre los atributos.    │\n"
+"│                                                                             │\n"
+"│  Si lo genera aleatoriamente todos los parametros seran elegidos al azar.   │\n"
+"│                                                                             │\n"
+"│                                                                             │\n"
+"│ Escriba 'a' para crear un personaje aleatorio o 'm' para crearlo            │\n"
+"│ manualmente.                                                                │\n"
+"│                                                                             │\n"
+"│                                                                             │\n"
+"│                                                                             │\n"
+"└─────────────────────────────────────────────────────────────────────────────┘\n";
+const std::vector<std::string> opcionesTipoCreacionPersonaje =
+    {"a", "A", "m", "M"};
+
 const std::string canvasCreacionPersonaje =
 "┌─────────────────────────────────────────────────────────────────────────────┐\n"
 "│                                                                             │\n"
@@ -55,10 +80,17 @@ const std::vector<std::string> opcionesSeleccionArma =
     {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
 /*
+ * MENU_TIPO_CREACION_PERSONAJE
+ *
+ * Pantalla donde se elegira si se crea el personaje manualmente o aleatoriamente.
+ */
+void menuTipoCreacionPersonaje(std::string opcion);
+
+/*
  * MENU_CREACION_PERSONAJE
  *
- * Metodo para controlar la seleccion del usuario en la pantalla* de creacion
- * de personaje
+ * Metodo para controlar la seleccion del usuario en la pantalla de creacion de
+ * personaje
  */
 void menuCreacionPersonaje(std::string opcion);
 

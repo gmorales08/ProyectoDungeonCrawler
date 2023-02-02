@@ -1,4 +1,6 @@
 #include "../../include/jugador.hpp"
+#include <iostream>
+#include <string>
 
 
 Jugador::Jugador(std::string _nombre, int _raza, int _clase, int _subclase,
@@ -80,6 +82,28 @@ std::string Jugador::getArmaString() {
 	return armaString;
 }
 
+void Jugador::jugadorLog() {
+    std::string log = "LOG DEL JUGADOR\n";
+    log += "Nombre vida vidaMax ataq ataqm dfe defm vvel eva pre cri";
+    log += "Nombre: " + getNombre() + "\n" +
+           "Vida: " + std::to_string(getVida()) + "/" + 
+                      std::to_string(getVidaMaxima()) + "\n" + 
+           "Ataque: " + std::to_string(getAtaqueFisico()) + "\n" + 
+           "Ataque M.: " + std::to_string(getAtaqueMagico()) + "\n" + 
+           "Defensa: " + std::to_string(getDefensaFisica()) + "\n" +
+           "Defensa M.: " + std::to_string(getDefensaMagica()) + "\n" +
+           "Velocidad: " + std::to_string(getVelocidad()) + "\n" +
+           "Evasion: " + std::to_string(getEvasion()) + "\n" +
+           "Precision: " + std::to_string(getPrecision()) + "\n" +
+           "Critico: " + std::to_string(getCritico()) + "\n\n" +
+           "Raza: " + getRazaString() + "\n" +
+           "Clase: " + getClaseString() + "\n" +
+           "Subclase: " + getSubclaseString() + "\n" +
+           "Arma: " + getArmaString() + "\n";
+    
+    std::cout << log << std::endl;
+}
+
 Elemento Jugador::obtenerElemento() {
 	Elemento elementoPersonaje;
 	switch (getRaza()) {
@@ -134,8 +158,7 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
     int dadosDefensaFisica = 3;
     int dadosDefensaMagica = 3;
     int dadosVelocidad     = 3;
-	int precision;
-    int critico;
+	int dadosEvasion       = 3;
 
 	switch (clase) {
 		case GUERRERO: dadosDefensaFisica += 1; break;
@@ -175,6 +198,7 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 	setDefensaFisica(escogerDados(dadosDefensaFisica));
 	setDefensaMagica(escogerDados(dadosDefensaMagica));
 	setVelocidad(escogerDados(dadosVelocidad));
+    setEvasion(escogerDados(dadosEvasion));
 }
 
 void Jugador::generarHabilidades() {

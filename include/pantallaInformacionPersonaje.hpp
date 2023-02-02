@@ -9,6 +9,6 @@
  *
  * Genera la pantalla en base al jugador que se le ha pasado por parametro
  */
-std::string pantallaInformacion(Jugador jugador);
+std::string pantallaInformacion(Jugador& jugador);
 
 #endif // PANTALLA_INFORMACION_PERSONAJE

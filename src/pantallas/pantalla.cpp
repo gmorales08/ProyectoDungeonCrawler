@@ -16,7 +16,7 @@ std::string imprimirLog(int tipoDeMensaje, std::string mensaje) {
         mensaje = imprimirRojo("Mensaje del Sistema: ") + mensaje;
     }
 
-    return (mensaje + "\n");
+    return (mensaje);
 }
 
 std::string imprimirLog(int tipoDeMensaje, std::string mensaje1,
@@ -30,7 +30,7 @@ std::string imprimirLog(int tipoDeMensaje, std::string mensaje1,
                        "\n                     " + mensaje2;
     }
 
-    return (mensajeFinal + "\n");
+    return (mensajeFinal);
 }
 
 bool validarOpcion(std::string opcion, std::vector<std::string> opcionesMenu) {
@@ -73,8 +73,8 @@ std::string cargarPantalla(std::string canvasPantalla,
     limpiarBufferEntrada();
 
     if (!validarOpcion(opcion, opcionesMenu)) {
-        cargarPantalla(canvasPantalla, opcionesMenu, imprimirLog(1, logError),
-                       logError);
+        opcion = cargarPantalla(canvasPantalla, opcionesMenu, 
+                 imprimirLog(1, logError), logError);
     }
 
     return opcion;
@@ -95,7 +95,24 @@ std::string cargarPantalla(std::string canvasPantalla, std::string log) {
 void imprimirPantallaEstatica(std::string canvasPantalla) {
     limpiarPantalla();
     std::cout << canvasPantalla;
-    std::cout << "\n\nPulse intro para continuar";
+    std::cout << "\nPulse intro para continuar";
+    limpiarBufferEntrada();
+}
+
+void imprimirPantallaEstatica(std::string canvasPantalla, std::string log) {
+    limpiarPantalla();
+    std::cout << canvasPantalla;
+    std::cout << imprimirLog(0, log);
+    std::cout << "\nPulse intro para continuar";
+    limpiarBufferEntrada();
+}
+
+void imprimirPantallaEstatica(std::string canvasPantalla, std::string log1,
+        std::string log2) {
+    limpiarPantalla();
+    std::cout << canvasPantalla;
+    std::cout << imprimirLog(0, log1, log2);
+    std::cout << "\nPulse intro para continuar";
     limpiarBufferEntrada();
 }
 

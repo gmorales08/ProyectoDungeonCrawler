@@ -1,5 +1,5 @@
 #include "../../include/pantallaCreacionPersonaje.hpp"
-#include "../../include/jugador.hpp"
+#include "../../include/pantallaMejoraPersonaje.hpp"
 
 
 std::string seleccionActual = "";
@@ -8,6 +8,24 @@ std::string nombrePersonaje = "Personaje";
 std::vector<int> seleccionActualNumerica = {0, 0, 0, 0};
 std::string mensajeLog = "";
 bool raza = false, clase = false, subclase = false;
+
+void menuTipoCreacionPersonaje(std::string opcion) {
+    if (opcion == "a" || opcion == "A") {
+        std::cout << "Personaje aleatorio" << std::endl;
+    } else if (opcion == "m" || opcion == "M") {
+        menuCreacionPersonaje(cargarPantalla(
+            canvasCreacionPersonaje,
+            opcionesCreacionPersonaje,
+            imprimirLog(0, "Seleccion actual: ", "Selecione una raza (1-6) "),
+			"Seleccion actual: \nDebe escribir un numero del 1 al 6"));
+    } else {
+        menuTipoCreacionPersonaje(cargarPantalla(
+            canvasTipoCreacionPersonaje,
+            opcionesTipoCreacionPersonaje,
+            imprimirLog(0, "Escriba 'a' para crear un personaje aleatorio o", "'m' para crearlo manualmente."),
+            "Debe escribir a o m\n"));
+    }
+}
 
 void menuCreacionPersonaje(std::string opcion) {
     if (opcion == "1") {
@@ -193,10 +211,22 @@ void menuSeleccionArma(std::string opcion) {
     }
 
     if (opcion == "s" || opcion == "S") {
-        Jugador jugador (nombrePersonaje, seleccionActualNumerica[0],
-                         seleccionActualNumerica[1], seleccionActualNumerica[2],
-                         seleccionActualNumerica[3]);
-        imprimirPantallaEstatica(pantallaInformacion(jugador));
+        Jugador jugador(nombrePersonaje,
+                        seleccionActualNumerica[0],
+                        seleccionActualNumerica[1],
+                        seleccionActualNumerica[2],
+                        seleccionActualNumerica[3]);
+        imprimirPantallaEstatica(pantallaInformacion(jugador),
+        "Tiene la oportunidad de mejorar hasta tres atributos.",
+        "Puede mejorar varias veces el mismo atributo.");
+        menuMejoraPersonaje(cargarPantalla(
+            pantallaMejoraPersonaje(jugador, {0, 0, 0}),
+            opcionesMejoraPersonaje,
+            imprimirLog(0,
+                "Seleccion actual: ",
+                "Seleccione el primer atributo a mejorar (1-7)"),
+                "Seleccion actual: \nDebe escribir un numero del 1 al 7"),
+            jugador);
     } else if (opcion == "n" || opcion == "N") {
         menuSeleccionArma(cargarPantalla(
             canvasSeleccionArma,

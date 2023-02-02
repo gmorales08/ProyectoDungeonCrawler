@@ -75,6 +75,13 @@ public:
     std::string getSubclaseString();
     std::string getArmaString();
 
+    /*
+     * JUGADOR_LOG
+     *
+     * Metodo para imprimir en consola la informacion del Jugador
+     * Usado para comprobaciones y pruebas
+     */
+    void jugadorLog();
 
 private:
     Raza        raza;
