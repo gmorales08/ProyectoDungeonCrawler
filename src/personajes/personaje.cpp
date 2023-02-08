@@ -5,9 +5,14 @@
 #include "../../include/utilidadesDeTerminal.hpp"
 #include "../../include/personaje.hpp"
 
+Personaje::Personaje() {
+    nombre = "";
+    nivel  = 1;
+}
 
 Personaje::Personaje(std::string _nombre) {
 	nombre = _nombre;
+    nivel  = 1;
 }
 
 /* Getters */
@@ -23,18 +28,19 @@ int         Personaje::getEvasion()       { return evasion;}
 int         Personaje::getPrecision()     { return precision; }
 int         Personaje::getCritico()       { return critico; }
 
-Elemento Personaje::getElemento()                  { return elemento; }
-std::vector<Habilidad> Personaje::getHabilidades() { return habilidades; }
+int         Personaje::getNivel()         { return nivel; }
+
+Personaje::Elemento Personaje::getElemento()                  { return elemento; }
 
 std::string Personaje::getElementoString() {
 	std::string elementoString = "";
 	switch(getElemento()) {
-		case Agua:   elementoString = imprimirAzul("Agua");     break;
-		case Fuego:  elementoString = imprimirRojo("Fuego");    break;
-		case Hielo:  elementoString = imprimirCyan("Hielo");    break;
-		case Tierra: elementoString = imprimirVerde("Tierra");  break;
-		case Rayo:   elementoString = imprimirAmarillo("Rayo"); break;
-		case Neutro: elementoString = imprimirBlanco("Neutro"); break;
+		case Elemento::AGUA:   elementoString = imprimirAzul("Agua");     break;
+		case Elemento::FUEGO:  elementoString = imprimirRojo("Fuego");    break;
+		case Elemento::HIELO:  elementoString = imprimirCyan("Hielo");    break;
+		case Elemento::TIERRA: elementoString = imprimirVerde("Tierra");  break;
+		case Elemento::RAYO:   elementoString = imprimirAmarillo("Rayo"); break;
+		case Elemento::NEUTRO: elementoString = imprimirBlanco("Neutro"); break;
 	}
 
 	return elementoString;
@@ -81,38 +87,89 @@ void Personaje::setPrecision(int _precision) {
 void Personaje::setCritico(int _critico) {
     critico = _critico;
 }
+
+void Personaje::setNivel(int _nivel) {
+    nivel = _nivel;
+}
 /* Fin setters */
 
 /* Aumentar atributos */
 void Personaje::aumentarVida(int _vida) {
-    setVida(getVida() + _vida);
+    if ((getVida() + _vida) > getVidaMaxima()) {
+        setVida(getVidaMaxima());
+    } else if ((getVida() + _vida <= 0)) {
+        setVida(0);
+    } else {
+        setVida(getVida() + _vida);
+    }
 }
 void Personaje::aumentarVidaMaxima(int _vida) {
     setVidaMaxima(getVidaMaxima() + _vida);
 }
 void Personaje::aumentarAtaqueFisico(int _ataque) {
-    setAtaqueFisico(getAtaqueFisico() + _ataque);
+    if ((getAtaqueFisico() + _ataque) <= 0) {
+        setAtaqueFisico(0);
+    } else {
+        setAtaqueFisico(getAtaqueFisico() + _ataque);
+    }
 }
 void Personaje::aumentarAtaqueMagico(int _ataquem) {
-    setAtaqueMagico(getAtaqueMagico() + _ataquem);
+    if ((getAtaqueMagico() + _ataquem) <= 0) {
+        setAtaqueMagico(0);
+    } else {
+        setAtaqueMagico(getAtaqueMagico() + _ataquem);
+    }
 }
 void Personaje::aumentarDefensaFisica(int _defensa) {
-    setDefensaFisica(getDefensaFisica() + _defensa);
+    if ((getDefensaFisica() + _defensa) <= 0) {
+        setDefensaFisica(0);
+    } else {
+        setDefensaFisica(getDefensaFisica() + _defensa);
+    }
 }
 void Personaje::aumentarDefensaMagica(int _defensam) {
-    setDefensaMagica(getDefensaMagica() + _defensam);
+    if ((getDefensaMagica() + _defensam) <= 0) {
+        setDefensaMagica(0);
+    } else {
+        setDefensaMagica(getDefensaMagica() + _defensam);
+    }
 }
 void Personaje::aumentarVelocidad(int _velocidad) {
-    setVelocidad(getVelocidad() + _velocidad);
+    if ((getVelocidad() + _velocidad) <= 0) {
+        setVelocidad(0);
+    } else {
+        setVelocidad(getVelocidad() + _velocidad);
+    }
 }
 void Personaje::aumentarEvasion(int _evasion) {
-    setEvasion(getEvasion() + _evasion);
+    if ((getEvasion() + _evasion) >= 100) {
+        setEvasion(100);
+    } else if ((getEvasion() + _evasion <=0)) {
+        setEvasion(0);
+    } else {
+        setEvasion(getEvasion() + _evasion);
+    }
 }
 void Personaje::aumentarPrecision(int _precision) {
-    setPrecision(getPrecision() + _precision);
+    if ((getPrecision() + _precision) >= 100) {
+        setEvasion(100);
+    } else if ((getPrecision() + _precision <=0)) {
+        setPrecision(0);
+    } else {
+        setEvasion(getPrecision() + _precision);
+    }
 }
 void Personaje::aumentarCritico(int _critico) {
-    setCritico(getCritico() + _critico);
+    if ((getCritico() + _critico) >= 100) {
+        setCritico(100);
+    } else if ((getCritico() + _critico) <= 0) {
+        setCritico(0);
+    } else {
+        setCritico(getCritico() + _critico);
+    }
+}
+void Personaje::subirDeNivel() {
+    setNivel(getNivel() + 1);
 }
 /* Fin modificar atributos */
 

@@ -2,6 +2,7 @@
 #define JUGADOR
 
 #include "personaje.hpp"
+#include "habilidad.hpp"
 
 /*
  * CLASE JUGADOR
@@ -11,14 +12,15 @@
  */
 class Jugador : public Personaje {
 public:
-    Jugador(std::string _nombre, int _raza, int _clase, int _subclase, int _arma);
+    Jugador(std::string _nombre, int _raza, int _clase, int _subclase, 
+            int _arma);
 
     /*
      * ENUMERADOS
      *
      * Contienen informacion de la raza, clase, subclase y arma del personaje
      */
-    enum Raza {
+    enum class Raza {
         HUMANO = 1,
         ENANO  = 2,
         ELFO   = 3,
@@ -27,7 +29,7 @@ public:
         BESTIA = 6
     };
 
-    enum Clase {
+    enum class Clase {
         GUERRERO = 1,
         MAGO     = 2,
         MONJE    = 3,
@@ -36,7 +38,7 @@ public:
         TROVADOR = 6
     };
 
-    enum Subclase {
+    enum class Subclase {
         HERRERO    = 1,
         ALQUIMISTA = 2,
         GLADIADOR  = 3,
@@ -45,7 +47,7 @@ public:
         MERCENARIO = 6
     };
 
-    enum Arma {
+    enum class Arma {
         ESPADA   = 1,
         ESTOQUE  = 2,
         DAGA     = 3,
@@ -64,7 +66,8 @@ public:
     Subclase    getSubclase();
     Arma        getArma();
     std::string getAfinidades();
-
+    std::vector<Habilidad> getHabilidades();
+    
     /*
      * GETTER_TO_STRING
      *
@@ -88,10 +91,10 @@ private:
     Clase       clase;
     Subclase    subclase;
     Arma        arma;
+	std::vector<Habilidad> habilidades; // Lista de habilidades del personaje
     std::string afinidades; /* Lista de las armas con las que tiene afinidad
                              * el jugador. Es informativa, para mostrar en la
                              * pantalla de Informacion del Jugador */
-
     /*
      * OBTENER_ELEMENTO
      *

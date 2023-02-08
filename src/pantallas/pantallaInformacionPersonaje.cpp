@@ -113,17 +113,8 @@ std::string pantallaInformacion(Jugador& jugador) {
     pantallaInformacion.append(centrarTexto(
         jugador.getHabilidades().at(4).getDescripcion() + " " ,
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
-
-    pantallaInformacion.append(centrarTexto("", (anchoPantalla + 1) / 2,
-                                            tuberia, " "));
-    pantallaInformacion.append(centrarTexto(
-        jugador.getHabilidades().at(5).getNombre() + ". Usos (" +
-        std::to_string(jugador.getHabilidades().at(5).getUsosRestantes()) + "/"
-        + std::to_string(jugador.getHabilidades().at(5).getUsosTotales()) +
-        ") ",
-        (anchoPantalla + 1) / 2, "", tuberia) + "\n");
     pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
-    //pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
+    pantallaInformacion.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaInformacion.append(
     "└─────────────────────────────────────────────────────────────────────────────┘\n");
 

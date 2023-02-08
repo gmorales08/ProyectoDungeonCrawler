@@ -18,7 +18,62 @@ Establecer vida: tirar 5 dados escogiendo los tres mejores, sumar el resultado, 
 
 
 
-Estadisticas habilidades:
+
+HABILIDADES:
+
+24 habilidades: 4 ofensivas(o), 10 buff(b), 4 debuff(d) y 6 curativas(c).
+
+Habilidad de Humano:     (o)golpe contundente -> ataque poderoso. Tirar 2 dados y atacar con el mejor * 5.
+Habilidad de Enano:      (b)fortalecimiento -> aumento de defensas. Tirar 2 dados y mejorar mas alto la defensa y defensam (dos tiradas por cada atributo).
+Habilidad de Elfo:       (c)curacion -> curacion de vida. Tirar 2 dados, y curar el mejor * 10 de vida. 
+Habilidad de Ogro:       (d)intimidacion -> disminucion de ataques. Tirar 2 dados y disminuir el mas alto el ataque y ataquem (dos tiradas por cada atributo).
+Habilidad de Triton:     (c)curacion -> curacion de vida. Tirar 2 dados, y curar el mejor * 10 de vida.
+Habilidad de Bestia:     (b)grito de guerra -> aumento de ataque. Tirar 2 dados y mejorar mas alta el ataque.
+
+Habilidad de Guerrero 1: (d)distraccion -> disminuye las defensas. Tirar 2 dados y disminuir el mas alto el defensa y defensam (dos tiradas por cada atributo).
+Habilidad de Guerrero 2: (b)fortalecimiento -> aumento de defensas. Tirar 2 dados y mejorar mas alto la defensa y defensam (dos tiradas por cada atributo).
+Habilidad de Mago 1:     (b)mentalizacion+ -> aumenta mucho el ataque magico. Tirar 3 dados y mejorar los 2 mas altos el ataque magico.
+Habilidad de Mago 2:     (o)Rafaga de energia -> poderoso ataque magico no elemental. Tirar 3 dados y atacar con los 2 mejores * 5.
+Habilidad de Monje 1:    (b)meditacion -> aumenta mucho el ataque. Tirar 3 dados y mejorar los 2 mas altos el ataque.
+Habilidad de Monje 2:    (o)tecnica del dragon -> poderoso ataque fisico. Tirar 3 dados y atacar con los 2 mejores * 5.
+Habilidad de Clerigo 1:  (c)curacion+ -> curacion de vida extra. Tirar 3 dados, y curar los 2 mejores * 10 de vida.
+Habilidad de Clerigo 2:  (d)distraccion -> disminuye las defensas. Tirar 2 dados y disminuir el mas alto el defensa y defensam (dos tiradas por cada atributo).
+Habilidad de Ladron 1:   (b)tacticas evasivas -> aumenta velocidad y evasion. Tirar 2 dados y mejorar mas alto la velocidad y evasion (dos tiradas por cada atributo).
+Habilidad de Ladron 2:   (b)afilar arma -> aumenta la precision y el critico. Tirar 2 dados y mejorar mas alto la precision y critico (dos tiradas por cada atributo).
+Habilidad de Trovador 1: (c)curacion -> curacion de vida. Tirar 2 dados, y curar el mejor * 10 de vida.
+Habilidad de Trovador 2: (b)tacticas evasivas -> aumenta velocidad y evasion. Tirar 2 dados y mejorar mas alto la velocidad y evasion (dos tiradas por cada atributo).
+
+Habilidad de Herrero:    (o)golpe contundente -> ataque poderoso. Tirar 2 dados y atacar con el mejor * 5.
+Habilidad de Alquimista: (b)mentalizacion -> aumento de ataque magico. Tirar 2 dados y mejorar el mas alto el ataque magico.
+Habilidad de Gladiador:  (d)intimidacion -> disminucion de ataques. Tirar 2 dados y disminuir el mas alto el ataque y ataquem (dos tiradas por cada atributo).
+Habilidad de Boticario:  (c)curacion+ -> curacion de vida extra. Tirar 3 dados, y curar los 2 mejores * 10 de vida.
+Habilidad de Druida:     (c)curacion -> curacion de vida. Tirar 2 dados, y curar el mejor * 10 de vida. 
+Habilidad de Mercenario: (b)afilar arma -> aumenta la precision y el critico. Tirar 2 dados y mejorar mas alto la precision y critico (dos tiradas por cada atributo). 
+
+
+FORMULA DE DAÑO:
+
+Ataque normal (fisico): A ataca a B
+
+	dmg = (atA * atA / (atA + dfB)) * (bonuses) * (var)
+	var -> variacion 80%-120%
+	
+Posible formula alternativa: a / ((d+100) / 100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

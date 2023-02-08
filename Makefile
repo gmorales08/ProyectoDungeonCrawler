@@ -12,7 +12,7 @@ OBJS        := $(patsubst $(SOURCE_DIR)%,$(OBJ_DIR)%, \
 OBJSUBDIRS  := $(patsubst $(SOURCE_DIR)%,$(OBJ_DIR)%,$(SUBDIRS))
 
 CC          := g++
-CCFLAGS     := -Wall
+CCFLAGS     := -Wall -pedantic -g
 MINGW       := x86_64-w64-mingw32-g++-posix
 MINGWFLAGS  := -static #-static-libgcc -static-libstdc++
 

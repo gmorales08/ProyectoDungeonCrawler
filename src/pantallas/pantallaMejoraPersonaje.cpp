@@ -326,15 +326,7 @@ std::string pantallaMejoraPersonaje(Jugador& jugador, std::vector<int> mejoras) 
     pantallaMejora.append(centrarTexto(
         jugador.getHabilidades().at(4).getDescripcion() + " " ,
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
-
-    pantallaMejora.append(centrarTexto("", (anchoPantalla + 1) / 2,
-                                            tuberia, " "));
-    pantallaMejora.append(centrarTexto(
-        jugador.getHabilidades().at(5).getNombre() + ". Usos (" +
-        std::to_string(jugador.getHabilidades().at(5).getUsosRestantes()) + "/"
-        + std::to_string(jugador.getHabilidades().at(5).getUsosTotales()) +
-        ") ",
-        (anchoPantalla + 1) / 2, "", tuberia) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaMejora.append(
     "└─────────────────────────────────────────────────────────────────────────────┘\n");
@@ -475,15 +467,7 @@ std::string pantallaPersonajeMejorado(Jugador& jugador,
     pantallaMejora.append(centrarTexto(
         jugador.getHabilidades().at(4).getDescripcion() + " " ,
         (anchoPantalla + 1) / 2, "", tuberia) + "\n");
-
-    pantallaMejora.append(centrarTexto("", (anchoPantalla + 1) / 2,
-                                            tuberia, " "));
-    pantallaMejora.append(centrarTexto(
-        jugador.getHabilidades().at(5).getNombre() + ". Usos (" +
-        std::to_string(jugador.getHabilidades().at(5).getUsosRestantes()) + "/"
-        + std::to_string(jugador.getHabilidades().at(5).getUsosTotales()) +
-        ") ",
-        (anchoPantalla + 1) / 2, "", tuberia) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
     pantallaMejora.append(
     "└─────────────────────────────────────────────────────────────────────────────┘\n");

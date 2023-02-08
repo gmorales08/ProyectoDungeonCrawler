@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include "habilidad.hpp"
 
 /*
  * CLASE PERSONAJE
@@ -13,19 +12,30 @@
  */
 
 /*
- * ENUMERADO ELEMENTO
- *
- * Se utiliza para saber el elemento del personaje
- */
-enum Elemento {Agua, Fuego, Hielo, Tierra, Rayo, Neutro};
-
-/*
  * PERSONAJE
  *
  * Clase que va a contener toda la informacion del personaje creado
  */
 class Personaje {
 public:
+    /*
+    * ENUMERADO ELEMENTO
+    *
+    * Se utiliza para saber el elemento del personaje
+    */
+    enum class Elemento {
+        NEUTRO,
+        FUEGO,
+        HIELO,
+        TIERRA,
+        RAYO,
+        AGUA
+    };
+
+    /* El constructor vacio lo creo porque en Habilidad tengo que pasar como
+     * parametro un personaje todavia no creado
+     */
+    Personaje ();
     Personaje (std::string _nombre);
 
     /* Getters */
@@ -40,8 +50,8 @@ public:
     int getEvasion();
     int getPrecision();
     int getCritico();
+    int getNivel();
     Elemento getElemento();
-    std::vector<Habilidad> getHabilidades();
 
     /* GETTERS TO_STRING
     *
@@ -60,6 +70,7 @@ public:
     void setEvasion(int evasion);
     void setPrecision(int precision);
     void setCritico(int critico);
+    void setNivel(int nivel);
 
     /*
      * AUMENTAR_ATRIBUTOS
@@ -77,6 +88,7 @@ public:
     void aumentarEvasion(int evasion);
     void aumentarPrecision(int precision);
     void aumentarCritico(int critico);
+    void subirDeNivel();
 
     /* GENERAR_BARRA_DE_VIDA
     *
@@ -132,9 +144,8 @@ protected:
     int evasion;
 	int precision;
 	int critico;
+    int nivel;
 	Elemento elemento;
-
-	std::vector<Habilidad> habilidades; // Lista de habilidades del personaje
 };
 
 #endif // PERSONAJE
