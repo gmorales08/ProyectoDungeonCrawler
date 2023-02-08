@@ -46,3 +46,4 @@ todo
 
 # Dirs
 obj/
+.vscode
