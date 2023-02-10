@@ -264,6 +264,9 @@ void menuSeleccionArma(std::string opcion) {
                 "Seleccione el primer atributo a mejorar (1-7)"),
                 "Seleccion actual: \nDebe escribir un numero del 1 al 7"),
             jugador);
+        imprimirPantallaEstatica(pantallaInformacion(jugador));
+        Partida partida(jugador);
+        partida.iniciarPartida();
     } else if (opcion == "n" || opcion == "N") {
         menuSeleccionArma(cargarPantalla(
             canvasSeleccionArma,

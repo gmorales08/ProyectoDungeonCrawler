@@ -5,9 +5,9 @@
 std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
     std::string pantalla = "";
     pantalla.append(
-"┌─────────────────────────────────────────────────────────────────────────────┐\n");
+"┌──────────────────────────────────────────────────────────────────────────────┐\n");
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
-    pantalla.append(centrarTexto("PISO " + std::to_string(numeroPiso), 
+    pantalla.append(centrarTexto("PISO " + std::to_string(numeroPiso),
                                  anchoPantalla) + "\n");
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
@@ -31,7 +31,7 @@ std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(
-"└─────────────────────────────────────────────────────────────────────────────┘\n");
+"└──────────────────────────────────────────────────────────────────────────────┘\n");
 
     return pantalla;
 }

@@ -11,7 +11,7 @@
  *
  * El ancho que mide el layout del programa
  */
-const int anchoPantalla = 79;
+const int anchoPantalla = 80;
 
 /* CONSTANTES CARACTERES
  *
@@ -139,4 +139,12 @@ std::string centrarTexto(std::string texto, int longitudLinea,
                          std::string caracterInicial,
                          std::string caracterFinal);
 
+/* ALINEAR_IZQUIERDA
+ *
+ * Igual que los metodos anteriores, pero para alinear a la izquierda
+ */
+std::string alinearIzquierda(std::string texto, int longitudLinea);
+std::string alinearIzquierda(std::string texto, int longitudLinea,
+                             std::string caracterInicial,
+                             std::string caracterFinal);
 #endif // PANTALLAS

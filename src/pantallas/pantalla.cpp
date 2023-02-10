@@ -73,7 +73,7 @@ std::string cargarPantalla(std::string canvasPantalla,
     limpiarBufferEntrada();
 
     if (!validarOpcion(opcion, opcionesMenu)) {
-        opcion = cargarPantalla(canvasPantalla, opcionesMenu, 
+        opcion = cargarPantalla(canvasPantalla, opcionesMenu,
                  imprimirLog(1, logError), logError);
     }
 
@@ -123,12 +123,13 @@ std::string centrarTexto(std::string texto, int longitudLinea) {
 
     /* Comprobamos que el texto cabe en una linea */
 	if (texto.length() <= (long unsigned int) longitudLinea) {
-        espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
         /* Comprobamos si el numero de espacios disponible es par o impar */
         if ((longitudLinea - 2 - texto.length()) % 2 == 0) {
+            espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
             espaciosDcha = espaciosIzda;
         } else {
-            espaciosDcha = espaciosIzda + 1;
+            espaciosDcha = (longitudLinea - 2 - texto.length() + 1) / 2;
+            espaciosIzda = espaciosDcha - 1;
         }
     } else {
         return "";
@@ -155,12 +156,14 @@ std::string centrarTexto(std::string texto, int longitudLinea,
 
     /* Comprobamos que el texto cabe en una linea */
 	if (texto.length() <= (long unsigned int) longitudLinea) {
-        espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
-        /* Comprobamos si el numero de espacios disponible es par o impar */
+        /* Comprobamos si el numero de espacios disponible es par o
+         * impar */
         if ((longitudLinea - 2 - texto.length()) % 2 == 0) {
+            espaciosIzda = (longitudLinea - 2 - texto.length()) / 2;
             espaciosDcha = espaciosIzda;
         } else {
-            espaciosDcha = espaciosIzda + 1;
+            espaciosDcha = (longitudLinea - 2 - texto.length() + 1) / 2;
+            espaciosIzda = espaciosDcha - 1;
         }
     } else {
         return "";
@@ -178,3 +181,42 @@ std::string centrarTexto(std::string texto, int longitudLinea,
     return lineaADevolver;
 }
 
+std::string alinearIzquierda(std::string texto, int longitudLinea) {
+    std::string lineaADevolver = "│";
+
+    /* Comprobamos que el texto cabe en una linea */
+	if (texto.length() <= (long unsigned int) longitudLinea) {
+        lineaADevolver += texto;
+        int espaciosIzda = longitudLinea -
+                           (long unsigned int) texto.length() - 2;
+        for (int i = 0; i < espaciosIzda; i++) {
+            lineaADevolver += " ";
+        }
+        lineaADevolver += "│";
+    } else {
+        return "";
+    } // Si la linea no cabe, no la imprime
+
+    return lineaADevolver;
+}
+
+std::string alinearIzquierda(std::string texto, int longitudLinea,
+                             std::string caracterInicial,
+                             std::string caracterFinal) {
+    std::string lineaADevolver = caracterInicial;
+
+    /* Comprobamos que el texto cabe en una linea */
+	if (texto.length() <= (long unsigned int) longitudLinea) {
+        lineaADevolver += texto;
+        int espaciosIzda = longitudLinea -
+                           (long unsigned int) texto.length() - 2;
+        for (int i = 0; i < espaciosIzda; i++) {
+            lineaADevolver += " ";
+        }
+        lineaADevolver += caracterFinal;
+    } else {
+        return "";
+    } // Si la linea no cabe, no la imprime
+
+    return lineaADevolver;
+}
