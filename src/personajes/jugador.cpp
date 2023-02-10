@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-
+Jugador::Jugador() {}
 Jugador::Jugador(std::string _nombre, int _raza, int _clase, int _subclase,
                  int _arma) : Personaje(_nombre) {
 	raza        = (Jugador::Jugador::Raza)_raza;
@@ -180,8 +180,8 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 		case Clase::MAGO:     dadosAtaqueMagico  += 1; break;
 		case Clase::MONJE:    dadosAtaqueFisico  += 1; break;
 		case Clase::CLERIGO:  dadosDefensaMagica += 1; break;
-		case Clase::LADRON:   dadosVelocidad += 1;     break;
-		case Clase::TROVADOR: dadosVelocidad += 1;     break;
+		case Clase::LADRON:   dadosVelocidad     += 1; break;
+		case Clase::TROVADOR: dadosVelocidad     += 1; break;
 	}
 
 	switch (subclase) {
@@ -206,7 +206,7 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 		case Arma::GARRAS:   setPrecision(95),  setCritico(15); break;
 	}
 
-	setVidaMaxima((escogerDados(3) + escogerDados(3)) * 10);
+	setVidaMaxima((escogerDados(5) + escogerDados(5)) * 10);
 	setVida(getVidaMaxima());
 	setAtaqueFisico(escogerDados(dadosAtaqueFisico));
 	setAtaqueMagico(escogerDados(dadosAtaqueMagico));
@@ -332,7 +332,7 @@ void Jugador::generarHabilidades() {
             );
             habilidades.emplace_back(
                 "Rafaga de energia",
-                "Ataque magico no elemental muy poderoso",
+                "Magia no elemental muy poderosa",
                 Habilidad::Tipo::OFENSIVA,
                 Habilidad::Atributo::ATAQUE_MAGICO, 3
             );

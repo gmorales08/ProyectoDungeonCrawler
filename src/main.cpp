@@ -4,7 +4,7 @@
 
 int main() {
     menuPantallaInicio(
-            cargarPantalla(canvasPantallaInicio, opcionesPantallaInicio, ""));
+        cargarPantalla(canvasPantallaInicio, opcionesPantallaInicio, ""));
 
 	return 0;
 }

@@ -14,10 +14,6 @@ martillo [ 90, 20]
 garras   [ 95, 15]
 
 
-Establecer vida: tirar 5 dados escogiendo los tres mejores, sumar el resultado, repetirlo otra vez sumando el resultado y multiplicar por 10.
-
-
-
 
 HABILIDADES:
 
@@ -51,20 +47,82 @@ Habilidad de Druida:     (c)curacion -> curacion de vida. Tirar 2 dados, y curar
 Habilidad de Mercenario: (b)afilar arma -> aumenta la precision y el critico. Tirar 2 dados y mejorar mas alto la precision y critico (dos tiradas por cada atributo). 
 
 
-FORMULA DE DAÑO:
+FORMULA DE DANO:
 
 Ataque normal (fisico): A ataca a B
 
 	dmg = (atA * atA / (atA + dfB)) * (bonuses) * (var)
 	var -> variacion 80%-120%
 	
-Posible formula alternativa: a / ((d+100) / 100)
+	bonuses: 
+	    - Afinidad arma -> +5%
+	    - Critico -> +50%
+	    - Nivel - NivelEnemigo -> +-5%
+	    
+    Posible formula alternativa: a / ((d+100) / 100)
+
+Ataque magico: A ataca a B
+       dmg = (atmA * atmA / (atmA + dfmB)) * (bonusses) * (var)
+       var -> variacion 90%-110%
+       
+       bonuses:
+           - Fortaleza/debilidad frente a elemento enemigo: +-30%
+           - Nivel - NivelEnemigo -> +-5%
 
 
+ENEMIGOS:
+
+Nivel  1: slime
+Nivel  2: goblin            - esqueleto - basilisco
+Nivel  3: hombre lobo       - gargola 
+Nivel  4: serpiente gigante - caballero acorazado
+Nivel  5: pantera salvaje   - centauro
+Nivel  6: grifo             - quimera 
+Nivel  7: manticora         - yeti 
+Nivel  8: troll             - minotauro
+Nivel  9: ciclope           - golem
+Nivel 10: dragon            - hidra
 
 
+HABILIDAD DE ENEMIGOS Y PATRON DE ATAQUE:
+
+Nivel  1:
+    - Slime(Agua): ataque(100%)
+Nivel  2: 
+    - Goblin(Fuego):    ataque(70%) magia_fuego(30%)
+    - Esqueleto(Hielo): ataque(70%) magia_hielo(30%)
+    - Basilisco(Rayo):  ataque(10%) magia_agua(30%) magia_rayo(30%) magia_tierra(30%)
+Nivel  3:
+    - Hombre lobo(Hielo): ataque(70%) ataque_fuerte(30%) 
+    - Gargola(Tierra):    ataque(70%) magia_tierra(30%)
+Nivel  4: 
+    - Serpiente gigante(Rayo): ataque(60%) buff_ataque(40%)
+    - Hipocampo(Agua):         ataque(60%) buff_defensas(40%)
+Nivel  5: 
+    - Pantera salvaje(Neutro): ataque(60%) debuff_ataques(40%)   
+    - Centauro(Neutro):        ataque(60%) debuff_defensas(20%) curacion(20%)
+Nivel  6: 
+    - Grifo(Rayo):    ataque(30%) magia_fuego(30%) magia_agua(20%) magia_rayo(20%)           
+    - Quimera(Fuego): ataque(60%) debuff_ataques(20%) debuff_defensas(20%)
+Nivel  7: 
+    - Manticora(Agua): ataque(60%) debuff_defensas(20%) curacion(20%)         
+    - Yeti(Hielo):     ataque(60%) ataque_fuerte(20%) magia_hielo(20%)
+Nivel  8: 
+    - Troll(Fuego):      ataque(60%) ataque_fuerte(20%) buff_ataque(20%)        
+    - Minotauro(Tierra): ataque(60%) ataque_fuerte(20%) buff_ataque(20%)
+Nivel  9: 
+    - Ciclope(Neutro): ataque(60%) buff_defensa(20%) curacion(20%)
+    - Golem(Tierra):   ataque(60%) buff_defensa(20%) curacion(20%)
+Nivel 10: 
+    - Dragon(Neutro): ataque(40%) magia_fuego(10%) magia_hielo(10%) magia_tierra(10%) magia_rayo(10%) magia_agua(10%) curacion(10%)
+    - Hidra(Neutro):  ataque(40%) magia_fuego(10%) magia_hielo(10%) magia_tierra(10%) magia_rayo(10%) magia_agua(10%) curacion(10%)
 
 
+ATRIBUTOS JUGADOR:
+
+Establecer vida: tirar 5 dados escogiendo los tres mejores, sumar el resultado, repetirlo otra vez sumando el resultado y multiplicar por 10.
+
+Resto de atributos (mejores 3 dados de 5 o 6 tiradas (depende de clase y subclase))
 
 
 

@@ -12,6 +12,7 @@
  */
 class Jugador : public Personaje {
 public:
+    Jugador(); // Constructor por defecto para la clase Partida
     Jugador(std::string _nombre, int _raza, int _clase, int _subclase, 
             int _arma);
 

@@ -63,7 +63,6 @@ void menuPantallaComoJugarCreacionPersonaje(std::string opcion) {
 	}
 }
 
-
 void menuPantallaComoJugarSistemaDeCombate(std::string opcion) {
 	if (opcion == "1") {
 		imprimirPantallaEstatica(canvasFundamentosCombate);

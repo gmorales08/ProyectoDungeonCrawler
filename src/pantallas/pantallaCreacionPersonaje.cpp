@@ -1,5 +1,6 @@
 #include "../../include/pantallaCreacionPersonaje.hpp"
 #include "../../include/pantallaMejoraPersonaje.hpp"
+#include "../../include/partida.hpp"
 #include <random>
 
 
@@ -46,6 +47,8 @@ void menuTipoCreacionPersonaje(std::string opcion) {
         jugador.aumentarEvasion(cantidadMejoraEvasion);
  */
         imprimirPantallaEstatica(pantallaInformacion(jugador));
+        Partida partida(jugador);
+        partida.iniciarPartida();
     } else if (opcion == "m" || opcion == "M") {
         menuCreacionPersonaje(cargarPantalla(
             canvasCreacionPersonaje,

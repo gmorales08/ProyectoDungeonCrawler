@@ -473,8 +473,8 @@ std::string pantallaPersonajeMejorado(Jugador& jugador,
     "└─────────────────────────────────────────────────────────────────────────────┘\n");
 
     /* Asignacion de valores de las mejoras  al jugador */
-    jugador.aumentarVida(cantidadMejoraVida);
     jugador.aumentarVidaMaxima(cantidadMejoraVida);
+    jugador.aumentarVida(cantidadMejoraVida);
     jugador.aumentarAtaqueFisico(cantidadMejoraAtaque);
     jugador.aumentarAtaqueMagico(cantidadMejoraAtaqueM);
     jugador.aumentarDefensaFisica(cantidadMejoraDefensa);
