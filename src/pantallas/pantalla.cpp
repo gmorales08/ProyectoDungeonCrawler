@@ -55,7 +55,7 @@ std::string cargarPantalla(std::string canvasPantalla,
 
     if (!validarOpcion(opcion, opcionesMenu)) {
         opcion = cargarPantalla(canvasPantalla, opcionesMenu,
-                                imprimirLog(1, "Opcion no permitida"));
+                                imprimirLog(1, "Opcion no permitida\n"));
     }
 
     return opcion;
@@ -95,7 +95,7 @@ std::string cargarPantalla(std::string canvasPantalla, std::string log) {
 void imprimirPantallaEstatica(std::string canvasPantalla) {
     limpiarPantalla();
     std::cout << canvasPantalla;
-    std::cout << "\nPulse intro para continuar";
+    std::cout << "\n\nPulse intro para continuar";
     limpiarBufferEntrada();
 }
 

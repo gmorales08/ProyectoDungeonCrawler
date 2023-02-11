@@ -38,7 +38,8 @@ void Partida::iniciarPartida() {
             opcionesPantallaPiso,
             imprimirLog(0, 
                 "Seleccione 'a' para avanzar al siguiente piso, 'i' para",
-                "informacion del personaje o 'e' para estadisticas.")),
+                "informacion del personaje o 'e' para estadisticas."),
+            "Opcion no permitida. Debe escribir 'a', 'e' o 'i'.\n"),
          getJugador()); 
 }
 

@@ -14,7 +14,8 @@ void menuPantallaInicio(std::string opcion) {
             "Debe escribir a o m\n"));
     } else if (opcion == "2") {
 		menuPantallaComoJugar(cargarPantalla(canvasPantallaComoJugar,
-                                             opcionesPantallaComoJugar, ""));
+                                             opcionesPantallaComoJugar, "\n",
+                    "Opcion no permitida. Debe escribir un numero del 1 al 5.\n"));
 	} else if (opcion == "3") {
         limpiarPantalla();
         std::cout << imprimirAmarillo("Gracias por jugar!\nHasta pronto\n");
