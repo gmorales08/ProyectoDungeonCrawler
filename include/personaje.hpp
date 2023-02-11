@@ -36,7 +36,10 @@ public:
      * parametro un personaje todavia no creado
      */
     Personaje ();
-    Personaje (std::string _nombre);
+    /* Para jugador */
+    Personaje (std::string nombre);            
+    /* Para enemigo */
+    Personaje (std::string nombre, int nivel, Elemento elemento);
 
     /* Getters */
     std::string getNombre();
@@ -60,6 +63,7 @@ public:
     std::string getElementoString();
 
     /* Setters */
+    void setNombre(std::string nombre);
     void setVida(int vida);
     void setVidaMaxima(int vida);
     void setAtaqueFisico(int ataqueFisico);
@@ -71,6 +75,7 @@ public:
     void setPrecision(int precision);
     void setCritico(int critico);
     void setNivel(int nivel);
+    void setElemento(Elemento elemento);
 
     /*
      * AUMENTAR_ATRIBUTOS

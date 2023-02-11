@@ -6,13 +6,19 @@
 #include "../../include/personaje.hpp"
 
 Personaje::Personaje() {
-    nombre = "";
-    nivel  = 1;
+    setNombre("");
+    setNivel(1);
 }
 
-Personaje::Personaje(std::string _nombre) {
-	nombre = _nombre;
-    nivel  = 1;
+Personaje::Personaje(std::string nombre) {
+	setNombre(nombre);
+    setNivel(1);
+}
+
+Personaje::Personaje(std::string nombre, int nivel, Elemento elemento) {
+    setNombre(nombre);
+    setNivel(nivel);
+    setElemento(elemento);
 }
 
 /* Getters */
@@ -48,6 +54,9 @@ std::string Personaje::getElementoString() {
 /* Fin Getters */
 
 /* Setters */
+void Personaje::setNombre(std::string _nombre) {
+    nombre = _nombre;
+}
 void Personaje::setVida(int _vida) {
     vida = _vida;
 }
@@ -90,6 +99,10 @@ void Personaje::setCritico(int _critico) {
 
 void Personaje::setNivel(int _nivel) {
     nivel = _nivel;
+}
+
+void Personaje::setElemento(Elemento _elemento) {
+    elemento = _elemento;
 }
 /* Fin setters */
 

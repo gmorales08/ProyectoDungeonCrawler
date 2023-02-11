@@ -4,16 +4,17 @@
 #include <string>
 
 Jugador::Jugador() {}
-Jugador::Jugador(std::string _nombre, int _raza, int _clase, int _subclase,
-                 int _arma) : Personaje(_nombre) {
-	raza        = (Jugador::Jugador::Raza)_raza;
-	clase       = (Jugador::Clase)_clase;
-	subclase    = (Jugador::Subclase)_subclase;
-	arma        = (Jugador::Arma)_arma;
+Jugador::Jugador(std::string nombre, int raza, int clase, int subclase,
+                 int arma) : Personaje(nombre) {
+	
+    setRaza(raza);
+    setClase(clase);
+    setSubclase(subclase);
+    setArma(arma);
 	elemento    = obtenerElemento();
-	afinidades  = obtenerAfinidades(raza, clase, subclase);
+	afinidades  = obtenerAfinidades(getRaza(), getClase(), getSubclase());
 
-	generarAtributos(clase, subclase, arma);
+	generarAtributos(getClase(), getSubclase(), getArma());
 	generarHabilidades();
 }
 
@@ -106,6 +107,33 @@ void Jugador::jugadorLog() {
 
     std::cout << log << std::endl;
 }
+
+/* Setters */
+void Jugador::setRaza(int _raza) {
+    raza = (Jugador::Raza)_raza;
+}
+
+void Jugador::setClase(int _clase) {
+    clase = (Jugador::Clase)_clase;
+}
+
+void Jugador::setSubclase(int _subclase) {
+    subclase = (Jugador::Subclase)_subclase;
+}
+
+void Jugador::setArma(int _arma) {
+    arma = (Jugador::Arma)_arma;
+}
+
+void Jugador::setAfinidades(std::string _afinidades) {
+    afinidades = _afinidades;
+}
+
+void Jugador::setHabilidades(std::vector<Habilidad> _habilidades) {
+    habilidades = _habilidades;
+}
+
+/* Fin setters */
 
 Personaje::Elemento Jugador::obtenerElemento() {
 	Elemento elementoPersonaje;

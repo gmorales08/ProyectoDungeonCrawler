@@ -79,6 +79,14 @@ public:
     std::string getSubclaseString();
     std::string getArmaString();
 
+    /* Setters */
+    void setRaza(int raza);
+    void setClase(int clase);
+    void setSubclase(int subclase);
+    void setArma(int arma);
+    void setAfinidades(std::string afinidades);
+    void setHabilidades(std::vector<Habilidad> habilidades);
+
     /*
      * JUGADOR_LOG
      *
@@ -101,7 +109,7 @@ private:
      *
      * Metodo para obtener el elemento correspondiente a la raza del jugador
      */
-    Elemento obtenerElemento();
+    Personaje::Elemento obtenerElemento();
 
     /*
      * OBTENER_AFINIDADES

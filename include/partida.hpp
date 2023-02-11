@@ -31,16 +31,19 @@ private:
     Jugador  jugador;
     int      pisoActual;
     int      pisosRestantes;
+    bool     partidaTerminada;
     
     /* Getters */
     Jugador&  getJugador();
     int       getPisoActual();
     int       getPisosRestantes();
+    bool      getPartidaTerminada();
 
     /* Setters */
     void setJugador(Jugador& jugador);
     void setPisoActual(int pisoActual);
     void setPisosRestantes(int pisosRestantes);
+    void setPartidaTerminada(bool partidaTerminada);
 };
 
 #endif // PARTIDA
