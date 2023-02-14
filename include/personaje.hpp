@@ -78,7 +78,7 @@ public:
     void setElemento(Elemento elemento);
 
     /*
-     * AUMENTAR_ATRIBUTOS
+     * MODIFICAR_ATRIBUTOS
      *
      * Aumenta o disminuye los atributos del personaje
      * Para disminuir, pasar un valor negativo.
@@ -94,6 +94,12 @@ public:
     void aumentarPrecision(int precision);
     void aumentarCritico(int critico);
     void subirDeNivel();
+    /* Aumentar y disminuir atributos se van a usar para aumentar o disminuir 
+     * todos los atributos 0, 1 o 2 puntos. Estos metodos se usa cada vez que 
+     * se sube de nivel, y en determinados eventos.
+     */
+    void aumentarAtributos();
+    void disminuirAtributos();
 
     /* GENERAR_BARRA_DE_VIDA
     *
@@ -117,8 +123,10 @@ public:
     /* TIRAR_DADO
 	 *
 	 * Metodo que simula la tirada de 1 dado y devuelve su puntuacion
+     * Sobrecarga: se indica el numero de caras
 	 */
 	static int tirarDado();
+    static int tirarDado(int numeroDeCaras);
 
     /* TIRAR_DADOS
      *

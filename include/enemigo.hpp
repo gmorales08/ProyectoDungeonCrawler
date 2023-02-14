@@ -20,9 +20,12 @@ public:
 
     /* 
      * Los atributos de los enemigos se generan de manera aleatoria en base a 
-     * su nivel 
+     * su nivel.
+     * Se simula la asignacion aleatoria de atributos y la subida de x niveles 
+     * como si de un jugador se tratase
      */
     void generarAtributos(int nivel);
+
 private:
     std::vector<Habilidad> habilidades;
 };

@@ -2,6 +2,7 @@
 #define PARTIDA
 
 #include "jugador.hpp"
+#include "enemigo.hpp"
 
 /*
  * CLASE PARTIDA
@@ -32,6 +33,16 @@ private:
     int      pisoActual;
     int      pisosRestantes;
     bool     partidaTerminada;
+    /* ListaEnemigos es una matriz que contiene todos los enemigos que pueden
+     * aparecer en la partida.
+     * Cada fila corresponde a un nivel de Enemigo, y cada columna a los 
+     * diferentes Enemigos con ese nivel.
+     * Ej: [[ene1nvl1, ene2nvl1],
+     *      [ene1nvl2],
+     *      [ene1nvl3, ene2nvl3, ene3nvl3],
+     *      ...]
+     */
+    std::vector<std::vector<Enemigo>> listaEnemigos;
     
     /* Getters */
     Jugador&  getJugador();
@@ -44,6 +55,13 @@ private:
     void setPisoActual(int pisoActual);
     void setPisosRestantes(int pisosRestantes);
     void setPartidaTerminada(bool partidaTerminada);
+
+    /* Metodos */
+    /* GENERAR_LISTA_ENEMIGOS
+     * Genera todos los enemigos que pueden aparecer en la partida. Los guarda
+     * en listaEnemigos
+     */
+    void generarListaEnemigos();
 };
 
 #endif // PARTIDA

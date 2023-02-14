@@ -106,7 +106,7 @@ void Personaje::setElemento(Elemento _elemento) {
 }
 /* Fin setters */
 
-/* Aumentar atributos */
+/* Modificar atributos */
 void Personaje::aumentarVida(int _vida) {
     if ((getVida() + _vida) > getVidaMaxima()) {
         setVida(getVidaMaxima());
@@ -184,6 +184,32 @@ void Personaje::aumentarCritico(int _critico) {
 void Personaje::subirDeNivel() {
     setNivel(getNivel() + 1);
 }
+
+void Personaje::aumentarAtributos() {
+    int vida = (tirarDado(3) - 1) * 10;
+    aumentarVidaMaxima(vida);
+    aumentarVida(vida);
+    aumentarAtaqueFisico(tirarDado(3) - 1);
+    aumentarAtaqueMagico(tirarDado(3) - 1);
+    aumentarDefensaFisica(tirarDado(3) - 1);
+    aumentarDefensaMagica(tirarDado(3) - 1);
+    aumentarVelocidad(tirarDado(3) - 1);
+    aumentarEvasion(tirarDado(3) - 1);
+    //Precision y critico los dejo igual
+}
+
+void Personaje::disminuirAtributos() {
+    int vida = -1 * (tirarDado(3) - 1) * 10;
+    aumentarVidaMaxima(vida);
+    aumentarVida(vida);
+    aumentarAtaqueFisico(-1 * (tirarDado(3) - 1));
+    aumentarAtaqueMagico(-1 * (tirarDado(3) - 1));
+    aumentarDefensaFisica(-1 * (tirarDado(3) - 1));
+    aumentarDefensaMagica(-1 * (tirarDado(3) - 1));
+    aumentarVelocidad(-1 * (tirarDado(3) - 1));
+    aumentarEvasion(-1 * (tirarDado(3) - 1));
+    //Precision y critico los dejo igual
+}
 /* Fin modificar atributos */
 
 std::string Personaje::generarBarraDeVida() {
@@ -213,6 +239,15 @@ int Personaje::tirarDado() {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(1,6);
+
+    return dist6(rng);
+}
+
+int Personaje::tirarDado(int numeroDeCaras) {
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1,
+            numeroDeCaras);
 
     return dist6(rng);
 }

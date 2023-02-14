@@ -7,6 +7,7 @@ Partida::Partida(Jugador& jugador) {
     setPisoActual(1);
     setPisosRestantes(10);
     setPartidaTerminada(false);
+    generarListaEnemigos();
 }
 
 /* Getters */
@@ -55,4 +56,8 @@ void Partida::iniciarPartida() {
 void Partida::descenderPiso() {
     setPisoActual(getPisoActual() + 1);
     setPisosRestantes(getPisosRestantes() - 1);
+}
+
+void Partida::generarListaEnemigos() {
+    // TODO 
 }
