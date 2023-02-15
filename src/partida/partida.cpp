@@ -58,6 +58,11 @@ void Partida::descenderPiso() {
     setPisosRestantes(getPisosRestantes() - 1);
 }
 
+void Partida::retrocederPiso() {
+    setPisoActual(getPisoActual() - 1);
+    setPisosRestantes(getPisosRestantes() + 1);
+}
+
 void Partida::generarListaEnemigos() {
     Enemigo slime("Slime", 1, Personaje::Elemento::AGUA);
     slime.setProbabilidades({100});

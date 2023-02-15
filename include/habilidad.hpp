@@ -11,7 +11,6 @@
  */
 class Habilidad {
 public:
-
     enum class Tipo {
         OFENSIVA,
         BUFF,

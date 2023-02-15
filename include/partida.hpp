@@ -26,6 +26,11 @@ public:
      * Baja un piso e incrementa el piso actual y los restantes
      */
     void descenderPiso();
+    /* RETROCEDER_PISO
+     *
+     * Retrocede un piso y disminuye el piso actual e incrementa los restantes
+     */
+    void retrocederPiso();
 
 private:
     /* Atributos */

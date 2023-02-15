@@ -105,7 +105,11 @@ void Habilidad::setObjetivo(Personaje& _objetivo) {
 }
 
 void Habilidad::setUsosRestantes(int _usosRestantes) {
-    usosRestantes = _usosRestantes;
+    if (_usosRestantes > getUsosTotales()) {
+        usosRestantes = usosTotales;
+    } else {
+        usosRestantes = _usosRestantes;
+    }
 }
 
 void Habilidad::setUsosTotales(int _usosTotales) {
@@ -155,7 +159,8 @@ std::string Habilidad::usar() {
         } else if (getAtributo() == Atributo::DEFENSAS) {
             getObjetivo().aumentarDefensaFisica((-1) * getValor());
             getObjetivo().aumentarDefensaMagica((-1) * getValor());
-            log = "La defensa y defensa magica de " + getObjetivo().getNombre()                   + " han disminuido " + std::to_string(getValor()) + " puntos.";
+            log = "La defensa y defensa magica de " + getObjetivo().getNombre()
+                + " han disminuido " + std::to_string(getValor()) + " puntos.";
         }
     } else if (getTipo() == Tipo::CURATIVA) {
         getObjetivo().aumentarVida((1) * getValor());

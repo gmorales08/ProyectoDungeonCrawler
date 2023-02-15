@@ -121,35 +121,35 @@ void Personaje::aumentarVidaMaxima(int _vida) {
 }
 void Personaje::aumentarAtaqueFisico(int _ataque) {
     if ((getAtaqueFisico() + _ataque) <= 0) {
-        setAtaqueFisico(0);
+        setAtaqueFisico(1);
     } else {
         setAtaqueFisico(getAtaqueFisico() + _ataque);
     }
 }
 void Personaje::aumentarAtaqueMagico(int _ataquem) {
     if ((getAtaqueMagico() + _ataquem) <= 0) {
-        setAtaqueMagico(0);
+        setAtaqueMagico(1);
     } else {
         setAtaqueMagico(getAtaqueMagico() + _ataquem);
     }
 }
 void Personaje::aumentarDefensaFisica(int _defensa) {
     if ((getDefensaFisica() + _defensa) <= 0) {
-        setDefensaFisica(0);
+        setDefensaFisica(1);
     } else {
         setDefensaFisica(getDefensaFisica() + _defensa);
     }
 }
 void Personaje::aumentarDefensaMagica(int _defensam) {
     if ((getDefensaMagica() + _defensam) <= 0) {
-        setDefensaMagica(0);
+        setDefensaMagica(1);
     } else {
         setDefensaMagica(getDefensaMagica() + _defensam);
     }
 }
 void Personaje::aumentarVelocidad(int _velocidad) {
     if ((getVelocidad() + _velocidad) <= 0) {
-        setVelocidad(0);
+        setVelocidad(1);
     } else {
         setVelocidad(getVelocidad() + _velocidad);
     }
