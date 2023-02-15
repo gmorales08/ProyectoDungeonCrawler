@@ -3,6 +3,7 @@
 
 #include "jugador.hpp"
 #include "enemigo.hpp"
+#include "evento.hpp"
 
 /*
  * CLASE PARTIDA
@@ -13,6 +14,9 @@
 class Partida {
 public:
     Partida(Jugador& jugador);
+
+    /* Getters */
+    Jugador&  getJugador();
 
     /*
      * INICIAR_PARTIDA
@@ -31,6 +35,10 @@ public:
      * Retrocede un piso y disminuye el piso actual e incrementa los restantes
      */
     void retrocederPiso();
+    /* GENERAR_EVENTO
+     * Lee un evento de la lista de eventos y lo devuelve
+     */
+    Evento& generarEvento();
 
 private:
     /* Atributos */
@@ -48,9 +56,9 @@ private:
      *      ...]
      */
     std::vector<std::vector<Enemigo>> listaEnemigos;
+    std::vector<Evento>               listaEventos;
 
     /* Getters */
-    Jugador&  getJugador();
     int       getPisoActual();
     int       getPisosRestantes();
     bool      getPartidaTerminada();
@@ -67,6 +75,12 @@ private:
      * en listaEnemigos
      */
     void generarListaEnemigos();
+    /* GENERAR_LISTA_EVENTOS
+     * Genera una lista con todos los eventos que pueden ocurrir en la partida.
+     * El evento de la posicion 0, es un evento que siempre sucede entre los
+     * pisos 5 y 6, y no puede salir en el resto de pisos.
+     */
+    void generarListaEventos();
 };
 
 #endif // PARTIDA

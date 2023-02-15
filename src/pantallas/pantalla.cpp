@@ -211,7 +211,7 @@ std::string alinearIzquierda(std::string texto, int longitudLinea,
         int espaciosIzda = longitudLinea -
                            (long unsigned int) texto.length() - 2;
         for (int i = 0; i < espaciosIzda; i++) {
-            lineaADevolver += " ";
+            lineaADevolver += "^";
         }
         lineaADevolver += caracterFinal;
     } else {

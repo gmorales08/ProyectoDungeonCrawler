@@ -93,7 +93,7 @@ Nivel  2:
     - Esqueleto(Hielo): ataque(70%) magia_hielo(30%)
     - Basilisco(Rayo):  ataque(10%) magia_agua(30%) magia_rayo(30%) magia_tierra(30%)
 Nivel  3:
-    - Hombre lobo(Hielo): ataque(70%) ataque_fuerte(30%) 
+    - Licantropo(Hielo):  ataque(70%) ataque_fuerte(30%) 
     - Gargola(Tierra):    ataque(70%) magia_tierra(30%)
 Nivel  4: 
     - Serpiente gigante(Rayo): ataque(60%) buff_ataque(40%)
@@ -125,6 +125,39 @@ Establecer vida: tirar 5 dados escogiendo los tres mejores, sumar el resultado, 
 Resto de atributos (mejores 3 dados de 5 o 6 tiradas (depende de clase y subclase))
 
 
+EVENTOS:
+
+-50% de salir bien o mal. Algunos tienen suceso asegurado al 100%.
+
+-Encuentras un remanso cerca de un pequeño lago. Parece que un aura magica lo protege de adversidades. ¿Te quedas a descansar?
+   -100%: Recuperas toda la vida y los usos de tus habilidades.
+
+-Encuentras un bardo deambulando por la mazmorra, te quiere contar una historia. ¿La escuchas?
+   -50%: La historia te inspira y aumentan todos tus atributos. (subida de nivel, sin incrementar nivel).
+   -50%: Has perdido mucho tiempo escuchando la historia. No avanzas de piso.
+
+-Encuentras una cueva de enanos, dentro esta iluminada y parece que hay gente. ¿Entrar?
+   -50%: Los enanos te invitan a comer. Recuperas un cuarto de tu vida maxima.
+   -50%: No eres bienvenido y los enanos te echan a patadas. Pierdes un 10% de vida.
+
+-Encuentras una forja en el camino, parece que esta abierta. ¿Entrar?
+   -50%: El herrero pone a punto tu equipo. Mejoras tus atributos. (subida de nivel, sin incrementar nivel).
+   -50%: El herrero no tiene mucha experiencia y el estado de tu equipo empeora tras la puesta a punto.
+         Tus atributos se disminuyen. (Bajada de nivel, sin disminuir nivel).
+
+-Encuentras una caravana de mercaderes ambulantes. ¿Hacer negociaciones?
+   -50%: Compras comida y varios utiles. Recuperas un uso de cada habilidad.
+   -50%: Los mercaderes en realidad eran salteadores de caminos. Te atacan y pierdes un 10% de vida.
+
+-Encuentras un claro en una zona frondosa con arboles y arbustos. ¿Descansar aqui?
+   -50%: Pasas la noche y te recuperas. Te curas un cuarto de la vida maxima.
+   -50%: Pasas la noche y al despertar te das cuenta que un grupo de duendes te han robado algunas de tus pertenencias. 
+         Pierdes mucho tiempo buscando nuevo equipo. No avanzas de piso.
+
+-Al fondo del piso observas una tenue luz. ¿Acercarte a ver de que se trata?
+   -50%: Resulta ser un espiritu de la montaña. Te otorga su bendicion y recuperas un uso de cada habilidad.
+   -50%: Resulta ser un farolillo que han colocado unos trasgos para tenderte una trampa. Te asaltan y tus atributos disminuyen. 
+         Decremento de nivel sin bajar nivel
 
 
 

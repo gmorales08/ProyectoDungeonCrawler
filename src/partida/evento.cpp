@@ -1,4 +1,5 @@
 #include "../../include/evento.hpp"
+#include "../../include/partida.hpp"
 
 Evento::Evento(std::array<std::string, 3> descripcion,
                std::array<std::string, 3> resultadoPositivo,
@@ -15,12 +16,10 @@ Evento::Evento(std::array<std::string, 3> descripcion,
 }
 Evento::Evento(std::array<std::string, 3> descripcion,
                std::array<std::string, 3> resultadoPositivo,
-               std::array<std::string, 3> resultadoNegativo,
                bool resultadoPositivoAsegurado,
                EventoPositivo eventoPositivo) {
     setDescripcion(descripcion);
     setResultadoPositivo(resultadoPositivo);
-    setResultadoNegativo(resultadoNegativo);
     setResultadoPositivoAsegurado(resultadoPositivoAsegurado);
     setEventoPositivo(eventoPositivo);
 }
@@ -65,9 +64,13 @@ void Evento::setEventoNegativo(Evento::EventoNegativo evento) {
     eventoNegativo = evento;
 }
 /* Fin setters */
-std::array<std::string, 3> Evento::aceptarEvento(Jugador& jugador,
-                                                 Partida& partida) {
-    std::array<std::string, 3> textoResultado;
+
+void Evento::iniciarEvento() {
+
+}
+
+int Evento::aceptarEvento(Jugador& jugador, Partida* partida) {
+    int salida = -1;
     if (isResultadoPositivoAsegurado() == true) {
         if (getEventoPositivo() == EventoPositivo::RECUPERACION_TOTAL) {
             /* Se cura toda la vida */
@@ -79,7 +82,7 @@ std::array<std::string, 3> Evento::aceptarEvento(Jugador& jugador,
             jugador.getHabilidades().at(3).setUsosRestantes(3);
             jugador.getHabilidades().at(4).setUsosRestantes(3);
         }
-        textoResultado = getResultadoPositivo();
+        salida = 0;
     } else {
         int resultado = Jugador::tirarDado(2); // 1 -> positivo, 2 -> negativo
         if (resultado == 1) {
@@ -105,7 +108,7 @@ std::array<std::string, 3> Evento::aceptarEvento(Jugador& jugador,
                         jugador.getHabilidades().at(4).getUsosRestantes() + 1
                         );
             }
-            textoResultado = getResultadoPositivo();
+            salida = 0;
         } else if (resultado == 2) {
             if (getEventoNegativo() == EventoNegativo::DISMINUIR_ATRIBUTOS) {
                 jugador.disminuirAtributos();
@@ -113,10 +116,10 @@ std::array<std::string, 3> Evento::aceptarEvento(Jugador& jugador,
                 jugador.aumentarVida(-1 * (jugador.getVidaMaxima() / 10));
             } else if (getEventoNegativo() ==
                     EventoNegativo::NO_AVANZAR_PISO) {
-                partida.retrocederPiso();
+                partida->retrocederPiso();
             }
-            textoResultado = getResultadoNegativo();
+            salida = 1;
         }
     }
-    return textoResultado;
+    return salida;
 }

@@ -3,7 +3,7 @@
 
 #include <array>
 #include "jugador.hpp"
-#include "partida.hpp"
+class Partida;
 
 /*
  * CLASE EVENTO
@@ -39,7 +39,6 @@ public:
     /* Constructor alternativo para eventos con suceso positivo asegurado */
     Evento(std::array<std::string, 3> descripcion,
            std::array<std::string, 3> resultadoPositivo,
-           std::array<std::string, 3> resultadoNegativo,
            bool resultadoPositivoAsegurado,
            EventoPositivo eventoPositivo);
 
@@ -56,16 +55,21 @@ public:
     void setResultadoPositivoAsegurado(bool resultado);
     void setEventoPositivo(EventoPositivo evento);
     void setEventoNegativo(EventoNegativo evento);
+
+    /*
+     * INICIAR_EVENTO
+     *
+     * Se lanza la pantalla de evento con la informacion del evento producido.
+     */
+    void iniciarEvento();
     /*
      * ACEPTAR_EVENTO
      *
      * Se determina si el evento sale bien o mal, y se aplican las
      * modificaciones correspondientes sobre el Jugador o la Partida.
-     * Se devuelve el resultado para que pueda ser mostrado en la pantalla del
-     * evento.
+     * Se devuelve 0 si el evento ha salido bien, o 1 si ha salido mal.
      */
-    std::array<std::string, 3> aceptarEvento(Jugador& jugador,
-                                             Partida& partida);
+    int aceptarEvento(Jugador& jugador, Partida* partida);
 
 private:
     /* Descripcion contiene hasta 3 lineas con comentarios sobre el evento */

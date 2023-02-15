@@ -1,5 +1,6 @@
 #include <string>
 #include "../../include/pantallaPiso.hpp"
+#include "../../include/pantallaEvento.hpp"
 #include "../../include/pantallaInformacionPersonaje.hpp"
 
 std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
@@ -22,6 +23,7 @@ std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(centrarTexto("(e)          Estadisticas           ",
                                  anchoPantalla) + "\n");
+
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(centrarTexto("", anchoPantalla) + "\n");
     pantalla.append(centrarTexto("Quedan " + std::to_string(pisosRestantes) +
@@ -36,11 +38,35 @@ std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
     return pantalla;
 }
 
-void menuPantallaPiso(std::string opcion, Jugador& jugador) {
+void menuPantallaPiso(std::string opcion, Partida* partida) {
     if (opcion == "a" || opcion == "A") {
-        // avanzar
+        // 80% -> combate ; 20% -> evento
+        int tirada = Personaje::tirarDado(10);
+        if (tirada > 8) {
+            // combate
+        } else {
+            // Evento
+            /* Se muestra la pantalla del evento y se lee si el usuario lo
+             * acepta.
+             */
+            Evento& evento = partida->generarEvento();
+            std::string respuesta = cargarPantalla(
+                pantallaEvento(evento),
+                opcionesPantallaEvento,
+                imprimirLog(0,
+                "¿Quiere aceptar el evento? Escriba 'a' para aceptarlo o 'r'",
+                "para rechazarlo."),
+                "Opcion no permitida. Debe escribir 'a' o 'r'.\n");
+            if (respuesta == "a" || respuesta == "A") {
+                int resultado = evento.aceptarEvento(partida->getJugador(),
+                                                     partida);
+                imprimirPantallaEstatica(pantallaEventoResuelto(evento, resultado));
+            }
+            /* Si la respuesta es r, no se hace nada */
+        }
     } else if (opcion == "i" || opcion == "I") {
-        imprimirPantallaEstatica(pantallaInformacion(jugador));
+        imprimirPantallaEstatica(pantallaInformacion(partida->getJugador()));
+        partida->retrocederPiso();
     } else if (opcion == "e" || opcion == "E") {
         // estadisticas
     }

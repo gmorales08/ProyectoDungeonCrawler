@@ -2,7 +2,7 @@
 #define PANTALLA_PISO
 
 #include "pantalla.hpp"
-#include "jugador.hpp"
+#include "partida.hpp"
 /*
  * PANTALLA_PISO
  *
@@ -17,6 +17,6 @@ const std::vector<std::string> opcionesPantallaPiso =
  *
  * Controla la seleccion en el menu de piso
  */
-void menuPantallaPiso(std::string opcion, Jugador& jugador);
+void menuPantallaPiso(std::string opcion, Partida* partida);
 
 #endif // PANTALLA_PISO
