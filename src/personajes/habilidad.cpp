@@ -34,7 +34,35 @@ Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
     //setObjetivo(objetivo);
     setUsosTotales(3);
 	setUsosRestantes(usosTotales);
-               }
+}
+
+Habilidad::Habilidad(Tipo tipo, int valor) {
+    setNombre("");
+    setDescripcion("");
+    setTipo(tipo);
+    setValor(valor);
+    setUsosTotales(3);
+    setUsosRestantes(3);
+}
+
+Habilidad::Habilidad(Tipo tipo, Atributo atributo, int valor) {
+    setNombre("");
+    setDescripcion("");
+    setTipo(tipo);
+    setAtributo(atributo);
+    setValor(valor);
+    setUsosTotales(3);
+    setUsosRestantes(3);
+}
+
+Habilidad::Habilidad(Tipo tipo, Personaje::Elemento elemento) {
+    setNombre("");
+    setDescripcion("");
+    setTipo(tipo);
+    setElemento(elemento);
+    setUsosTotales(3);
+    setUsosRestantes(3);
+}
 
 /* Getters */
 std::string         Habilidad::getNombre()        { return nombre; }

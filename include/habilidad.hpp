@@ -30,7 +30,7 @@ public:
     };
 
     /*
-     * CONTRUCTOR
+     * CONTRUCTORES
      *
      * Se le indica el nombre, la descripcion y el tipo.
      * Tambien se le indica el valor de ataque/curacion/buff/debuff.
@@ -51,6 +51,14 @@ public:
      */
     Habilidad (std::string nombre, std::string descripcion, Tipo tipo,
                Personaje::Elemento elemento);
+
+    /* Constructores para Habilidades de Enemigos
+     * Son igual que los anteriores, pero no es necesario especificar
+     * nombre ni descripcion
+     */
+    Habilidad(Tipo tipo, int valor);
+    Habilidad(Tipo tipo, Atributo atributo, int valor);
+    Habilidad(Tipo tipo, Personaje::Elemento elemento);
 
     /* Getters */
     std::string getNombre();

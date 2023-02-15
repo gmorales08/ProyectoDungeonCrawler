@@ -5,7 +5,7 @@ chcp 65001
 :: para poder imprimir caracteres ANSI en el cmd de Windows
 HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 title DungeonCrawler
-mode con: cols=79 lines=25
+mode con: cols=80 lines=24
 cls
 cd win64
 pdg

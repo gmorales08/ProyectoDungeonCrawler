@@ -7,13 +7,13 @@
 /*
  * CLASE PARTIDA
  *
- * Sirve para gestionar las estadisticas de la partida, asi como iniciar los 
+ * Sirve para gestionar las estadisticas de la partida, asi como iniciar los
  * combates.
  */
 class Partida {
 public:
     Partida(Jugador& jugador);
-    
+
     /*
      * INICIAR_PARTIDA
      *
@@ -21,8 +21,8 @@ public:
      */
     void iniciarPartida();
 
-    /* DESCENDER_PISO 
-     * 
+    /* DESCENDER_PISO
+     *
      * Baja un piso e incrementa el piso actual y los restantes
      */
     void descenderPiso();
@@ -35,7 +35,7 @@ private:
     bool     partidaTerminada;
     /* ListaEnemigos es una matriz que contiene todos los enemigos que pueden
      * aparecer en la partida.
-     * Cada fila corresponde a un nivel de Enemigo, y cada columna a los 
+     * Cada fila corresponde a un nivel de Enemigo, y cada columna a los
      * diferentes Enemigos con ese nivel.
      * Ej: [[ene1nvl1, ene2nvl1],
      *      [ene1nvl2],
@@ -43,7 +43,7 @@ private:
      *      ...]
      */
     std::vector<std::vector<Enemigo>> listaEnemigos;
-    
+
     /* Getters */
     Jugador&  getJugador();
     int       getPisoActual();
