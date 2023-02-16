@@ -222,8 +222,8 @@ void Partida::generarListaEnemigos() {
 
 void Partida::generarListaEventos() {
     Evento evento0(
-    {"Encuentras un remanso cerca de un pequeño lago. Parece que un aura magica",
-     "lo protege de adversidades. ¿Te quedas a descansar?",
+    {"Encuentras un remanso cerca de un pequeño lago. Parece que un aura magica ",
+     "lo protege de adversidades. ¿Te quedas a descansar?                       ",
      ""},
     {"Tras descansar un rato recuperas toda la vida y los usos de tus",
      "habilidades.",
@@ -232,7 +232,7 @@ void Partida::generarListaEventos() {
 
     Evento evento1(
     {"Encuentras un bardo deambulando por la mazmorra, te quiere contar una",
-     "historia. ¿La escuchas?",
+     "historia. ¿La escuchas?                                                   ",
      ""},
     {"Tras escuchar la historia te sientes inspirado. Aumentan todos tus",
      "atributos.",
@@ -246,7 +246,7 @@ void Partida::generarListaEventos() {
 
     Evento evento2(
     {"Encuentras una cueva de enanos, por dentro hay luz y parece que esta",
-     "habitada. ¿Quieres entrar?",
+     "habitada. ¿Quieres entrar?                                                ",
      ""},
     {"Los enanos te invitan a comer y pasar la noche en la cueva. Recuperas un",
      "cuarto de tu vida maxima.",
@@ -260,7 +260,7 @@ void Partida::generarListaEventos() {
 
     Evento evento3(
     {"Encuentras una forja en el camino, observas que esta abierta y el herrero",
-     "te ofrece sus servicios. ¿Aceptas su ayuda?",
+     "te ofrece sus servicios. ¿Aceptas su ayuda?                               ",
      ""},
     {"El herrero pone a punto tu equipo. Mejoras todos tus atributos.",
      "",
@@ -288,7 +288,7 @@ void Partida::generarListaEventos() {
 
     Evento evento5(
     {"Encuentras un claro en una zona frondosa con arboles y arbustos.",
-     "¿Quieres descansar aqui?",
+     "¿Quieres descansar aqui?                                                  ",
      ""},
     {"Pasas la noche y te recuperas. Te curas un cuarto de la vida maxima. ",
      "",
@@ -301,15 +301,15 @@ void Partida::generarListaEventos() {
      Evento::EventoNegativo::NO_AVANZAR_PISO);
 
     Evento evento6(
-    {"Al fondo del piso observas una tenue luz. ¿Quieres acercarte para ver de",
+    {"Al fondo del piso observas una tenue luz. ¿Quieres acercarte para ver de  ",
      "que se trata?",
      ""},
-    {"Resulta ser un espiritu de la montaña. Te otorga su bendicion y recuperas",
+    {"Resulta ser un espiritu de la montaña. Te otorga su bendicion y recuperas ",
      "un uso de cada habilidad.",
      ""},
     {"Resulta ser un farolillo que han colocado unos trasgos para tenderte una",
      "trampa. Te asaltan y consigues quitartelos de encima, pero tu armadura",
-     "resulta dañada. Tus atributos disminuyen."},
+     "resulta dañada. Tus atributos disminuyen.                                 "},
      false,
      Evento::EventoPositivo::RECUPERAR_HABILIDADES,
      Evento::EventoNegativo::DISMINUIR_ATRIBUTOS);

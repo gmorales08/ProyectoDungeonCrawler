@@ -73,6 +73,9 @@ public:
 
 private:
     /* Descripcion contiene hasta 3 lineas con comentarios sobre el evento */
+    /* En las cadenas que contengan caracteres unicode, como ¿, hay que
+     * escribir 5 espacios adicionales para que .size() cuente bien y no
+     * quede desconfigurado a la hora de imprimir.*/
     std::array<std::string, 3> descripcion;
     /* Los mensaje sobre el resultado del evento tambien tienen 3 lineas */
     std::array<std::string, 3> resultadoPositivo;
