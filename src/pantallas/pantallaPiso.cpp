@@ -40,15 +40,11 @@ std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
 
 void menuPantallaPiso(std::string opcion, Partida* partida) {
     if (opcion == "a" || opcion == "A") {
-        // 80% -> combate ; 20% -> evento
-        int tirada = Personaje::tirarDado(10);
-        if (tirada > 8) {
-            // combate
-        } else {
-            // Evento
-            /* Se muestra la pantalla del evento y se lee si el usuario lo
-             * acepta.
-             */
+        /* 80% -> combate ; 20% -> evento
+         * Entre el piso 5 y 6 hay un evento asegurado
+         * El piso 10 es siempre un combate
+         */
+        if (partida->getPisoActual() == 5) {
             Evento& evento = partida->generarEvento();
             std::string respuesta = cargarPantalla(
                 pantallaEvento(evento),
@@ -59,10 +55,36 @@ void menuPantallaPiso(std::string opcion, Partida* partida) {
                 "Opcion no permitida. Debe escribir 'a' o 'r'.\n");
             if (respuesta == "a" || respuesta == "A") {
                 int resultado = evento.aceptarEvento(partida->getJugador(),
-                                                     partida);
+                                                    partida);
                 imprimirPantallaEstatica(pantallaEventoResuelto(evento, resultado));
             }
             /* Si la respuesta es r, no se hace nada */
+        } else if (partida->getPisoActual() == 10) {
+            // combate
+        } else {
+            int tirada = Personaje::tirarDado(10);
+            if (tirada <= 8) {
+                // combate
+            } else {
+                // Evento
+                /* Se muestra la pantalla del evento y se lee si el usuario lo
+                * acepta.
+                */
+                Evento& evento = partida->generarEvento();
+                std::string respuesta = cargarPantalla(
+                    pantallaEvento(evento),
+                    opcionesPantallaEvento,
+                    imprimirLog(0,
+                    "¿Quiere aceptar el evento? Escriba 'a' para aceptarlo o 'r'",
+                    "para rechazarlo."),
+                    "Opcion no permitida. Debe escribir 'a' o 'r'.\n");
+                if (respuesta == "a" || respuesta == "A") {
+                    int resultado = evento.aceptarEvento(partida->getJugador(),
+                                                        partida);
+                    imprimirPantallaEstatica(pantallaEventoResuelto(evento, resultado));
+                }
+                /* Si la respuesta es r, no se hace nada */
+            }
         }
     } else if (opcion == "i" || opcion == "I") {
         imprimirPantallaEstatica(pantallaInformacion(partida->getJugador()));

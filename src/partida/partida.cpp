@@ -52,6 +52,10 @@ void Partida::iniciarPartida() {
                 "Opcion no permitida. Debe escribir 'a', 'e' o 'i'.\n"),
             this);
         descenderPiso();
+        if (pisosRestantes == 0) {
+            imprimirPantallaEstatica(pantallaFin);
+            break;
+        }
     }
 }
 
