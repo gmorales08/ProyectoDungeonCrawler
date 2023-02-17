@@ -37,7 +37,7 @@ public:
      */
     Personaje ();
     /* Para jugador */
-    Personaje (std::string nombre);            
+    Personaje (std::string nombre);
     /* Para enemigo */
     Personaje (std::string nombre, int nivel, Elemento elemento);
 
@@ -94,8 +94,8 @@ public:
     void aumentarPrecision(int precision);
     void aumentarCritico(int critico);
     void subirDeNivel();
-    /* Aumentar y disminuir atributos se van a usar para aumentar o disminuir 
-     * todos los atributos 0, 1 o 2 puntos. Estos metodos se usa cada vez que 
+    /* Aumentar y disminuir atributos se van a usar para aumentar o disminuir
+     * todos los atributos 0, 1 o 2 puntos. Estos metodos se usa cada vez que
      * se sube de nivel, y en determinados eventos.
      */
     void aumentarAtributos();
@@ -144,6 +144,11 @@ public:
 	 */
 	static int escogerDados(int numeroTiradas);
     static int escogerDados(int numeroTiradas, int dadosAEscoger);
+    /* GENERAR_ALEATORIO
+     *
+     * Genera un numero aleatorio en el rango indicada
+     */
+    static int generarAleatorio(int inicio, int fin);
 
 protected:
 	std::string nombre;

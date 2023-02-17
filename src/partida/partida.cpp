@@ -327,6 +327,15 @@ void Partida::generarListaEventos() {
     listaEventos.push_back(evento6);
 }
 
+Enemigo& Partida::generarEnemigo() {
+    int pisoAleatorio = Personaje::generarAleatorio(getPisoActual() - 1,
+                                                    getPisoActual() + 1) - 1;
+    int numeroEnemigo = Personaje::generarAleatorio(
+            0, listaEnemigos.at(pisoAleatorio).size() - 1);
+
+    return (listaEnemigos.at(pisoAleatorio).at(numeroEnemigo));
+}
+
 Evento& Partida::generarEvento() {
     if (getPisoActual() == 5) {
         return listaEventos.at(0);

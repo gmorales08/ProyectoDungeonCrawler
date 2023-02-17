@@ -1,6 +1,7 @@
 #include <string>
 #include "../../include/pantallaPiso.hpp"
 #include "../../include/pantallaEvento.hpp"
+#include "../../include/combate.hpp"
 #include "../../include/pantallaInformacionPersonaje.hpp"
 
 std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
@@ -64,7 +65,7 @@ void menuPantallaPiso(std::string opcion, Partida* partida) {
         } else {
             int tirada = Personaje::tirarDado(10);
             if (tirada <= 8) {
-                // combate
+                bool jugadorVivo = iniciarCombate(partida);
             } else {
                 // Evento
                 /* Se muestra la pantalla del evento y se lee si el usuario lo
