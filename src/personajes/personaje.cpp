@@ -216,19 +216,28 @@ std::string Personaje::generarBarraDeVida() {
 	std::string vida = "";
 
 	/* 1. Calcular el % de vida que le queda al personaje */
-	int porcentajeVida = (getVida() * 100) / getVidaMaxima();
+    /* Se calcula el numero de bloques que hay que imprimir sabiendo que el
+     * maximo son 20 bloques (vidaMaxima)*/
+	int porcentajeVida = (getVida() * 20) / getVidaMaxima();
 	/* 2. Imprimimos un "█" por cada 5% de vida */
 	int contador = porcentajeVida;
 	while (contador > 0) {
 		vida += "█";
-		contador -= 5;
+		contador -= 1;
 	}
+    /* Agregamos un ░ por cada 5% hasta llegar al 100% */
+    int contador2 = 20 - porcentajeVida;
+    while (contador2 > 0) {
+        vida += "░";
+        contador2 -= 1;
+    }
 	/* 3. Imprimos el color correspondiente al % de vida restante */
-	if (porcentajeVida > 50) {
+    /* 100% -> 20 bloques */
+	if (porcentajeVida > 10) {
         vida = imprimirVerde(vida);
-    } else if (porcentajeVida <= 50 && porcentajeVida > 25) {
+    } else if (porcentajeVida <= 10 && porcentajeVida > 5) {
         vida = imprimirAmarillo(vida);
-    } else if (porcentajeVida <= 25) {
+    } else if (porcentajeVida <= 5) {
         vida = imprimirRojo(vida);
     }
 

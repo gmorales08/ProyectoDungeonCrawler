@@ -19,6 +19,7 @@ const int anchoPantalla = 80;
  */
 const std::string tuberia = "│";
 const std::string bloque  = "█";
+const std::string bloqueDifuminado = "░";
 
 
 /* LIMPIAR_BUFFER_ENTRADA

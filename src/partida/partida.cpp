@@ -328,12 +328,25 @@ void Partida::generarListaEventos() {
 }
 
 Enemigo& Partida::generarEnemigo() {
-    int pisoAleatorio = Personaje::generarAleatorio(getPisoActual() - 1,
+    /* Si el piso actual es 1, devuelve enemigos de nivel 1 o 2*/
+    if (getPisoActual() == 1) {
+        int pisoAleatorio = Personaje::generarAleatorio(getPisoActual(),
                                                     getPisoActual() + 1) - 1;
-    int numeroEnemigo = Personaje::generarAleatorio(
+        int numeroEnemigo = Personaje::generarAleatorio(
             0, listaEnemigos.at(pisoAleatorio).size() - 1);
-
-    return (listaEnemigos.at(pisoAleatorio).at(numeroEnemigo));
+        return (listaEnemigos.at(pisoAleatorio).at(numeroEnemigo));
+    /* Si el piso actual es 10 devuelve enemigos de nivel 10*/
+    } else if (getPisoActual() == 10) {
+        int numeroEnemigo = Personaje::generarAleatorio(
+            0, listaEnemigos.at(9).size() - 1);
+        return (listaEnemigos.at(9).at(numeroEnemigo));
+    } else {
+        int pisoAleatorio = Personaje::generarAleatorio(getPisoActual() - 1,
+                                                    getPisoActual() + 1) - 1;
+        int numeroEnemigo = Personaje::generarAleatorio(
+            0, listaEnemigos.at(pisoAleatorio).size() - 1);
+        return (listaEnemigos.at(pisoAleatorio).at(numeroEnemigo));
+    }
 }
 
 Evento& Partida::generarEvento() {

@@ -7,8 +7,10 @@ bool iniciarCombate(Partida* partida) {
     bool enemigoSobrevive = true;
     /* Se copia el Jugador para que los cambios de estadisticas no se mantegan
      * despues del combate. Se hace lo mismo con el Enemigo */
-    Jugador j = partida->getJugador();
-    Enemigo e = partida->generarEnemigo();
+    Jugador j = (Jugador) partida->getJugador();
+    Enemigo e = (Enemigo) partida->generarEnemigo();
+    j.aumentarVida(-250);
+    e.aumentarVida(-190);
     int turno = 1;
 
     /* Estructura de cada turno del bucle de combate:
@@ -26,7 +28,7 @@ bool iniciarCombate(Partida* partida) {
             opcionesPantallaCombate,
             imprimirLog(0,
                 "Elija un comando: 'a': Atacar, '1-5': Usar Habilidades\n"),
-            "Opcion no permitida. Debe escribir 'a' o un numero del 1 al 5\n");
+            "Debe escribir 'a' o un numero del 1 al 5.\n");
         /* 2. Determinar quien empieza el turno */
 
 

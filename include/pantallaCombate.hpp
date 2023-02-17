@@ -11,6 +11,6 @@
  */
 std::string pantallaCombate(int turno, Jugador& j, Enemigo& e);
 const std::vector<std::string> opcionesPantallaCombate =
-    {"a", "1", "2", "3", "4", "5"};
+    {"a", "A", "1", "2", "3", "4", "5"};
 
 #endif // PANTALLA_COMBATE

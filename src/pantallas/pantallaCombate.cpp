@@ -12,12 +12,12 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
                                 (anchoPantalla / 2) - 2, " ", " ");
     pantalla.append(tuberia + nombreJugador + nombreEnemigo + tuberia + "\n");
     /* Vida personajes */
-    std::string vidaJugador = "    Vida:" + j.generarBarraDeVida() + " " +
-        std::to_string(j.getVida()) + "/" + std::to_string(j.getVidaMaxima());
-    vidaJugador = alinearIzquierda(vidaJugador, (anchoPantalla / 2) - 1);
-    std::string vidaEnemigo = "    Vida:" + e.generarBarraDeVida() + " " +
-        std::to_string(e.getVida()) + "/" + std::to_string(e.getVidaMaxima());
-    vidaEnemigo = alinearIzquierda(vidaEnemigo, (anchoPantalla / 2) - 1);
+    std::string vidaJugador = "    Vida:" + j.generarBarraDeVida();
+    vidaJugador += alinearIzquierda(std::to_string(j.getVida()) + "/" +
+        std::to_string(j.getVidaMaxima()), 10, " ", " ");
+    std::string vidaEnemigo = "    Vida:" + e.generarBarraDeVida();
+    vidaEnemigo += alinearIzquierda(std::to_string(e.getVida()) + "/" +
+        std::to_string(e.getVidaMaxima()), 10, " ", " ");
     pantalla.append(tuberia + vidaJugador + vidaEnemigo + tuberia + "\n");
     /* Nivel y elemento */
     std::string nivelJugador = "    Nivel " + std::to_string(j.getNivel()) +
@@ -28,9 +28,7 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
     /* Linea en blanco */
     pantalla.append(centrarTexto("", anchoPantalla, tuberia, tuberia + "\n"));
     /* Paneles de comandos, atributos e informacion de la batalla */
-    pantalla.append(std::to_string(turno));
-
-    pantalla.append("\n\n" + std::to_string(j.generarBarraDeVida().size()) + "\n\n");
+    // TODO
 
     return pantalla;
 }
