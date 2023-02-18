@@ -61,7 +61,7 @@ void menuPantallaPiso(std::string opcion, Partida* partida) {
             }
             /* Si la respuesta es r, no se hace nada */
         } else if (partida->getPisoActual() == 10) {
-            // combate
+            bool jugadorVivo = iniciarCombate(partida);
         } else {
             int tirada = Personaje::tirarDado(10);
             if (tirada <= 8) {

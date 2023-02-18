@@ -9,8 +9,6 @@ bool iniciarCombate(Partida* partida) {
      * despues del combate. Se hace lo mismo con el Enemigo */
     Jugador j = (Jugador) partida->getJugador();
     Enemigo e = (Enemigo) partida->generarEnemigo();
-    j.aumentarVida(-250);
-    e.aumentarVida(-190);
     int turno = 1;
 
     /* Estructura de cada turno del bucle de combate:
