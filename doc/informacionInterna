@@ -160,7 +160,11 @@ EVENTOS:
          Decremento de nivel sin bajar nivel
 
 
-
+COMBATE:
+    -Para decidir quien empieza jugando, se mira la velocidad de ambos personajes.
+      -Si la velocidad de uno es mas que el doble que la del otro, el primero tirara 4 dados y el segundo 2.
+      -Si la velocidad de uno es mayor que la del otro, tirara 3 dados y el otro 2.
+      -Se comprueba quien tiene la mayor suma de las tiradas y empieza el.
 
 
 

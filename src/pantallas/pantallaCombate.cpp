@@ -1,8 +1,29 @@
 #include "../../include/pantallaCombate.hpp"
 #include <string>
 
-std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
+std::string pantallaCombate(int turno, Jugador& j, Enemigo& e,
+                            std::string logTurno) {
     std::string pantalla = "";
+
+    /* Descomposicion de logTurno en varias lineas */
+    if (logTurno == "") {
+        logTurno = "\n\n\n\n\n\n\n";
+    }
+    std::string delimitador = "\n";
+    std::vector<std::string> lineas {};
+    size_t pos;
+    while ((pos = logTurno.find(delimitador)) != std::string::npos) {
+        lineas.push_back(logTurno.substr(0, pos));
+        logTurno.erase(0, pos + delimitador.length());
+    }
+    std::string linea7combate  = lineas.at(0);
+    std::string linea8combate  = lineas.at(1);
+    std::string linea9combate  = lineas.at(2);
+    std::string linea10combate = lineas.at(3);
+    std::string linea11combate = lineas.at(4);
+    std::string linea12combate = lineas.at(5);
+    std::string linea13combate = lineas.at(6);
+
     pantalla.append(
 "┌──────────────────────────────────────────────────────────────────────────────┐\n");
     /* Nombre personajes */
@@ -102,14 +123,12 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
 
     std::string linea7 = ("-" + j.getHabilidades().at(2).getDescripcion());
     linea7 = tuberia + alinearIzquierda(linea7, 37, " ", " ") + tuberia;
-    std::string linea7combate = "";
     linea7combate = tuberia + alinearIzquierda(linea7combate, 37, " ", " ") + tuberia;
     linea7 = tuberia + linea7 + linea7combate + tuberia + "\n";
     pantalla.append(linea7);
 
     std::string linea8 = "";
     linea8 = tuberia + alinearIzquierda(linea8, 37, " ", " ") + tuberia;
-    std::string linea8combate = "";
     linea8combate = tuberia + alinearIzquierda(linea8combate, 37, " ", " ") + tuberia;
     linea8 = tuberia + linea8 + linea8combate + tuberia + "\n";
     pantalla.append(linea8);
@@ -118,21 +137,18 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
     linea9 += ". Usos: " + std::to_string(j.getHabilidades().at(3).getUsosRestantes()) + "/" +
               std::to_string(j.getHabilidades().at(3).getUsosTotales());
     linea9 = tuberia + alinearIzquierda(linea9, 37, " ", " ") + tuberia;
-    std::string linea9combate = "";
     linea9combate = tuberia + alinearIzquierda(linea9combate, 37, " ", " ") + tuberia;
     linea9 = tuberia + linea9 + linea9combate + tuberia + "\n";
     pantalla.append(linea9);
 
     std::string linea10 = ("-" + j.getHabilidades().at(3).getDescripcion());
     linea10 = tuberia + alinearIzquierda(linea10, 37, " ", " ") + tuberia;
-    std::string linea10combate = "";
     linea10combate = tuberia + alinearIzquierda(linea10combate, 37, " ", " ") + tuberia;
     linea10 = tuberia + linea10 + linea10combate + tuberia + "\n";
     pantalla.append(linea10);
 
     std::string linea11 = "";
     linea11 = tuberia + alinearIzquierda(linea11, 37, " ", " ") + tuberia;
-    std::string linea11combate = "";
     linea11combate = tuberia + alinearIzquierda(linea11combate, 37, " ", " ") + tuberia;
     linea11 = tuberia + linea11 + linea11combate + tuberia + "\n";
     pantalla.append(linea11);
@@ -141,14 +157,12 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e) {
     linea12 += ". Usos: " + std::to_string(j.getHabilidades().at(4).getUsosRestantes()) + "/" +
               std::to_string(j.getHabilidades().at(4).getUsosTotales());
     linea12 = tuberia + alinearIzquierda(linea12, 37, " ", " ") + tuberia;
-    std::string linea12combate = "";
     linea12combate = tuberia + alinearIzquierda(linea12combate, 37, " ", " ") + tuberia;
     linea12 = tuberia + linea12 + linea12combate + tuberia + "\n";
     pantalla.append(linea12);
 
     std::string linea13 = ("-" + j.getHabilidades().at(4).getDescripcion());
     linea13 = tuberia + alinearIzquierda(linea13, 37, " ", " ") + tuberia;
-    std::string linea13combate = "";
     linea13combate = tuberia + alinearIzquierda(linea13combate, 37, " ", " ") + tuberia;
     linea13 = tuberia + linea13 + linea13combate + tuberia + "\n";
     pantalla.append(linea13);

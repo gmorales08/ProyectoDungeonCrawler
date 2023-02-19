@@ -10,19 +10,20 @@ bool iniciarCombate(Partida* partida) {
     Jugador j = (Jugador) partida->getJugador();
     Enemigo e = (Enemigo) partida->generarEnemigo();
     int turno = 1;
+    std::string logTurno = "";
 
     /* Estructura de cada turno del bucle de combate:
      *   1. Imprimir la pantalla de turno
      *   2. Determinar quien empieza el turno
      *   3. Determinar la accion que elijan los personajes
-     *   4. Aplicar los efectos correspondientes
+     *   4. Aplicar los efectos correspondientes y generar el logTurno
      *   5. Comprobar si los personajes siguen vivos
      *   6. Incrementar el contador de turnos
      */
     while (jugadorSobrevive == true && enemigoSobrevive == true) {
         /* 1. Imprimir la pantalla de turno */
         std::string comando = cargarPantalla(
-            pantallaCombate(turno, j, e),
+            pantallaCombate(turno, j, e, logTurno),
             opcionesPantallaCombate,
             imprimirLog(0,
                 "Elija un comando: 'a': Atacar, '1-5': Usar Habilidades\n"),
