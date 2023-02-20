@@ -29,23 +29,6 @@ void menuTipoCreacionPersonaje(std::string opcion) {
             atributosAMejorar[mejoras[i] - 1]++;
         }
         imprimirPantallaEstatica(pantallaPersonajeMejorado(jugador, mejoras));
-/*         int cantidadMejoraVida      = Personaje::tirarDados(atributosAMejorar[0]) *
-            10;
-        int cantidadMejoraAtaque    = Personaje::tirarDados(atributosAMejorar[1]);
-        int cantidadMejoraAtaqueM   = Personaje::tirarDados(atributosAMejorar[2]);
-        int cantidadMejoraDefensa   = Personaje::tirarDados(atributosAMejorar[3]);
-        int cantidadMejoraDefensaM  = Personaje::tirarDados(atributosAMejorar[4]);
-        int cantidadMejoraVelocidad = Personaje::tirarDados(atributosAMejorar[5]);
-        int cantidadMejoraEvasion   = Personaje::tirarDados(atributosAMejorar[6]);
-        jugador.aumentarVida(cantidadMejoraVida);
-        jugador.aumentarVidaMaxima(cantidadMejoraVida);
-        jugador.aumentarAtaqueFisico(cantidadMejoraAtaque);
-        jugador.aumentarAtaqueMagico(cantidadMejoraAtaqueM);
-        jugador.aumentarDefensaFisica(cantidadMejoraDefensa);
-        jugador.aumentarDefensaMagica(cantidadMejoraDefensaM);
-        jugador.aumentarVelocidad(cantidadMejoraVelocidad);
-        jugador.aumentarEvasion(cantidadMejoraEvasion);
- */
         imprimirPantallaEstatica(pantallaInformacion(jugador));
         Partida partida(jugador);
         partida.iniciarPartida();

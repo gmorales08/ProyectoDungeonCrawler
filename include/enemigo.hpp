@@ -20,10 +20,10 @@ public:
     void setHabilidades(std::vector<Habilidad> habilidades);
     void setProbabilidades(std::vector<int> probabilidades);
 
-    /* 
-     * Los atributos de los enemigos se generan de manera aleatoria en base a 
+    /*
+     * Los atributos de los enemigos se generan de manera aleatoria en base a
      * su nivel.
-     * Se simula la asignacion aleatoria de atributos y la subida de x niveles 
+     * Se simula la asignacion aleatoria de atributos y la subida de x niveles
      * como si de un jugador se tratase
      */
     void generarAtributos(int nivel);
@@ -31,10 +31,20 @@ public:
     /*
      * ELEGIR_ACCION
      *
-     * Determina que accion realizara el Enemigo en base a su vector de 
+     * Determina que accion realizara el Enemigo en base a su vector de
      * probabilidades
      */
     void elegirAccion();
+
+    /*
+     * ATACAR
+     *
+     * Implementacion del metodo polimorfico de la clase Personaje.
+     * Sobrecarga:
+     *   -Se le indica el valor de ataque. Se usa para habilidades.
+     */
+    std::string atacar(Personaje& p);
+    std::string atacar(Personaje& p, int ataqueFisico);
 
 private:
     std::vector<Habilidad> habilidades;

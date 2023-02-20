@@ -60,3 +60,63 @@ void Enemigo::elegirAccion() {
         }
     }
 }
+
+std::string Enemigo::atacar(Personaje& p) {
+    /* Bonuses */
+    float bonuses = 0; // %
+    if (esCritico() == true) {
+        bonuses += 0.5;
+    }
+
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.05;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.05;
+    }
+
+    /* Variacion */
+    float variacion = generarAleatorio(80, 120) / 100;
+
+    /* Formula de dano */
+    int dmg = (getAtaqueFisico() * getAtaqueFisico() / (getAtaqueFisico() +
+              p.getDefensaFisica()));
+    dmg = dmg * (bonuses + variacion);
+
+    /* Realizar el ataque */
+    p.aumentarVida(-1 * dmg);
+
+    std::string log = " Ha realizado " + std::to_string(dmg) +
+                      " puntos de dano.";
+
+    return log;
+}
+
+std::string Enemigo::atacar(Personaje& p, int ataqueFisico) {
+    /* Bonuses */
+    float bonuses = 0; // %
+    if (esCritico() == true) {
+        bonuses += 0.5;
+    }
+
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.05;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.05;
+    }
+
+    /* Variacion */
+    float variacion = generarAleatorio(80, 120) / 100;
+
+    /* Formula de dano */
+    int dmg = (ataqueFisico * ataqueFisico / (ataqueFisico +
+              p.getDefensaFisica()));
+    dmg = dmg * (bonuses + variacion);
+
+    /* Realizar el ataque */
+    p.aumentarVida(-1 * dmg);
+
+    std::string log = " Ha realizado " + std::to_string(dmg) +
+                      " puntos de dano.";
+
+    return log;
+}

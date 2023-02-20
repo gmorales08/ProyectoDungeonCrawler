@@ -306,3 +306,98 @@ int Personaje::generarAleatorio(int inicio, int fin) {
     return dist6(rng);
 
 }
+
+bool Personaje::esCritico() {
+    int tirada = tirarDado(100);
+    if (getCritico() >= tirada) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//std::string atacar(Personaje& p) { return ""; }
+//std::string atacar(Personaje& p, int ataque) { return ""; }
+
+float Personaje::efectividadElemental(Elemento e1, Elemento e2) {
+    float efectividad = 0;
+    if (e1 == Elemento::TIERRA) {
+        if (e2 == Elemento::RAYO) {
+            efectividad = 0.3;
+        } else if (e2 == Elemento::HIELO) {
+            efectividad = -0.3;
+        }
+    } else if (e1 == Elemento::RAYO) {
+        if (e2 == Elemento::AGUA) {
+            efectividad = 0.3;
+        } else if (e2 == Elemento::TIERRA) {
+            efectividad = -0.3;
+        }
+    } else if (e1 == Elemento::AGUA) {
+        if (e2 == Elemento::FUEGO) {
+            efectividad = 0.3;
+        } else if (e2 == Elemento::RAYO) {
+            efectividad = -0.3;
+        }
+    } else if (e1 == Elemento::FUEGO) {
+        if (e2 == Elemento::HIELO) {
+            efectividad = 0.3;
+        } else if (e2 == Elemento::AGUA) {
+            efectividad = -0.3;
+        }
+    } else if (e1 == Elemento::HIELO) {
+        if (e2 == Elemento::TIERRA) {
+            efectividad = 0.3;
+        } else if (e2 == Elemento::FUEGO) {
+            efectividad = -0.3;
+        }
+    }
+
+    return efectividad;
+}
+
+std::string Personaje::usarMagia(Personaje& p) {
+    /* Bonuses */
+    float bonuses = 0;
+    bonuses += efectividadElemental(getElemento(), p.getElemento());
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.5;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.5;
+    }
+    /* Variacion */
+    float variacion = generarAleatorio(90,110) / 100;
+    /* Formula de dano */
+    int magdmg = (getAtaqueMagico() * getAtaqueMagico() / (getAtaqueMagico() +
+                  p.getDefensaMagica()));
+    magdmg = magdmg * (bonuses + variacion);
+    /* Aplicar el dano */
+    p.aumentarVida((-1) * magdmg);
+    std::string log = "Ha realizado " + std::to_string(magdmg) +
+                      " puntos de dano.";
+
+    return log;
+}
+
+std::string Personaje::usarMagia(Personaje& p, int ataqueMagico) {
+    /* Bonuses */
+    float bonuses = 0;
+    bonuses += efectividadElemental(getElemento(), p.getElemento());
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.5;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.5;
+    }
+    /* Variacion */
+    float variacion = generarAleatorio(90,110) / 100;
+    /* Formula de dano */
+    int magdmg = (ataqueMagico * ataqueMagico / (ataqueMagico +
+                  p.getDefensaMagica()));
+    magdmg = magdmg * (bonuses + variacion);
+    /* Aplicar el dano */
+    p.aumentarVida((-1) * magdmg);
+    std::string log = "Ha realizado " + std::to_string(magdmg) +
+                      " puntos de dano.";
+
+    return log;
+}

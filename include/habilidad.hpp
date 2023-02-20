@@ -63,12 +63,15 @@ public:
     std::string getNombre();
     std::string getDescripcion();
     Personaje::Elemento getElemento();
+    Tipo        getTipo();
     int         getUsosRestantes();
     int         getUsosTotales();
 
     /* Setters */
     void setNombre(std::string _nombre);
     void setDescripcion(std::string _descripcion);
+    void setUsuario(Personaje& usuario);
+    void setObjetivo(Personaje& objetivo);
     void setUsosRestantes(int _usosRestantes);
     void setUsosTotales(int _usosTotales);
 
@@ -99,9 +102,17 @@ private:
      *  - Curativa. Posibles valores:
      *    - 2 : se tiran 2 dados y se cura el mejor * 10.
      *    - 3 : se tiran 3 dados y se curan los dos mejores * 10.
+     *  - Magia. Se sigue la siguiente formula:
+     *    Ataque magico: A ataca a B
+     *        dmg = (atmA * atmA / (atmA + dfmB)) * (bonuses) * (var)
+     *          bonuses:
+     *            - Fortaleza/debilidad frente a elemento enemigo: +-30%
+     *            - Nivel - NivelEnemigo -> +-5%
+     *          var: variacion 90%-110%
      */
     Personaje::Elemento elemento;
     int         valor;
+    Personaje   usuario;
     Personaje   objetivo;
     int         usosRestantes;
     int         usosTotales;
@@ -109,16 +120,26 @@ private:
     /* Getters privados
      * Los voy a utilizar para el metodo usar();
      */
-    Tipo        getTipo();
     Atributo    getAtributo();
     int         getValor();
+    Personaje   getUsuario();
     Personaje   getObjetivo();
     /* Setters privados */
     void        setTipo(Tipo tipo);
     void        setAtributo(Atributo atributo);
     void        setElemento(Personaje::Elemento elemento);
     void        setValor(int valor);
-    void        setObjetivo(Personaje& objetivo);
+
+    /*
+     * CALCULAR_VALOR
+     *
+     * Calcula el valor de la habilidad en base al numero de dados que se le
+     * pase por parametro.
+     * Existen dos posibles valores:
+     *   -2: Se tiran dos dados y se devuelve el mejor.
+     *   -3: Se tiran tres dados y se devuelve la suma de los dos mejores.
+     */
+    int calcularValor(int valor);
 };
 
 #endif // HABILIDAD

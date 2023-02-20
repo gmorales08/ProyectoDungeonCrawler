@@ -6,23 +6,27 @@ std::string pantallaCombate(int turno, Jugador& j, Enemigo& e,
     std::string pantalla = "";
 
     /* Descomposicion de logTurno en varias lineas */
-    if (logTurno == "") {
-        logTurno = "\n\n\n\n\n\n\n";
-    }
     std::string delimitador = "\n";
-    std::vector<std::string> lineas {};
+    std::vector<std::string> logCombate {};
     size_t pos;
     while ((pos = logTurno.find(delimitador)) != std::string::npos) {
-        lineas.push_back(logTurno.substr(0, pos));
+        logCombate.push_back(logTurno.substr(0, pos));
         logTurno.erase(0, pos + delimitador.length());
     }
-    std::string linea7combate  = lineas.at(0);
-    std::string linea8combate  = lineas.at(1);
-    std::string linea9combate  = lineas.at(2);
-    std::string linea10combate = lineas.at(3);
-    std::string linea11combate = lineas.at(4);
-    std::string linea12combate = lineas.at(5);
-    std::string linea13combate = lineas.at(6);
+
+    if ((int) logCombate.size() < 7) {
+        while ((int) logCombate.size() < 7) {
+            logCombate.push_back("");
+        }
+    }
+
+    std::string linea7combate  = logCombate.at(0);
+    std::string linea8combate  = logCombate.at(1);
+    std::string linea9combate  = logCombate.at(2);
+    std::string linea10combate = logCombate.at(3);
+    std::string linea11combate = logCombate.at(4);
+    std::string linea12combate = logCombate.at(5);
+    std::string linea13combate = logCombate.at(6);
 
     pantalla.append(
 "┌──────────────────────────────────────────────────────────────────────────────┐\n");

@@ -62,7 +62,7 @@ Ataque normal (fisico): A ataca a B
     Posible formula alternativa: a / ((d+100) / 100)
 
 Ataque magico: A ataca a B
-       dmg = (atmA * atmA / (atmA + dfmB)) * (bonusses) * (var)
+       dmg = (atmA * atmA / (atmA + dfmB)) * (bonuses) * (var)
        var -> variacion 90%-110%
        
        bonuses:

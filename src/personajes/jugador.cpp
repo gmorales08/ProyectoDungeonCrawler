@@ -3,10 +3,10 @@
 #include <iostream>
 #include <string>
 
-Jugador::Jugador() {}
+Jugador::Jugador() : Personaje() {}
 Jugador::Jugador(std::string nombre, int raza, int clase, int subclase,
                  int arma) : Personaje(nombre) {
-	
+
     setRaza(raza);
     setClase(clase);
     setSubclase(subclase);
@@ -18,11 +18,11 @@ Jugador::Jugador(std::string nombre, int raza, int clase, int subclase,
 	generarHabilidades();
 }
 
-Jugador::Raza        Jugador::getRaza()       { return raza; }
-Jugador::Clase       Jugador::getClase()      { return clase; }
-Jugador::Subclase    Jugador::getSubclase()   { return subclase; }
-Jugador::Arma        Jugador::getArma()       { return arma; }
-std::string          Jugador::getAfinidades() { return afinidades; }
+Jugador::Raza                 Jugador::getRaza()       { return raza; }
+Jugador::Clase                Jugador::getClase()      { return clase; }
+Jugador::Subclase             Jugador::getSubclase()   { return subclase; }
+Jugador::Arma                 Jugador::getArma()       { return arma; }
+std::vector<Jugador::Arma>    Jugador::getAfinidades() { return afinidades; }
 
 std::string Jugador::getRazaString() {
 	std::string razaString = "";
@@ -125,7 +125,7 @@ void Jugador::setArma(int _arma) {
     arma = (Jugador::Arma)_arma;
 }
 
-void Jugador::setAfinidades(std::string _afinidades) {
+void Jugador::setAfinidades(std::vector<Arma> _afinidades) {
     afinidades = _afinidades;
 }
 
@@ -161,34 +161,35 @@ Personaje::Elemento Jugador::obtenerElemento() {
 	return elementoPersonaje;
 }
 
-std::string Jugador::obtenerAfinidades(Jugador::Raza raza, Jugador::Clase clase,
-                                       Jugador::Subclase subclase) {
-	std::string afinidades = "";
+std::vector<Jugador::Arma> Jugador::obtenerAfinidades(Jugador::Raza raza,
+                                                Jugador::Clase clase,
+                                                Jugador::Subclase subclase) {
+	std::vector<Arma> afinidades;
 	switch (raza) {
-		case Raza::HUMANO: afinidades += "ESPADA, ";    break;
-		case Raza::ENANO:  afinidades += "MARTILLOs, "; break;
-		case Raza::ELFO:   afinidades += "ARCOs, ";     break;
-		case Raza::OGRO:   afinidades += "HACHAs, ";    break;
-        case Raza::TRITON: afinidades += "LANZAs, ";    break;
-        case Raza::BESTIA: afinidades += "GARRAS, ";    break;
+		case Raza::HUMANO: afinidades.push_back(Arma::ESPADA);   break;
+		case Raza::ENANO:  afinidades.push_back(Arma::MARTILLO); break;
+		case Raza::ELFO:   afinidades.push_back(Arma::ARCO);     break;
+		case Raza::OGRO:   afinidades.push_back(Arma::HACHA);    break;
+        case Raza::TRITON: afinidades.push_back(Arma::LANZA);    break;
+        case Raza::BESTIA: afinidades.push_back(Arma::GARRAS);   break;
 	}
 
 	switch (clase) {
-        case Clase::GUERRERO: afinidades += "mandobles, "; break;
-		case Clase::MAGO:     afinidades += "baculos, ";   break;
-		case Clase::MONJE:    afinidades += "garras, ";    break;
-		case Clase::CLERIGO:  afinidades += "baculos, ";   break;
-		case Clase::LADRON:   afinidades += "dagas, ";     break;
-		case Clase::TROVADOR: afinidades += "estoques, ";  break;
+        case Clase::GUERRERO: afinidades.push_back(Arma::MANDOBLE); break;
+		case Clase::MAGO:     afinidades.push_back(Arma::BACULO);   break;
+		case Clase::MONJE:    afinidades.push_back(Arma::GARRAS);   break;
+		case Clase::CLERIGO:  afinidades.push_back(Arma::BACULO);   break;
+		case Clase::LADRON:   afinidades.push_back(Arma::DAGA);     break;
+		case Clase::TROVADOR: afinidades.push_back(Arma::ESTOQUE);  break;
 	}
 
 	switch (subclase) {
-        case Subclase::HERRERO:    afinidades += "martillos."; break;
-		case Subclase::ALQUIMISTA: afinidades += "lanzas.";    break;
-		case Subclase::GLADIADOR:  afinidades += "mandobles."; break;
-		case Subclase::BOTICARIO:  afinidades += "dagas.";     break;
-		case Subclase::DRUIDA:     afinidades += "arcos.";     break;
-		case Subclase::MERCENARIO: afinidades += "espadas.";   break;
+        case Subclase::HERRERO:    afinidades.push_back(Arma::MARTILLO); break;
+		case Subclase::ALQUIMISTA: afinidades.push_back(Arma::LANZA);    break;
+		case Subclase::GLADIADOR:  afinidades.push_back(Arma::MANDOBLE); break;
+		case Subclase::BOTICARIO:  afinidades.push_back(Arma::DAGA);     break;
+		case Subclase::DRUIDA:     afinidades.push_back(Arma::ARCO);     break;
+		case Subclase::MERCENARIO: afinidades.push_back(Arma::ESPADA);   break;
 	}
 
 	return afinidades;
@@ -257,7 +258,8 @@ void Jugador::generarHabilidades() {
             habilidades.emplace_back(
                 "Golpe contundente",
                 "Poderoso ataque fisico",
-                Habilidad::Tipo::OFENSIVA, 2
+                Habilidad::Tipo::OFENSIVA,
+                Habilidad::Atributo::ATAQUE, 2
             );
             break;
         }
@@ -481,3 +483,78 @@ void Jugador::generarHabilidades() {
         }
 	}
 }
+
+std::string Jugador::atacar(Personaje& p) {
+    /* Bonuses */
+    float bonuses = 0; // %
+    for (int i = 0; i < (int) getAfinidades().size(); i++) {
+        if (getArma() == getAfinidades().at(i)) {
+            bonuses += 0.05;
+            break;
+        }
+    }
+
+    if (esCritico() == true) {
+        bonuses += 0.5;
+    }
+
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.05;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.05;
+    }
+
+    /* Variacion */
+    float variacion = generarAleatorio(80, 120) / 100;
+
+    /* Formula de dano */
+    int dmg = (getAtaqueFisico() * getAtaqueFisico() / (getAtaqueFisico() +
+              p.getDefensaFisica()));
+    dmg = dmg * (bonuses + variacion);
+
+    /* Realizar el ataque */
+    p.aumentarVida(-1 * dmg);
+
+    std::string log = " Ha realizado " + std::to_string(dmg) +
+                      " puntos de dano.";
+
+    return log;
+}
+
+std::string Jugador::atacar(Personaje& p, int ataqueFisico) {
+    /* Bonuses */
+    float bonuses = 0; // %
+    for (int i = 0; i < (int) getAfinidades().size(); i++) {
+        if (getArma() == getAfinidades().at(i)) {
+            bonuses += 0.05;
+            break;
+        }
+    }
+
+    if (esCritico() == true) {
+        bonuses += 0.5;
+    }
+
+    if (getNivel() > p.getNivel()) {
+        bonuses += 0.05;
+    } else if (getNivel() < p.getNivel()) {
+        bonuses -= 0.05;
+    }
+
+    /* Variacion */
+    float variacion = generarAleatorio(80, 120) / 100;
+
+    /* Formula de dano */
+    int dmg = (ataqueFisico * ataqueFisico / (ataqueFisico +
+              p.getDefensaFisica()));
+    dmg = dmg * (bonuses + variacion);
+
+    /* Realizar el ataque */
+    p.aumentarVida(-1 * dmg);
+
+    std::string log = " Ha realizado " + std::to_string(dmg) +
+                      " puntos de dano.";
+
+    return log;
+}
+

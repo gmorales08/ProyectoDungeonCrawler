@@ -13,7 +13,7 @@
 class Jugador : public Personaje {
 public:
     Jugador(); // Constructor por defecto para la clase Partida
-    Jugador(std::string _nombre, int _raza, int _clase, int _subclase, 
+    Jugador(std::string _nombre, int _raza, int _clase, int _subclase,
             int _arma);
 
     /*
@@ -66,9 +66,9 @@ public:
     Clase       getClase();
     Subclase    getSubclase();
     Arma        getArma();
-    std::string getAfinidades();
+    std::vector<Arma>      getAfinidades();
     std::vector<Habilidad> getHabilidades();
-    
+
     /*
      * GETTER_TO_STRING
      *
@@ -84,7 +84,7 @@ public:
     void setClase(int clase);
     void setSubclase(int subclase);
     void setArma(int arma);
-    void setAfinidades(std::string afinidades);
+    void setAfinidades(std::vector<Arma> afinidades);
     void setHabilidades(std::vector<Habilidad> habilidades);
 
     /*
@@ -95,15 +95,23 @@ public:
      */
     void jugadorLog();
 
+    /*
+     * ATACAR
+     *
+     * Implementacion del metodo polimorfico de la clase Personaje.
+     * Sobrecarga:
+     *   -Se le indica el valor de ataque. Se usa para habilidades.
+     */
+    std::string atacar(Personaje& p);
+    std::string atacar(Personaje& p, int ataqueFisico);
+
 private:
     Raza        raza;
     Clase       clase;
     Subclase    subclase;
     Arma        arma;
-	std::vector<Habilidad> habilidades; // Lista de habilidades del personaje
-    std::string afinidades; /* Lista de las armas con las que tiene afinidad
-                             * el jugador. Es informativa, para mostrar en la
-                             * pantalla de Informacion del Jugador */
+	std::vector<Habilidad> habilidades;
+    std::vector<Arma>      afinidades;
     /*
      * OBTENER_ELEMENTO
      *
@@ -115,10 +123,9 @@ private:
      * OBTENER_AFINIDADES
      *
      * Metodo para obtener las armas con las que tiene afinidad el jugador.
-     * Devuelve un string con la lista de armas.
-     * Se usa en la pantalla Informacion del Jugador.
      */
-    std::string obtenerAfinidades(Raza raza, Clase clase, Subclase subclase);
+    std::vector<Arma> obtenerAfinidades(Raza raza, Clase clase,
+                                        Subclase subclase);
 
     /*
      * GENERAR_ATRIBUTOS
