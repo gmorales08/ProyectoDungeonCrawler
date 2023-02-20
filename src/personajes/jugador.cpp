@@ -510,7 +510,7 @@ std::string Jugador::atacar(Personaje& p) {
     /* Formula de dano */
     int dmg = (getAtaqueFisico() * getAtaqueFisico() / (getAtaqueFisico() +
               p.getDefensaFisica()));
-    dmg = dmg * (bonuses + variacion);
+    dmg = dmg * static_cast<int>(bonuses + variacion);
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
@@ -547,7 +547,7 @@ std::string Jugador::atacar(Personaje& p, int ataqueFisico) {
     /* Formula de dano */
     int dmg = (ataqueFisico * ataqueFisico / (ataqueFisico +
               p.getDefensaFisica()));
-    dmg = dmg * (bonuses + variacion);
+    dmg = dmg * static_cast<int>(bonuses + variacion);
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);

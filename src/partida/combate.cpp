@@ -1,3 +1,4 @@
+#include "../../include/utilidadesDeTerminal.hpp"
 #include "../../include/combate.hpp"
 #include "../../include/pantallaCombate.hpp"
 
@@ -53,11 +54,11 @@ bool iniciarCombate(Partida* partida) {
 
         /* 3. Determinar la accion que elijan los personajes */
         /* Accion jugador */
-        logTurno += "-JUGADOR: ";
+        logTurno.append("-JUGADOR: ");
         if (comando == "a" || comando == "A") {
-            logTurno += j.atacar(e) + "\n";
+            logTurno.append(j.atacar(e) + "\n");
         } else if (comando == "1") {
-            logTurno += " Ha usado magia.\n";
+            logTurno.append(" Ha usado magia.\n");
             j.getHabilidades().at(0).setUsuario(j);
             j.getHabilidades().at(0).setObjetivo(e);
             logTurno += j.getHabilidades().at(0).usar();
@@ -77,6 +78,8 @@ bool iniciarCombate(Partida* partida) {
         } else if (comando == "5") {
 
         }
+        pausar(1);
+        imprimirPantallaEstatica(pantallaCombate(turno, j, e, logTurno));
         /* Accion enemigo */
 
         // mostrar turno personaje1 -> dos segundos -> mostrar turno personaje2

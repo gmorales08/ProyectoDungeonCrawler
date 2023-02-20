@@ -316,8 +316,8 @@ bool Personaje::esCritico() {
     }
 }
 
-//std::string atacar(Personaje& p) { return ""; }
-//std::string atacar(Personaje& p, int ataque) { return ""; }
+std::string Personaje::atacar(Personaje& p) { return ""; }
+std::string Personaje::atacar(Personaje& p, int ataque) { return ""; }
 
 float Personaje::efectividadElemental(Elemento e1, Elemento e2) {
     float efectividad = 0;
@@ -370,7 +370,7 @@ std::string Personaje::usarMagia(Personaje& p) {
     /* Formula de dano */
     int magdmg = (getAtaqueMagico() * getAtaqueMagico() / (getAtaqueMagico() +
                   p.getDefensaMagica()));
-    magdmg = magdmg * (bonuses + variacion);
+    magdmg = magdmg * static_cast<int>(bonuses + variacion);
     /* Aplicar el dano */
     p.aumentarVida((-1) * magdmg);
     std::string log = "Ha realizado " + std::to_string(magdmg) +
@@ -393,7 +393,7 @@ std::string Personaje::usarMagia(Personaje& p, int ataqueMagico) {
     /* Formula de dano */
     int magdmg = (ataqueMagico * ataqueMagico / (ataqueMagico +
                   p.getDefensaMagica()));
-    magdmg = magdmg * (bonuses + variacion);
+    magdmg = magdmg * static_cast<int>(bonuses + variacion);
     /* Aplicar el dano */
     p.aumentarVida((-1) * magdmg);
     std::string log = "Ha realizado " + std::to_string(magdmg) +
