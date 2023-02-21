@@ -8,10 +8,12 @@ bool iniciarCombate(Partida* partida) {
     bool enemigoSobrevive = true;
     /* Se copia el Jugador para que los cambios de estadisticas no se mantegan
      * despues del combate. Se hace lo mismo con el Enemigo */
-    Jugador j = (Jugador) partida->getJugador();
-    Enemigo e = (Enemigo) partida->generarEnemigo();
+    Jugador j(partida->getJugador());
+    Enemigo e(partida->generarEnemigo());
     int turno = 1;
-    std::string logTurno = "";
+    std::string logTurno   = "";
+    std::string logJugador = "";
+    std::string logEnemigo = "";
 
     /* Estructura de cada turno del bucle de combate:
      *   1. Imprimir la pantalla de turno
@@ -23,7 +25,9 @@ bool iniciarCombate(Partida* partida) {
      */
     while (jugadorSobrevive == true && enemigoSobrevive == true) {
         /* 1. Imprimir la pantalla de turno */
-        logTurno = "Turno " + std::to_string(turno) + ":\n";
+        logTurno   = "Turno " + std::to_string(turno) + ".\n";
+        logJugador = "";
+        logEnemigo = "";
         std::string comando = cargarPantalla(
             pantallaCombate(turno, j, e, logTurno),
             opcionesPantallaCombate,
@@ -54,31 +58,62 @@ bool iniciarCombate(Partida* partida) {
 
         /* 3. Determinar la accion que elijan los personajes */
         /* Accion jugador */
-        logTurno.append("-JUGADOR: ");
+        logJugador.append("> " +j.getNombre() + ":\n");
         if (comando == "a" || comando == "A") {
-            logTurno.append(j.atacar(e) + "\n");
+            logJugador.append(j.atacar(e) + "\n");
         } else if (comando == "1") {
-            logTurno.append(" Ha usado magia.\n");
+            logJugador.append("Ha usado " + j.getHabilidades().at(0).getNombre()
+                            + ".\n");
             j.getHabilidades().at(0).setUsuario(j);
             j.getHabilidades().at(0).setObjetivo(e);
-            logTurno += j.getHabilidades().at(0).usar();
+            logJugador += j.getHabilidades().at(0).usar();
         } else if (comando == "2") {
+            logJugador.append("Ha usado " + j.getHabilidades().at(1).getNombre()
+                            + ".\n");
             if (j.getHabilidades().at(1).getTipo() ==
                     Habilidad::Tipo::OFENSIVA) {
                 j.getHabilidades().at(1).setUsuario(j);
                 j.getHabilidades().at(1).setObjetivo(e);
-                logTurno += j.getHabilidades().at(1).usar();
+                logJugador.append(j.getHabilidades().at(1).usar());
             } else {
                 j.getHabilidades().at(1).setObjetivo(j);
             }
         } else if (comando == "3") {
-
+            logJugador.append("Ha usado " + j.getHabilidades().at(2).getNombre()
+                            + ".\n");
+            if (j.getHabilidades().at(2).getTipo() ==
+                    Habilidad::Tipo::OFENSIVA) {
+                j.getHabilidades().at(2).setUsuario(j);
+                j.getHabilidades().at(2).setObjetivo(e);
+                logJugador.append(j.getHabilidades().at(2).usar());
+            } else {
+                j.getHabilidades().at(2).setObjetivo(j);
+            }
         } else if (comando == "4") {
-
+                logJugador.append("Ha usado " + j.getHabilidades().at(3).getNombre()
+                            + ".\n");
+            if (j.getHabilidades().at(3).getTipo() ==
+                    Habilidad::Tipo::OFENSIVA) {
+                j.getHabilidades().at(3).setUsuario(j);
+                j.getHabilidades().at(3).setObjetivo(e);
+                logJugador.append(j.getHabilidades().at(3).usar());
+            } else {
+                j.getHabilidades().at(3).setObjetivo(j);
+            }
         } else if (comando == "5") {
-
+                logJugador.append("Ha usado " + j.getHabilidades().at(4).getNombre()
+                            + ".\n");
+            if (j.getHabilidades().at(4).getTipo() ==
+                    Habilidad::Tipo::OFENSIVA) {
+                j.getHabilidades().at(4).setUsuario(j);
+                j.getHabilidades().at(4).setObjetivo(e);
+                logJugador.append(j.getHabilidades().at(4).usar());
+            } else {
+                j.getHabilidades().at(4).setObjetivo(j);
+            }
         }
-        pausar(1);
+        logTurno.append(logJugador);
+        pausar(0.5);
         imprimirPantallaEstatica(pantallaCombate(turno, j, e, logTurno));
         /* Accion enemigo */
 

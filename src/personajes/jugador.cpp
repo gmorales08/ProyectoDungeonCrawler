@@ -484,7 +484,7 @@ void Jugador::generarHabilidades() {
 	}
 }
 
-std::string Jugador::atacar(Personaje& p) {
+std::string Jugador::atacar(Personaje p) {
     /* Bonuses */
     float bonuses = 0; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {
@@ -521,7 +521,7 @@ std::string Jugador::atacar(Personaje& p) {
     return log;
 }
 
-std::string Jugador::atacar(Personaje& p, int ataqueFisico) {
+std::string Jugador::atacar(Personaje p, int ataqueFisico) {
     /* Bonuses */
     float bonuses = 0; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {

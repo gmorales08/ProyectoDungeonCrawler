@@ -53,7 +53,7 @@ void Partida::iniciarPartida() {
             this);
         descenderPiso();
         if (pisosRestantes == 0) {
-            imprimirPantallaEstatica(pantallaFin);
+            imprimirPantallaEstatica(pantallaVictoria);
             break;
         }
     }

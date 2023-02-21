@@ -62,16 +62,16 @@ Habilidad::Habilidad(Tipo tipo, Personaje::Elemento elemento) {
 }
 
 /* Getters */
-std::string         Habilidad::getNombre()        { return nombre; }
-std::string         Habilidad::getDescripcion()   { return descripcion; }
-Habilidad::Tipo     Habilidad::getTipo()          { return tipo; }
-Habilidad::Atributo Habilidad::getAtributo()      { return atributo; }
-Personaje::Elemento Habilidad::getElemento()      { return elemento; }
-int                 Habilidad::getValor()         { return valor; }
-Personaje           Habilidad::getUsuario()       { return usuario; }
-Personaje           Habilidad::getObjetivo()      { return objetivo; }
-int                 Habilidad::getUsosRestantes() { return usosRestantes; }
-int                 Habilidad::getUsosTotales()   { return usosTotales; }
+std::string         Habilidad::getNombre()         { return nombre; }
+std::string         Habilidad::getDescripcion()    { return descripcion; }
+Habilidad::Tipo     Habilidad::getTipo()           { return tipo; }
+Habilidad::Atributo Habilidad::getAtributo()       { return atributo; }
+Personaje::Elemento Habilidad::getElemento()       { return elemento; }
+int                 Habilidad::getValor()          { return valor; }
+Personaje           Habilidad::getUsuario()        { return usuario; }
+Personaje           Habilidad::getObjetivo()       { return objetivo; }
+int                 Habilidad::getUsosRestantes()  { return usosRestantes; }
+int                 Habilidad::getUsosTotales()    { return usosTotales; }
 
 /* Setters */
 void Habilidad::setNombre(std::string _nombre) {
@@ -132,14 +132,12 @@ int Habilidad::calcularValor(int valor) {
 
 std::string Habilidad::usar() {
     std::string log = "";
-
     if (getTipo() == Tipo::OFENSIVA) {
-        Personaje objetivo = getObjetivo();
         if (getAtributo() == Atributo::ATAQUE) {
-            log = getUsuario().atacar(objetivo,
+            log = getUsuario().atacar(getObjetivo(),
                                       calcularValor(getValor()));
         } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
-            log = getUsuario().usarMagia(objetivo,
+            log = getUsuario().usarMagia(getObjetivo(),
                                          calcularValor(getValor()));
         }
     } else if (getTipo() == Tipo::BUFF) {
@@ -183,8 +181,7 @@ std::string Habilidad::usar() {
         getObjetivo().aumentarVida(getValor());
         log = "Ha recuperado " + std::to_string(getValor()) + " puntos de vida.";
     } else if (getTipo() == Tipo::MAGIA) {
-        Personaje objetivo = getObjetivo();
-        log = getUsuario().usarMagia(objetivo);
+        log = getUsuario().usarMagia(getObjetivo());
     }
     setUsosRestantes(getUsosRestantes() - 1);
 

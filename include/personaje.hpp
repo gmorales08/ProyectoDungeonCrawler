@@ -188,8 +188,8 @@ public:
      * Sobrecarga: se le indica el valor a usar como af o am. Se utilizara para
      * habilidades.
      */
-    std::string atacar(Personaje& p);
-    std::string atacar(Personaje& p, int ataque);
+    std::string atacar(Personaje p);
+    std::string atacar(Personaje p, int ataque);
 
     /*
      * USAR_MAGIA
@@ -209,8 +209,8 @@ public:
      * Sobrecarga: se le indica el valor a usar como am. Se utilizara para
      * habilidades.
      */
-    std::string usarMagia(Personaje& p);
-    std::string usarMagia(Personaje& p, int ataqueMagico);
+    std::string usarMagia(Personaje p);
+    std::string usarMagia(Personaje p, int ataqueMagico);
 
 
 protected:

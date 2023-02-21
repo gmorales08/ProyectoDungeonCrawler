@@ -91,7 +91,7 @@ private:
     void generarListaEventos();
 };
 
-const std::string pantallaFin =
+const std::string pantallaVictoria =
 "┌──────────────────────────────────────────────────────────────────────────────┐\n"
 "│                                                                              │\n"
 "│                   ****************************************           V       │\n"
@@ -114,5 +114,27 @@ const std::string pantallaFin =
 "│         `         ^^            ´        `          ^^   ´     ^^^   `       │\n"
 "└──────────────────────────────────────────────────────────────────────────────┘\n";
 
+const std::string pantallaDerrota =
+"┌──────────────────────────────────────────────────────────────────────────────┐\n"
+"│                                                                              │\n"
+"│  A TU PERSONAJE NO LE QUEDAN PUNTOS DE SALUD Y NO PUEDES SEGUIR AVANZANDO.   │\n"
+"│                    NO HAS PODIDO ESCAPAR DE LA MAZMORRA.                     │\n"
+"│                                                                              │\n"
+"│ PUEDES INTENTARLO DE NUEVO CREANDO OTRO PERSONAJE Y EMPEZANDO DESDE EL       │\n"
+"│                                 PRIMER PISO.                                 │\n"
+"│                                                                              │\n"
+"│  PRUEBA DIFERENTES COMBINACIONES DE RAZA, CLASE Y SUBCLASE, Y ASEGURATE DE   │\n"
+"│                   USAR UN ARMA CON LA QUE TENGAS AFINIDAD.                   │\n"
+"│                                                                              │\n"
+"│ TAMBIEN ES IMPORTANTE LA DISTRIBUCION DE PUNTOS DE MEJORA AL COMIENZO DE LA  │\n"
+"│             PARTIDA. PIENSA BIEN EN QUE ATRIBUTOS LOS INVIERTES.             │\n"
+"│                                                                              │\n"
+"│ SI HAY DETALLES DE LA PARTIDA QUE NO ENTIENDES, SIEMPRE PUEDES CONSULTAR EL  │\n"
+"│                       MANUAL EN LA PANTALLA DE INICIO.                       │\n"
+"│                                                                              │\n"
+"│                                                                              │\n"
+"│                SUERTE EN TU PROXIMA INCURSION, AVENTURERO/A.                 │\n"
+"│                                                                              │\n"
+"└──────────────────────────────────────────────────────────────────────────────┘\n";
 
 #endif // PARTIDA

@@ -15,7 +15,8 @@ Personaje::Personaje(std::string nombre) {
     setNivel(1);
 }
 
-Personaje::Personaje(std::string nombre, int nivel, Elemento elemento) {
+Personaje::Personaje(std::string nombre, int nivel, 
+                     Personaje::Elemento elemento) {
     setNombre(nombre);
     setNivel(nivel);
     setElemento(elemento);
@@ -36,7 +37,7 @@ int         Personaje::getCritico()       { return critico; }
 
 int         Personaje::getNivel()         { return nivel; }
 
-Personaje::Elemento Personaje::getElemento()                  { return elemento; }
+Personaje::Elemento Personaje::getElemento() { return elemento; }
 
 std::string Personaje::getElementoString() {
 	std::string elementoString = "";
@@ -316,8 +317,8 @@ bool Personaje::esCritico() {
     }
 }
 
-std::string Personaje::atacar(Personaje& p) { return ""; }
-std::string Personaje::atacar(Personaje& p, int ataque) { return ""; }
+std::string Personaje::atacar(Personaje p) { return ""; }
+std::string Personaje::atacar(Personaje p, int ataque) { return ""; }
 
 float Personaje::efectividadElemental(Elemento e1, Elemento e2) {
     float efectividad = 0;
@@ -356,7 +357,7 @@ float Personaje::efectividadElemental(Elemento e1, Elemento e2) {
     return efectividad;
 }
 
-std::string Personaje::usarMagia(Personaje& p) {
+std::string Personaje::usarMagia(Personaje p) {
     /* Bonuses */
     float bonuses = 0;
     bonuses += efectividadElemental(getElemento(), p.getElemento());
@@ -379,7 +380,7 @@ std::string Personaje::usarMagia(Personaje& p) {
     return log;
 }
 
-std::string Personaje::usarMagia(Personaje& p, int ataqueMagico) {
+std::string Personaje::usarMagia(Personaje p, int ataqueMagico) {
     /* Bonuses */
     float bonuses = 0;
     bonuses += efectividadElemental(getElemento(), p.getElemento());

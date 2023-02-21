@@ -59,11 +59,15 @@ public:
     Habilidad(Tipo tipo, Atributo atributo, int valor);
     Habilidad(Tipo tipo, Personaje::Elemento elemento);
 
+    
+
     /* Getters */
     std::string getNombre();
     std::string getDescripcion();
     Personaje::Elemento getElemento();
     Tipo        getTipo();
+    Personaje   getUsuario() ;
+    Personaje   getObjetivo() ;
     int         getUsosRestantes();
     int         getUsosTotales();
 
@@ -122,8 +126,6 @@ private:
      */
     Atributo    getAtributo();
     int         getValor();
-    Personaje   getUsuario();
-    Personaje   getObjetivo();
     /* Setters privados */
     void        setTipo(Tipo tipo);
     void        setAtributo(Atributo atributo);

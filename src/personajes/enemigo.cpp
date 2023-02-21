@@ -61,7 +61,7 @@ void Enemigo::elegirAccion() {
     }
 }
 
-std::string Enemigo::atacar(Personaje& p) {
+std::string Enemigo::atacar(Personaje p) {
     /* Bonuses */
     float bonuses = 0; // %
     if (esCritico() == true) {
@@ -91,7 +91,7 @@ std::string Enemigo::atacar(Personaje& p) {
     return log;
 }
 
-std::string Enemigo::atacar(Personaje& p, int ataqueFisico) {
+std::string Enemigo::atacar(Personaje p, int ataqueFisico) {
     /* Bonuses */
     float bonuses = 0; // %
     if (esCritico() == true) {
