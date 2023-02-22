@@ -1,4 +1,5 @@
-#include "../../include/enemigo.hpp"
+//#include "../../include/enemigo.hpp" incluido en habilidad.hpp
+#include "../../include/habilidad.hpp"
 
 Enemigo::Enemigo(std::string nombre, int nivel,
                  Personaje::Elemento elemento):
@@ -35,7 +36,9 @@ void Enemigo::generarAtributos(int nivel) {
     }
 }
 
-void Enemigo::elegirAccion() {
+std::string Enemigo::elegirAccion(Jugador& j) {
+    std::string log = "";
+
     int accion = tirarDado(100); // accion = numero del 1 al 100
     /* Se genera un vector con las frecuencias acumuladas */
     std::vector<int> probabilidades;
@@ -48,17 +51,21 @@ void Enemigo::elegirAccion() {
     /* Se determina el rango en el que se encuentra accion */
     for (int i = 0; i < (int) probabilidades.size(); i++) {
         if (accion <= probabilidades.at(0)) {
-            //Pesonaje.atacar()
+            log = "Ha realizado un ataque fisico.\n";
+            log.append(this->atacar(j) + "\n");
             break;
         } else if (accion <= probabilidades.at(i)) {
             if (getHabilidades().at(i - 1).getUsosRestantes() > 0) {
-                getHabilidades().at(i - 1).usar();
+                log = "Ha usado una habilidad.\n";
+                log.append(getHabilidades().at(i - 1).usar(j, *this));
             } else {
-                elegirAccion();
+                elegirAccion(j);
             }
             break;
         }
     }
+
+    return log;
 }
 
 std::string Enemigo::atacar(Personaje& p) {

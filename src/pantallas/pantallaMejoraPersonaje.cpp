@@ -1,7 +1,7 @@
 #include <algorithm>
 #include "../../include/pantallaMejoraPersonaje.hpp"
 #include "../../include/pantallaInformacionPersonaje.hpp"
-#include "../../include/jugador.hpp"
+
 
 std::string seleccionActualMejora = "";
 /* seleccionActualNumericaMejora contiene los atributos a mejorar

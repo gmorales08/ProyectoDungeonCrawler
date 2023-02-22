@@ -2,7 +2,7 @@
 #define JUGADOR
 
 #include "personaje.hpp"
-#include "habilidad.hpp"
+class Habilidad;
 
 /*
  * CLASE JUGADOR
@@ -66,8 +66,8 @@ public:
     Clase       getClase();
     Subclase    getSubclase();
     Arma        getArma();
-    std::vector<Arma>      getAfinidades();
-    std::vector<Habilidad> getHabilidades();
+    std::vector<Arma>       getAfinidades();
+    std::vector<Habilidad>& getHabilidades();
 
     /*
      * GETTER_TO_STRING

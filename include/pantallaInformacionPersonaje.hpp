@@ -2,8 +2,7 @@
 #define PANTALLA_INFORMACION_PERSONAJE
 
 #include "pantalla.hpp"
-#include "jugador.hpp"
-
+#include "habilidad.hpp"
 /*
  * PANTALLA_INFORMACION
  *

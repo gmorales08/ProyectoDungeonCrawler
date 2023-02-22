@@ -15,7 +15,7 @@ Personaje::Personaje(std::string nombre) {
     setNivel(1);
 }
 
-Personaje::Personaje(std::string nombre, int nivel, 
+Personaje::Personaje(std::string nombre, int nivel,
                      Personaje::Elemento elemento) {
     setNombre(nombre);
     setNivel(nivel);
@@ -372,7 +372,7 @@ std::string Personaje::usarMagia(Personaje& p) {
     /* Aplicar el dano */
     p.aumentarVida((-1) * magdmg);
     std::string log = "Ha realizado " + std::to_string(magdmg) +
-                      " puntos de dano.";
+                      " puntos de dano.\n";
 
     return log;
 }
@@ -395,7 +395,7 @@ std::string Personaje::usarMagia(Personaje& p, int ataqueMagico) {
     /* Aplicar el dano */
     p.aumentarVida((-1) * magdmg);
     std::string log = "Ha realizado " + std::to_string(magdmg) +
-                      " puntos de dano.";
+                      " puntos de dano.\n";
 
     return log;
 }

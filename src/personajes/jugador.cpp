@@ -1,7 +1,8 @@
-#include "../../include/jugador.hpp"
-#include "../../include/habilidad.hpp"
 #include <iostream>
 #include <string>
+//#include "../../include/jugador.hpp" incluido en habilidad.hpp
+#include "../../include/habilidad.hpp"
+
 
 Jugador::Jugador() : Personaje() {}
 Jugador::Jugador(std::string nombre, int raza, int clase, int subclase,
@@ -84,7 +85,7 @@ std::string Jugador::getArmaString() {
 	return armaString;
 }
 
-std::vector<Habilidad> Jugador::getHabilidades() { return habilidades; }
+std::vector<Habilidad>& Jugador::getHabilidades() { return habilidades; }
 
 void Jugador::jugadorLog() {
     std::string log = "LOG DEL JUGADOR\n";
@@ -249,14 +250,14 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 void Jugador::generarHabilidades() {
     switch (getRaza()) {
 		case Raza::HUMANO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia no elemental",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::NEUTRO
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Golpe contundente",
                 "Poderoso ataque fisico",
@@ -266,14 +267,14 @@ void Jugador::generarHabilidades() {
             break;
         }
         case Raza::ENANO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de tierra",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::TIERRA
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Fortalecimiento",
                 "Aumenta las defensas",
@@ -283,14 +284,14 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Raza::ELFO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de hielo",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::HIELO
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
@@ -299,14 +300,14 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Raza::OGRO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de fuego",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::FUEGO
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Intimidacion",
                 "Disminuye el ataque enemigo",
@@ -316,14 +317,14 @@ void Jugador::generarHabilidades() {
             break;
         }
         case Raza::TRITON: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de agua",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::AGUA
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
@@ -332,14 +333,14 @@ void Jugador::generarHabilidades() {
             break;
         }
         case Raza::BESTIA: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de rayo",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::RAYO
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Grito de guerra",
                 "Aumenta el ataque fisico",
@@ -351,14 +352,14 @@ void Jugador::generarHabilidades() {
 
 	switch (clase) {
         case Clase::GUERRERO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Distraccion",
                 "Disminuye las defensas enemigas",
                 Habilidad::Tipo::DEBUFF,
                 Habilidad::Atributo::DEFENSAS, 2
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Fortalecimiento",
                 "Aumenta las defensas",
@@ -368,14 +369,14 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Clase::MAGO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Mentalizacion+",
                 "Aumenta mucho el ataque magico",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::ATAQUE_MAGICO, 3
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Rafaga de energia",
                 "Magia no elemental muy poderosa",
@@ -385,14 +386,14 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Clase::MONJE: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Meditacion",
                 "Aumenta mucho el ataque fisico",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::ATAQUE, 3
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tecnica del dragon",
                 "Ataque fisico muy poderoso",
@@ -402,13 +403,13 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Clase::CLERIGO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion+",
                 "Elevada curacion de vida",
                 Habilidad::Tipo::CURATIVA, 3
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Distraccion",
                 "Disminuye las defensas enemigas",
@@ -418,14 +419,14 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Clase::LADRON: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tacticas evasivas",
                 "Aumenta velocidad y evasion",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::VELOCIDAD_Y_EVASION, 2
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Afilar arma",
                 "Aumenta la precision y el critico",
@@ -435,13 +436,13 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Clase::TROVADOR: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
                 Habilidad::Tipo::CURATIVA, 2
             );
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tacticas evasivas",
                 "Aumenta velocidad y evasion",
@@ -454,7 +455,7 @@ void Jugador::generarHabilidades() {
 
 	switch (subclase) {
         case Subclase::HERRERO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Golpe contundente",
                 "Poderoso ataque fisico",
@@ -464,7 +465,7 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Subclase::ALQUIMISTA: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Mentalizacion",
                 "Aumenta el ataque magico",
@@ -474,7 +475,7 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Subclase::GLADIADOR: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Intimidacion",
                 "Disminuye el ataque enemigo",
@@ -484,7 +485,7 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Subclase::BOTICARIO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion+",
                 "Elevada curacion de vida",
@@ -493,7 +494,7 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Subclase::DRUIDA: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
@@ -502,7 +503,7 @@ void Jugador::generarHabilidades() {
             break;
         }
 		case Subclase::MERCENARIO: {
-            habilidades.emplace_back(
+            getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Afilar arma",
                 "Aumenta la precision y el critico",
@@ -545,7 +546,7 @@ std::string Jugador::atacar(Personaje& p) {
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = " Ha realizado " + std::to_string(dmg) +
+    std::string log = "Ha realizado " + std::to_string(dmg) +
                       " puntos de dano.";
 
     return log;

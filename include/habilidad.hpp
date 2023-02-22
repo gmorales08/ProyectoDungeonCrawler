@@ -1,4 +1,3 @@
-#pragma once
 #ifndef HABILIDAD
 #define HABILIDAD
 
@@ -42,21 +41,21 @@ public:
      * Tambien se le indica el valor de ataque/curacion/buff/debuff.
      * Este constructor se usa para habilidades curativas.
      */
-    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+    Habilidad (Habilidad::Usuario usuario, std::string nombre,
                std::string descripcion, Tipo tipo, int valor);
     /*
      * Constructor alternativo para habilidades tipo ofensivas y buff/debuff
      * donde se le indica el atributo que se esta modificando o si se esta
      * usando ataque fisico o magico
      */
-    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+    Habilidad (Habilidad::Usuario usuario, std::string nombre,
                std::string descripcion, Tipo tipo, Atributo atributo,
                int valor);
     /*
      * Constructor alternativo para crear las magias
      * Se indica el elemento de la magia como parametro adicional
      */
-    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+    Habilidad (Habilidad::Usuario usuario, std::string nombre,
                std::string descripcion, Tipo tipo,
                Personaje::Elemento elemento);
 
@@ -65,9 +64,9 @@ public:
      * nombre ni descripcion
      */
     Habilidad(Habilidad::Usuario usuario, Tipo tipo, int valor);
-    Habilidad(Habilidad::Usuario usuario, Tipo tipo, Atributo atributo, 
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo, Atributo atributo,
               int valor);
-    Habilidad(Habilidad::Usuario usuario, Tipo tipo, 
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo,
               Personaje::Elemento elemento);
 
     /* Getters */
@@ -75,10 +74,10 @@ public:
     std::string getDescripcion();
     Personaje::Elemento getElemento();
     Tipo        getTipo();
-    Jugador*    getUsuarioJugador();
-    Jugador*    getObjetivoJugador();
-    Enemigo*    getUsuarioEnemigo();
-    Enemigo*    getObjetivoEnemigo();
+    // Jugador*    getUsuarioJugador();
+    // Jugador*    getObjetivoJugador();
+    // Enemigo*    getUsuarioEnemigo();
+    // Enemigo*    getObjetivoEnemigo();
     int         getUsosRestantes();
     int         getUsosTotales();
 
@@ -86,12 +85,13 @@ public:
     void setUsuario(Usuario usuario);
     void setNombre(std::string _nombre);
     void setDescripcion(std::string _descripcion);
-    void setUsuarioJugador(Jugador* usuario);
-    void setObjetivoJugador(Jugador* objetivo);
-    void setUsuarioEnemigo(Enemigo* usuario);
-    void setObjetivoEnemigo(Enemigo* objetivo);
+    // void setUsuarioJugador(Jugador& usuario);
+    // void setObjetivoJugador(Jugador* objetivo);
+    // void setUsuarioEnemigo(Enemigo* usuario);
+    // void setObjetivoEnemigo(Enemigo* objetivo);
     void setUsosRestantes(int _usosRestantes);
     void setUsosTotales(int _usosTotales);
+
 
     /*
      * USAR
@@ -100,7 +100,7 @@ public:
      * imprimir como log.
      * Ej: cura a personaje, potencia a personaje o ataca a personaje.
      */
-    std::string usar();
+    std::string usar(Jugador& j, Enemigo& e);
 
 private:
     Usuario     usuario;
@@ -131,10 +131,10 @@ private:
      */
     Personaje::Elemento elemento;
     int         valor;
-    Jugador*    usuarioJugador;
-    Jugador*    objetivoJugador;
-    Enemigo*    usuarioEnemigo;
-    Enemigo*    objetivoEnemigo;
+    // Jugador*    usuarioJugador;
+    // Jugador*    objetivoJugador;
+    // Enemigo*    usuarioEnemigo;
+    // Enemigo*    objetivoEnemigo;
     int         usosRestantes;
     int         usosTotales;
 

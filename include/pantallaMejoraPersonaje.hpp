@@ -2,15 +2,15 @@
 #define PANTALLA_MEJORA_PERSONAJE
 
 #include "pantalla.hpp"
-#include "jugador.hpp"
+#include "habilidad.hpp"
 
-const std::vector<std::string> opcionesMejoraPersonaje = 
+const std::vector<std::string> opcionesMejoraPersonaje =
     {"1", "2", "3", "4", "5", "6", "7"};
 
 /*
  * MENU_MEJORA_PERSONAJE
  *
- * Metodo que controla la seleccion del usuario en la pantalla de mejora de 
+ * Metodo que controla la seleccion del usuario en la pantalla de mejora de
  * personaje
  * Tambien se le pasa por parametro el jugador que se va a mejorar
  */
@@ -28,10 +28,10 @@ std::string pantallaMejoraPersonaje(Jugador& jugador, std::vector<int> mejoras);
  * PANTALLA_PERONSAJE_MEJORADO
  *
  * Imprime la pantalla de informacion del personaje con los atributos mejorados.
- * Se le pasa el vector de atributos que se mejoran y calcula los valores de la 
+ * Se le pasa el vector de atributos que se mejoran y calcula los valores de la
  * mejora de manera aleatoria.
  */
-std::string pantallaPersonajeMejorado(Jugador& jugador, 
+std::string pantallaPersonajeMejorado(Jugador& jugador,
                                       std::vector<int> mejoras);
 
 #endif // PANTALLA_MEJORA_PERSONAJE

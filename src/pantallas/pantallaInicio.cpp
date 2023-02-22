@@ -1,6 +1,6 @@
-#include "../../include/utilidadesDeTerminal.hpp"
-#include "../../include/pantalla.hpp"
 #include "../../include/pantallaInicio.hpp"
+#include "../../include/pantalla.hpp"
+#include "../../include/utilidadesDeTerminal.hpp"
 #include "../../include/pantallaComoJugar.hpp"
 #include "../../include/pantallaCreacionPersonaje.hpp"
 
@@ -19,6 +19,6 @@ void menuPantallaInicio(std::string opcion) {
 	} else if (opcion == "3") {
         limpiarPantalla();
         std::cout << imprimirAmarillo("Gracias por jugar!\nHasta pronto\n");
-        pausar(1.5);
+        pausar(1500);
 	}
 }

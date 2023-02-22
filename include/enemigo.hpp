@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "personaje.hpp"
-#include "habilidad.hpp"
+class Habilidad;
 
 /*
  * CLASE ENEMIGO
@@ -32,9 +32,12 @@ public:
      * ELEGIR_ACCION
      *
      * Determina que accion realizara el Enemigo en base a su vector de
-     * probabilidades
+     * probabilidades.
+     * Se le pasa el Jugador contra el que combate, para que pueda aplicar los
+     * cambios en caso de usar una habilidad.
+     * Devuelve el log a mostrar en pantalla.
      */
-    void elegirAccion();
+    std::string elegirAccion(Jugador& j);
 
     /*
      * ATACAR

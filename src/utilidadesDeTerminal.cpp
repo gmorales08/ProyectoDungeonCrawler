@@ -9,9 +9,9 @@ void limpiarPantalla() {
     std::cout << "\033[40m"     << std::endl; // Fondo negro
 }
 
-void pausar(float segundos) {
+void pausar(float milisegundos) {
     std::this_thread::sleep_for(std::chrono::milliseconds(
-                                    (long) segundos * 1000));
+                                    (long) milisegundos));
 }
 
 std::string imprimirAzul(std::string texto) {

@@ -1,7 +1,7 @@
 #include <ios>
 #include <limits>
-#include "../../include/utilidadesDeTerminal.hpp"
 #include "../../include/pantalla.hpp"
+#include "../../include/utilidadesDeTerminal.hpp"
 
 
 void limpiarBufferEntrada() {

@@ -2,7 +2,7 @@
 #define EVENTO
 
 #include <array>
-#include "jugador.hpp"
+#include "habilidad.hpp"
 class Partida;
 
 /*

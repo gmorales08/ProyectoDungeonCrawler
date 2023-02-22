@@ -1,7 +1,7 @@
 #include "../../include/utilidadesDeTerminal.hpp"
+#include "../../include/habilidad.hpp"
 #include "../../include/combate.hpp"
 #include "../../include/pantallaCombate.hpp"
-#include "../../include/habilidad.hpp"
 
 
 bool iniciarCombate(Partida* partida) {
@@ -10,9 +10,9 @@ bool iniciarCombate(Partida* partida) {
     /* Se copia el Jugador para que los cambios de estadisticas no se mantegan
      * despues del combate. Se hace lo mismo con el Enemigo */
     Jugador j(partida->getJugador());
-    Jugador* jp = &j;
+    // Jugador* jp = &j;
     Enemigo e(partida->generarEnemigo());
-    Enemigo* ep = &e;
+    // Enemigo* ep = &e;
     int turno = 1;
     std::string logTurno   = "";
     std::string logJugador = "";
@@ -63,63 +63,57 @@ bool iniciarCombate(Partida* partida) {
         /* Accion jugador */
         logJugador.append("> " + j.getNombre() + ":\n");
         if (comando == "a" || comando == "A") {
+            logJugador.append("Ha atacado con el arma equipada.\n");
             logJugador.append(j.atacar(e) + "\n");
         } else if (comando == "1") {
-            logJugador.append("Ha usado " + j.getHabilidades().at(0).getNombre()
-                            + ".\n");
-            j.getHabilidades().at(0).setUsuarioJugador(jp);
-            j.getHabilidades().at(0).setObjetivoEnemigo(ep);
-            logJugador += j.getHabilidades().at(0).usar();
-        } else if (comando == "2") {
-            logJugador.append("Ha usado " + j.getHabilidades().at(1).getNombre()
-                            + ".\n");
-            if (j.getHabilidades().at(1).getTipo() ==
-                    Habilidad::Tipo::OFENSIVA) {
-                j.getHabilidades().at(1).setUsuarioJugador(jp);
-                j.getHabilidades().at(1).setObjetivoEnemigo(ep);
-                logJugador.append(j.getHabilidades().at(1).usar());
+            if (j.getHabilidades().at(0).getUsosRestantes() == 0) {
+                logJugador.append("Ha atacado con el arma equipada.\n");
             } else {
-                j.getHabilidades().at(1).setUsuarioJugador(jp);
+                logJugador.append("Ha usado " +
+                    j.getHabilidades().at(0).getNombre() + ".\n");
             }
+            logJugador += j.getHabilidades().at(0).usar(j, e);
+        }  else if (comando == "2") {
+            if (j.getHabilidades().at(1).getUsosRestantes() == 0) {
+                logJugador.append("Ha atacado con el arma equipada.\n");
+            } else {
+                logJugador.append("Ha usado " +
+                    j.getHabilidades().at(1).getNombre() + ".\n");
+            }
+            logJugador += j.getHabilidades().at(1).usar(j, e);
         } else if (comando == "3") {
-           logJugador.append("Ha usado " + j.getHabilidades().at(2).getNombre()
-                            + ".\n");
-            if (j.getHabilidades().at(2).getTipo() ==
-                    Habilidad::Tipo::OFENSIVA) {
-                j.getHabilidades().at(2).setUsuarioJugador(jp);
-                j.getHabilidades().at(2).setObjetivoEnemigo(ep);
-                logJugador.append(j.getHabilidades().at(2).usar());
+           if (j.getHabilidades().at(2).getUsosRestantes() == 0) {
+                logJugador.append("Ha atacado con el arma equipada.\n");
             } else {
-                j.getHabilidades().at(2).setUsuarioJugador(jp);
+                logJugador.append("Ha usado " +
+                    j.getHabilidades().at(2).getNombre() + ".\n");
             }
+            logJugador += j.getHabilidades().at(2).usar(j, e);
         } else if (comando == "4") {
-            logJugador.append("Ha usado " + j.getHabilidades().at(3).getNombre()
-                            + ".\n");
-            if (j.getHabilidades().at(3).getTipo() ==
-                    Habilidad::Tipo::OFENSIVA) {
-                j.getHabilidades().at(3).setUsuarioJugador(jp);
-                j.getHabilidades().at(3).setObjetivoEnemigo(ep);
-                logJugador.append(j.getHabilidades().at(1).usar());
+            if (j.getHabilidades().at(3).getUsosRestantes() == 0) {
+                logJugador.append("Ha atacado con el arma equipada.\n");
             } else {
-                j.getHabilidades().at(3).setUsuarioJugador(jp);
+                logJugador.append("Ha usado " +
+                    j.getHabilidades().at(3).getNombre() + ".\n");
             }
+            logJugador += j.getHabilidades().at(3).usar(j, e);
         } else if (comando == "5") {
-            logJugador.append("Ha usado " + j.getHabilidades().at(4).getNombre()
-                            + ".\n");
-            if (j.getHabilidades().at(4).getTipo() ==
-                    Habilidad::Tipo::OFENSIVA) {
-                j.getHabilidades().at(4).setUsuarioJugador(jp);
-                j.getHabilidades().at(4).setObjetivoEnemigo(ep);
-                logJugador.append(j.getHabilidades().at(4).usar());
+            if (j.getHabilidades().at(4).getUsosRestantes() == 0) {
+                logJugador.append("Ha atacado con el arma equipada.\n");
             } else {
-                j.getHabilidades().at(4).setUsuarioJugador(jp);
+                logJugador.append("Ha usado " +
+                    j.getHabilidades().at(4).getNombre() + ".\n");
             }
+            logJugador += j.getHabilidades().at(4).usar(j, e);
         }
         logTurno.append(logJugador);
-        pausar(0.5);
-        imprimirPantallaEstatica(pantallaCombate(turno, j, e, logTurno));
+        limpiarPantalla();
+        std::cout << (pantallaCombate(turno, j, e, logTurno)) << std::endl;
+        pausar(750);
         /* Accion enemigo */
-
+        logEnemigo = e.elegirAccion(j);
+        std::cout << (pantallaCombate(turno, j, e, logTurno)) << std::endl;
+        pausar(750);
         // mostrar turno personaje1 -> dos segundos -> mostrar turno personaje2
 
         /* 5. Comprobar si los Personajes siguen vivos */

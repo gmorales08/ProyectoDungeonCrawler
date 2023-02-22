@@ -1,8 +1,7 @@
 #ifndef PARTIDA
 #define PARTIDA
 
-#include "jugador.hpp"
-#include "enemigo.hpp"
+#include "habilidad.hpp"
 #include "evento.hpp"
 
 /*
