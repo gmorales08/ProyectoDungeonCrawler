@@ -250,12 +250,14 @@ void Jugador::generarHabilidades() {
     switch (getRaza()) {
 		case Raza::HUMANO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia no elemental",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::NEUTRO
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Golpe contundente",
                 "Poderoso ataque fisico",
                 Habilidad::Tipo::OFENSIVA,
@@ -265,12 +267,14 @@ void Jugador::generarHabilidades() {
         }
         case Raza::ENANO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de tierra",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::TIERRA
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Fortalecimiento",
                 "Aumenta las defensas",
                 Habilidad::Tipo::BUFF,
@@ -280,12 +284,14 @@ void Jugador::generarHabilidades() {
         }
 		case Raza::ELFO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de hielo",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::HIELO
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
                 Habilidad::Tipo::CURATIVA, 2
@@ -294,12 +300,14 @@ void Jugador::generarHabilidades() {
         }
 		case Raza::OGRO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de fuego",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::FUEGO
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Intimidacion",
                 "Disminuye el ataque enemigo",
                 Habilidad::Tipo::DEBUFF,
@@ -309,12 +317,14 @@ void Jugador::generarHabilidades() {
         }
         case Raza::TRITON: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de agua",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::AGUA
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
                 Habilidad::Tipo::CURATIVA, 2
@@ -323,12 +333,14 @@ void Jugador::generarHabilidades() {
         }
         case Raza::BESTIA: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de rayo",
                 "",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::RAYO
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Grito de guerra",
                 "Aumenta el ataque fisico",
                 Habilidad::Tipo::BUFF,
@@ -340,12 +352,14 @@ void Jugador::generarHabilidades() {
 	switch (clase) {
         case Clase::GUERRERO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Distraccion",
                 "Disminuye las defensas enemigas",
                 Habilidad::Tipo::DEBUFF,
                 Habilidad::Atributo::DEFENSAS, 2
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Fortalecimiento",
                 "Aumenta las defensas",
                 Habilidad::Tipo::BUFF,
@@ -355,12 +369,14 @@ void Jugador::generarHabilidades() {
         }
 		case Clase::MAGO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Mentalizacion+",
                 "Aumenta mucho el ataque magico",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::ATAQUE_MAGICO, 3
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Rafaga de energia",
                 "Magia no elemental muy poderosa",
                 Habilidad::Tipo::OFENSIVA,
@@ -370,12 +386,14 @@ void Jugador::generarHabilidades() {
         }
 		case Clase::MONJE: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Meditacion",
                 "Aumenta mucho el ataque fisico",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::ATAQUE, 3
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tecnica del dragon",
                 "Ataque fisico muy poderoso",
                 Habilidad::Tipo::OFENSIVA,
@@ -385,11 +403,13 @@ void Jugador::generarHabilidades() {
         }
 		case Clase::CLERIGO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion+",
                 "Elevada curacion de vida",
                 Habilidad::Tipo::CURATIVA, 3
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Distraccion",
                 "Disminuye las defensas enemigas",
                 Habilidad::Tipo::DEBUFF,
@@ -399,12 +419,14 @@ void Jugador::generarHabilidades() {
         }
 		case Clase::LADRON: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tacticas evasivas",
                 "Aumenta velocidad y evasion",
                 Habilidad::Tipo::BUFF,
                 Habilidad::Atributo::VELOCIDAD_Y_EVASION, 2
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Afilar arma",
                 "Aumenta la precision y el critico",
                 Habilidad::Tipo::BUFF,
@@ -414,11 +436,13 @@ void Jugador::generarHabilidades() {
         }
 		case Clase::TROVADOR: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
                 Habilidad::Tipo::CURATIVA, 2
             );
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Tacticas evasivas",
                 "Aumenta velocidad y evasion",
                 Habilidad::Tipo::BUFF,
@@ -431,6 +455,7 @@ void Jugador::generarHabilidades() {
 	switch (subclase) {
         case Subclase::HERRERO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Golpe contundente",
                 "Poderoso ataque fisico",
                 Habilidad::Tipo::OFENSIVA,
@@ -440,6 +465,7 @@ void Jugador::generarHabilidades() {
         }
 		case Subclase::ALQUIMISTA: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Mentalizacion",
                 "Aumenta el ataque magico",
                 Habilidad::Tipo::BUFF,
@@ -449,6 +475,7 @@ void Jugador::generarHabilidades() {
         }
 		case Subclase::GLADIADOR: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Intimidacion",
                 "Disminuye el ataque enemigo",
                 Habilidad::Tipo::DEBUFF,
@@ -458,6 +485,7 @@ void Jugador::generarHabilidades() {
         }
 		case Subclase::BOTICARIO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion+",
                 "Elevada curacion de vida",
                 Habilidad::Tipo::CURATIVA, 3
@@ -466,6 +494,7 @@ void Jugador::generarHabilidades() {
         }
 		case Subclase::DRUIDA: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Curacion",
                 "Curacion de vida",
                 Habilidad::Tipo::CURATIVA, 2
@@ -474,6 +503,7 @@ void Jugador::generarHabilidades() {
         }
 		case Subclase::MERCENARIO: {
             habilidades.emplace_back(
+                Habilidad::Usuario::USUARIO_JUGADOR,
                 "Afilar arma",
                 "Aumenta la precision y el critico",
                 Habilidad::Tipo::BUFF,
@@ -484,7 +514,7 @@ void Jugador::generarHabilidades() {
 	}
 }
 
-std::string Jugador::atacar(Personaje p) {
+std::string Jugador::atacar(Personaje& p) {
     /* Bonuses */
     float bonuses = 0; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {
@@ -521,7 +551,7 @@ std::string Jugador::atacar(Personaje p) {
     return log;
 }
 
-std::string Jugador::atacar(Personaje p, int ataqueFisico) {
+std::string Jugador::atacar(Personaje& p, int ataqueFisico) {
     /* Bonuses */
     float bonuses = 0; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {

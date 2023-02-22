@@ -1,8 +1,9 @@
 #include "../../include/habilidad.hpp"
 #include <string>
 
-Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
-                     int valor) {
+Habilidad::Habilidad(Habilidad::Usuario usuario, std::string nombre, 
+                     std::string descripcion, Tipo tipo, int valor) {
+    setUsuario(usuario);
 	setNombre(nombre);
 	setDescripcion(descripcion);
     setTipo(tipo);
@@ -11,9 +12,11 @@ Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
 	setUsosRestantes(usosTotales);
 }
 
-Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
-                     Atributo atributo, int valor) {
-	setNombre(nombre);
+Habilidad::Habilidad(Habilidad::Usuario usuario, std::string nombre, 
+                     std::string descripcion, Tipo tipo, Atributo atributo,
+                     int valor) {
+	setUsuario(usuario);
+    setNombre(nombre);
 	setDescripcion(descripcion);
     setTipo(tipo);
     setAtributo(atributo);
@@ -22,8 +25,10 @@ Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
 	setUsosRestantes(usosTotales);
 }
 
-Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
+Habilidad::Habilidad(Habilidad::Usuario usuario, std::string nombre, 
+                     std::string descripcion, Tipo tipo,
                      Personaje::Elemento elemento) {
+    setUsuario(usuario);
     setNombre(nombre);
 	setDescripcion(descripcion);
     setTipo(tipo);
@@ -33,7 +38,8 @@ Habilidad::Habilidad(std::string nombre, std::string descripcion, Tipo tipo,
 	setUsosRestantes(usosTotales);
 }
 
-Habilidad::Habilidad(Tipo tipo, int valor) {
+Habilidad::Habilidad(Habilidad::Usuario usuario, Tipo tipo, int valor) {
+    setUsuario(usuario);
     setNombre("");
     setDescripcion("");
     setTipo(tipo);
@@ -42,7 +48,9 @@ Habilidad::Habilidad(Tipo tipo, int valor) {
     setUsosRestantes(3);
 }
 
-Habilidad::Habilidad(Tipo tipo, Atributo atributo, int valor) {
+Habilidad::Habilidad(Habilidad::Usuario usuario, Tipo tipo, Atributo atributo,
+                     int valor) {
+    setUsuario(usuario);
     setNombre("");
     setDescripcion("");
     setTipo(tipo);
@@ -52,7 +60,9 @@ Habilidad::Habilidad(Tipo tipo, Atributo atributo, int valor) {
     setUsosRestantes(3);
 }
 
-Habilidad::Habilidad(Tipo tipo, Personaje::Elemento elemento) {
+Habilidad::Habilidad(Habilidad::Usuario usuario, Tipo tipo, 
+                     Personaje::Elemento elemento) {
+    setUsuario(usuario);
     setNombre("");
     setDescripcion("");
     setTipo(tipo);
@@ -62,18 +72,25 @@ Habilidad::Habilidad(Tipo tipo, Personaje::Elemento elemento) {
 }
 
 /* Getters */
-std::string         Habilidad::getNombre()         { return nombre; }
-std::string         Habilidad::getDescripcion()    { return descripcion; }
-Habilidad::Tipo     Habilidad::getTipo()           { return tipo; }
-Habilidad::Atributo Habilidad::getAtributo()       { return atributo; }
-Personaje::Elemento Habilidad::getElemento()       { return elemento; }
-int                 Habilidad::getValor()          { return valor; }
-Personaje           Habilidad::getUsuario()        { return usuario; }
-Personaje           Habilidad::getObjetivo()       { return objetivo; }
-int                 Habilidad::getUsosRestantes()  { return usosRestantes; }
-int                 Habilidad::getUsosTotales()    { return usosTotales; }
+Habilidad::Usuario  Habilidad::getUsuario()         { return usuario; }
+std::string         Habilidad::getNombre()          { return nombre; }
+std::string         Habilidad::getDescripcion()     { return descripcion; }
+Habilidad::Tipo     Habilidad::getTipo()            { return tipo; }
+Habilidad::Atributo Habilidad::getAtributo()        { return atributo; }
+Personaje::Elemento Habilidad::getElemento()        { return elemento; }
+int                 Habilidad::getValor()           { return valor; }
+Jugador*            Habilidad::getUsuarioJugador()  { return usuarioJugador; }
+Jugador*            Habilidad::getObjetivoJugador() { return objetivoJugador; }
+Enemigo*            Habilidad::getUsuarioEnemigo()  { return usuarioEnemigo; }
+Enemigo*            Habilidad::getObjetivoEnemigo() { return objetivoEnemigo; }
+int                 Habilidad::getUsosRestantes()   { return usosRestantes; }
+int                 Habilidad::getUsosTotales()     { return usosTotales; }
 
 /* Setters */
+void Habilidad::setUsuario(Usuario _usuario) {
+    usuario = _usuario;
+}
+
 void Habilidad::setNombre(std::string _nombre) {
     nombre = _nombre;
 }
@@ -98,12 +115,20 @@ void Habilidad::setValor(int _valor) {
     valor = _valor;
 }
 
-void Habilidad::setUsuario(Personaje& _usuario) {
-    usuario = _usuario;
+void Habilidad::setUsuarioJugador(Jugador* _usuario) {
+    usuarioJugador = _usuario;
 }
 
-void Habilidad::setObjetivo(Personaje& _objetivo) {
-    objetivo = _objetivo;
+void Habilidad::setObjetivoJugador(Jugador* _objetivo) {
+    objetivoJugador = _objetivo;
+}
+
+void Habilidad::setUsuarioEnemigo(Enemigo* _usuario) {
+    usuarioEnemigo = _usuario;
+}
+
+void Habilidad::setObjetivoEnemigo(Enemigo* _objetivo) {
+    objetivoEnemigo = _objetivo;
 }
 
 void Habilidad::setUsosRestantes(int _usosRestantes) {
@@ -132,56 +157,114 @@ int Habilidad::calcularValor(int valor) {
 
 std::string Habilidad::usar() {
     std::string log = "";
-    if (getTipo() == Tipo::OFENSIVA) {
-        if (getAtributo() == Atributo::ATAQUE) {
-            log = getUsuario().atacar(getObjetivo(),
-                                      calcularValor(getValor()));
-        } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
-            log = getUsuario().usarMagia(getObjetivo(),
-                                         calcularValor(getValor()));
+    /* Si el jugador usa la habilidad */
+    if (getUsuario() == Usuario::USUARIO_JUGADOR) {
+        Enemigo& objetivo = *(getObjetivoEnemigo());
+        if (getTipo() == Tipo::OFENSIVA) {
+            if (getAtributo() == Atributo::ATAQUE) {
+                log = getUsuarioJugador()->atacar(objetivo,
+                                        calcularValor(getValor()));
+            } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
+                log = getUsuarioJugador()->usarMagia(objetivo),
+                                            calcularValor(getValor());
+            }
+        } else if (getTipo() == Tipo::BUFF) {
+            if (getAtributo() == Atributo::ATAQUE) {
+                getUsuarioJugador()->aumentarAtaqueFisico(getValor());
+                log = "Su ataque aumenta " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
+                getUsuarioJugador()->aumentarAtaqueMagico(getValor());
+                log = "Su ataque magico aumenta " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::DEFENSAS) {
+                getUsuarioJugador()->aumentarDefensaFisica(getValor());
+                getUsuarioJugador()->aumentarDefensaMagica(getValor());
+                log = "Sus defensas aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::VELOCIDAD_Y_EVASION) {
+                getUsuarioJugador()->aumentarVelocidad(getValor());
+                getUsuarioJugador()->aumentarEvasion(getValor());
+                log = "Su vel. y eva. aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::PRECISION_Y_CRITICO) {
+                getUsuarioJugador()->aumentarPrecision(getValor());
+                getUsuarioJugador()->aumentarCritico(getValor());
+                log = "Su pre. y cri. aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            }
+        } else if (getTipo() == Tipo::DEBUFF) {
+            if (getAtributo() == Atributo::ATAQUES) {
+                getObjetivoEnemigo()->aumentarAtaqueFisico((-1) * getValor());
+                getObjetivoEnemigo()->aumentarAtaqueMagico((-1) * getValor());
+                log = "Los atqs. del rival bajan " + std::to_string(getValor()) +
+                    " ptos.";
+            } else if (getAtributo() == Atributo::DEFENSAS) {
+                getObjetivoEnemigo()->aumentarDefensaFisica((-1) * getValor());
+                getObjetivoEnemigo()->aumentarDefensaMagica((-1) * getValor());
+                log = "Las defs. del rival bajan " + std::to_string(getValor()) +
+                    " ptos.";
+            }
+        } else if (getTipo() == Tipo::CURATIVA) {
+            getUsuarioJugador()->aumentarVida(getValor());
+            log = "Ha recuperado " + std::to_string(getValor()) + " puntos de vida.";
+        } else if (getTipo() == Tipo::MAGIA) {
+            log = getUsuarioJugador()->usarMagia(objetivo);
         }
-    } else if (getTipo() == Tipo::BUFF) {
-        if (getAtributo() == Atributo::ATAQUE) {
-            getObjetivo().aumentarAtaqueFisico(getValor());
-            log = "Su ataque aumenta " + std::to_string(getValor()) +
-                  " puntos.";
-        } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
-            getObjetivo().aumentarAtaqueMagico(getValor());
-            log = "Su ataque magico aumenta " + std::to_string(getValor()) +
-                  " puntos.";
-        } else if (getAtributo() == Atributo::DEFENSAS) {
-            getObjetivo().aumentarDefensaFisica(getValor());
-            getObjetivo().aumentarDefensaMagica(getValor());
-            log = "Sus defensas aumentan " + std::to_string(getValor()) +
-                  " puntos.";
-        } else if (getAtributo() == Atributo::VELOCIDAD_Y_EVASION) {
-            getObjetivo().aumentarVelocidad(getValor());
-            getObjetivo().aumentarEvasion(getValor());
-            log = "Su vel. y eva. aumentan " + std::to_string(getValor()) +
-                  " puntos.";
-        } else if (getAtributo() == Atributo::PRECISION_Y_CRITICO) {
-            getObjetivo().aumentarPrecision(getValor());
-            getObjetivo().aumentarCritico(getValor());
-            log = "Su pre. y cri. aumentan " + std::to_string(getValor()) +
-                  " puntos.";
+    /* Si un enemigo usa la habilidad */
+    } else if (getUsuario() == Usuario::USUARIO_ENEMIGO) {
+        Jugador& objetivo = *(getObjetivoJugador());
+        if (getTipo() == Tipo::OFENSIVA) {
+            if (getAtributo() == Atributo::ATAQUE) {
+                log = getUsuarioEnemigo()->atacar(objetivo,
+                                        calcularValor(getValor()));
+            } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
+                log = getUsuarioEnemigo()->usarMagia(objetivo),
+                                            calcularValor(getValor());
+            }
+        } else if (getTipo() == Tipo::BUFF) {
+            if (getAtributo() == Atributo::ATAQUE) {
+                getUsuarioEnemigo()->aumentarAtaqueFisico(getValor());
+                log = "Su ataque aumenta " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::ATAQUE_MAGICO) {
+                getUsuarioEnemigo()->aumentarAtaqueMagico(getValor());
+                log = "Su ataque magico aumenta " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::DEFENSAS) {
+                getUsuarioEnemigo()->aumentarDefensaFisica(getValor());
+                getUsuarioEnemigo()->aumentarDefensaMagica(getValor());
+                log = "Sus defensas aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::VELOCIDAD_Y_EVASION) {
+                getUsuarioEnemigo()->aumentarVelocidad(getValor());
+                getUsuarioEnemigo()->aumentarEvasion(getValor());
+                log = "Su vel. y eva. aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            } else if (getAtributo() == Atributo::PRECISION_Y_CRITICO) {
+                getUsuarioEnemigo()->aumentarPrecision(getValor());
+                getUsuarioEnemigo()->aumentarCritico(getValor());
+                log = "Su pre. y cri. aumentan " + std::to_string(getValor()) +
+                    " puntos.";
+            }
+        } else if (getTipo() == Tipo::DEBUFF) {
+            if (getAtributo() == Atributo::ATAQUES) {
+                getObjetivoJugador()->aumentarAtaqueFisico((-1) * getValor());
+                getObjetivoJugador()->aumentarAtaqueMagico((-1) * getValor());
+                log = "Los atqs. del rival bajan " + std::to_string(getValor()) +
+                    " ptos.";
+            } else if (getAtributo() == Atributo::DEFENSAS) {
+                getObjetivoJugador()->aumentarDefensaFisica((-1) * getValor());
+                getObjetivoJugador()->aumentarDefensaMagica((-1) * getValor());
+                log = "Las defs. del rival bajan " + std::to_string(getValor()) +
+                    " ptos.";
+            }
+        } else if (getTipo() == Tipo::CURATIVA) {
+            getUsuarioEnemigo()->aumentarVida(getValor());
+            log = "Ha recuperado " + std::to_string(getValor()) + " puntos de vida.";
+        } else if (getTipo() == Tipo::MAGIA) {
+            log = getUsuarioEnemigo()->usarMagia(objetivo);
         }
-    } else if (getTipo() == Tipo::DEBUFF) {
-        if (getAtributo() == Atributo::ATAQUES) {
-            getObjetivo().aumentarAtaqueFisico((-1) * getValor());
-            getObjetivo().aumentarAtaqueMagico((-1) * getValor());
-            log = "Los atqs. del rival bajan " + std::to_string(getValor()) +
-                  " ptos.";
-        } else if (getAtributo() == Atributo::DEFENSAS) {
-            getObjetivo().aumentarDefensaFisica((-1) * getValor());
-            getObjetivo().aumentarDefensaMagica((-1) * getValor());
-            log = "Las defs. del rival bajan " + std::to_string(getValor()) +
-                  " ptos.";
-        }
-    } else if (getTipo() == Tipo::CURATIVA) {
-        getObjetivo().aumentarVida(getValor());
-        log = "Ha recuperado " + std::to_string(getValor()) + " puntos de vida.";
-    } else if (getTipo() == Tipo::MAGIA) {
-        log = getUsuario().usarMagia(getObjetivo());
     }
     setUsosRestantes(getUsosRestantes() - 1);
 

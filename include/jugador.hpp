@@ -102,8 +102,8 @@ public:
      * Sobrecarga:
      *   -Se le indica el valor de ataque. Se usa para habilidades.
      */
-    std::string atacar(Personaje p);
-    std::string atacar(Personaje p, int ataqueFisico);
+    std::string atacar(Personaje& p) override;
+    std::string atacar(Personaje& p, int ataqueFisico) override;
 
 private:
     Raza        raza;

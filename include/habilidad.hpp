@@ -1,8 +1,10 @@
+#pragma once
 #ifndef HABILIDAD
 #define HABILIDAD
 
-#include "personaje.hpp"
 #include <iostream>
+#include "jugador.hpp"
+#include "enemigo.hpp"
 
 /*
  * CLASE HABILIDAD
@@ -28,6 +30,11 @@ public:
         PRECISION_Y_CRITICO
     };
 
+    enum class Usuario {
+        USUARIO_JUGADOR,
+        USUARIO_ENEMIGO
+    };
+
     /*
      * CONTRUCTORES
      *
@@ -35,47 +42,54 @@ public:
      * Tambien se le indica el valor de ataque/curacion/buff/debuff.
      * Este constructor se usa para habilidades curativas.
      */
-    Habilidad (std::string nombre, std::string descripcion, Tipo tipo,
-               int valor);
+    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+               std::string descripcion, Tipo tipo, int valor);
     /*
      * Constructor alternativo para habilidades tipo ofensivas y buff/debuff
      * donde se le indica el atributo que se esta modificando o si se esta
      * usando ataque fisico o magico
      */
-    Habilidad (std::string nombre, std::string descripcion, Tipo tipo,
-               Atributo atributo, int valor);
+    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+               std::string descripcion, Tipo tipo, Atributo atributo,
+               int valor);
     /*
      * Constructor alternativo para crear las magias
      * Se indica el elemento de la magia como parametro adicional
      */
-    Habilidad (std::string nombre, std::string descripcion, Tipo tipo,
+    Habilidad (Habilidad::Usuario usuario, std::string nombre, 
+               std::string descripcion, Tipo tipo,
                Personaje::Elemento elemento);
 
     /* Constructores para Habilidades de Enemigos
      * Son igual que los anteriores, pero no es necesario especificar
      * nombre ni descripcion
      */
-    Habilidad(Tipo tipo, int valor);
-    Habilidad(Tipo tipo, Atributo atributo, int valor);
-    Habilidad(Tipo tipo, Personaje::Elemento elemento);
-
-    
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo, int valor);
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo, Atributo atributo, 
+              int valor);
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo, 
+              Personaje::Elemento elemento);
 
     /* Getters */
     std::string getNombre();
     std::string getDescripcion();
     Personaje::Elemento getElemento();
     Tipo        getTipo();
-    Personaje   getUsuario() ;
-    Personaje   getObjetivo() ;
+    Jugador*    getUsuarioJugador();
+    Jugador*    getObjetivoJugador();
+    Enemigo*    getUsuarioEnemigo();
+    Enemigo*    getObjetivoEnemigo();
     int         getUsosRestantes();
     int         getUsosTotales();
 
     /* Setters */
+    void setUsuario(Usuario usuario);
     void setNombre(std::string _nombre);
     void setDescripcion(std::string _descripcion);
-    void setUsuario(Personaje& usuario);
-    void setObjetivo(Personaje& objetivo);
+    void setUsuarioJugador(Jugador* usuario);
+    void setObjetivoJugador(Jugador* objetivo);
+    void setUsuarioEnemigo(Enemigo* usuario);
+    void setObjetivoEnemigo(Enemigo* objetivo);
     void setUsosRestantes(int _usosRestantes);
     void setUsosTotales(int _usosTotales);
 
@@ -89,6 +103,7 @@ public:
     std::string usar();
 
 private:
+    Usuario     usuario;
     std::string nombre;
     std::string descripcion;
     Tipo        tipo;
@@ -116,14 +131,17 @@ private:
      */
     Personaje::Elemento elemento;
     int         valor;
-    Personaje   usuario;
-    Personaje   objetivo;
+    Jugador*    usuarioJugador;
+    Jugador*    objetivoJugador;
+    Enemigo*    usuarioEnemigo;
+    Enemigo*    objetivoEnemigo;
     int         usosRestantes;
     int         usosTotales;
 
     /* Getters privados
      * Los voy a utilizar para el metodo usar();
      */
+    Usuario     getUsuario();
     Atributo    getAtributo();
     int         getValor();
     /* Setters privados */
