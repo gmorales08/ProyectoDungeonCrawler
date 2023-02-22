@@ -109,11 +109,13 @@ bool iniciarCombate(Partida* partida) {
         logTurno.append(logJugador);
         limpiarPantalla();
         std::cout << (pantallaCombate(turno, j, e, logTurno)) << std::endl;
-        pausar(750);
+        pausar(1000);
         /* Accion enemigo */
-        logEnemigo = e.elegirAccion(j);
-        std::cout << (pantallaCombate(turno, j, e, logTurno)) << std::endl;
-        pausar(750);
+        logEnemigo = "> " + e.getNombre() + "\n";
+        logEnemigo.append(e.elegirAccion(j));
+        logTurno.append(logEnemigo);
+        imprimirPantallaEstatica((pantallaCombate(turno, j, e, logTurno)));
+
         // mostrar turno personaje1 -> dos segundos -> mostrar turno personaje2
 
         /* 5. Comprobar si los Personajes siguen vivos */

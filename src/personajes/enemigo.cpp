@@ -7,7 +7,7 @@ Enemigo::Enemigo(std::string nombre, int nivel,
     generarAtributos(nivel);
 }
 
-std::vector<Habilidad> Enemigo::getHabilidades() {
+std::vector<Habilidad>& Enemigo::getHabilidades() {
     return habilidades;
 }
 std::vector<int> Enemigo::getProbabilidades() {
@@ -92,7 +92,7 @@ std::string Enemigo::atacar(Personaje& p) {
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = " Ha realizado " + std::to_string(dmg) +
+    std::string log = "Ha realizado " + std::to_string(dmg) +
                       " puntos de dano.";
 
     return log;
@@ -122,7 +122,7 @@ std::string Enemigo::atacar(Personaje& p, int ataqueFisico) {
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = " Ha realizado " + std::to_string(dmg) +
+    std::string log = "Ha realizado " + std::to_string(dmg) +
                       " puntos de dano.";
 
     return log;

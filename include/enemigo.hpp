@@ -15,8 +15,8 @@ class Enemigo : public Personaje {
 public:
     Enemigo(std::string nombre, int nivel, Personaje::Elemento elemento);
 
-    std::vector<Habilidad> getHabilidades();
-    std::vector<int>       getProbabilidades();
+    std::vector<Habilidad>& getHabilidades();
+    std::vector<int>        getProbabilidades();
     void setHabilidades(std::vector<Habilidad> habilidades);
     void setProbabilidades(std::vector<int> probabilidades);
 
