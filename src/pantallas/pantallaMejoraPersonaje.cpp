@@ -484,3 +484,149 @@ std::string pantallaPersonajeMejorado(Jugador& jugador,
 
     return pantallaMejora;
 }
+
+std::string pantallaSubidaDeNivel(Jugador& jugador) {
+    std::vector<int> mejoras = jugador.aumentarAtributos();
+
+    int cantidadMejoraVida      = mejoras.at(0);
+    int cantidadMejoraAtaque    = mejoras.at(1);
+    int cantidadMejoraAtaqueM   = mejoras.at(2);
+    int cantidadMejoraDefensa   = mejoras.at(3);
+    int cantidadMejoraDefensaM  = mejoras.at(4);
+    int cantidadMejoraVelocidad = mejoras.at(5);
+    int cantidadMejoraEvasion   = mejoras.at(6);
+
+    std::string pantallaMejora = "";
+    pantallaMejora.append(
+    "┌──────────────────────────────────────────────────────────────────────────────┐\n");
+    pantallaMejora.append(centrarTexto("SUBIDA DE NIVEL",
+                                            anchoPantalla) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+    std::string infoJugador = jugador.getNombre() + ". " +
+        jugador.getRazaString() + ", " + jugador.getClaseString() + ", " +
+        jugador.getSubclaseString() + ".";
+    std::transform(infoJugador.begin(), infoJugador.end(), infoJugador.begin(),
+        ::toupper);
+    pantallaMejora.append(centrarTexto(infoJugador, anchoPantalla) +
+        "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+    pantallaMejora.append(centrarTexto("Arma: " + jugador.getArmaString()
+        + ", Elemento: " + jugador.getElementoString(), anchoPantalla + 10) +
+        "\n");
+    /* Se anade 22 espacios al ancho de pantalla para que calcule correctamente
+    * el ancho al anadir informacion del color a la cadena de texto (metodo
+    * imprimirColor de utlidadesTerminal)
+    */
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+    pantallaMejora.append(centrarTexto("Atributos:",
+                                            (anchoPantalla) / 2,
+                                            tuberia, " "));
+    pantallaMejora.append(centrarTexto("Habilidades:",
+                                            (anchoPantalla) / 2,
+                                            " ", tuberia) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+
+    pantallaMejora.append(centrarTexto("Vida: " +
+        std::to_string(jugador.getVida()) + "/" +
+        std::to_string(jugador.getVidaMaxima()) + " (+" +
+        std::to_string(cantidadMejoraVida) + ")",
+                                            (anchoPantalla) / 2,
+                                            tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "  " + jugador.getHabilidades().at(0).getNombre() + ". Usos (" +
+        std::to_string(jugador.getHabilidades().at(0).getUsosRestantes()) + "/"
+        + std::to_string(jugador.getHabilidades().at(0).getUsosTotales()) +
+        ") ",
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Ataque: " + std::to_string(jugador.getAtaqueFisico()) + " (+" +
+        std::to_string(cantidadMejoraAtaque) + ")",
+        (anchoPantalla) / 2,
+        tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "  " + jugador.getHabilidades().at(1).getNombre() + ". Usos (" +
+        std::to_string(jugador.getHabilidades().at(1).getUsosRestantes()) + "/"
+        + std::to_string(jugador.getHabilidades().at(1).getUsosTotales()) +
+        ") ",
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Ataque magico: " + std::to_string(jugador.getAtaqueMagico()) + " (+" +
+        std::to_string(cantidadMejoraAtaqueM) + ")",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "   -" + jugador.getHabilidades().at(1).getDescripcion() + " " ,
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Defensa: " + std::to_string(jugador.getDefensaFisica()) + " (+" +
+        std::to_string(cantidadMejoraDefensa) + ")",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "  " + jugador.getHabilidades().at(2).getNombre() + ". Usos (" +
+        std::to_string(jugador.getHabilidades().at(2).getUsosRestantes()) +
+        "/" + std::to_string(jugador.getHabilidades().at(2).getUsosTotales()) +
+        ") ",
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Defensa magica: " + std::to_string(jugador.getDefensaMagica()) + " (+"
+        + std::to_string(cantidadMejoraDefensaM) + ")",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "   -" + jugador.getHabilidades().at(2).getDescripcion() + " " ,
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Velocidad: " + std::to_string(jugador.getVelocidad()) + " (+" +
+        std::to_string(cantidadMejoraVelocidad) + ")",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "  " + jugador.getHabilidades().at(3).getNombre() + ". Usos (" +
+        std::to_string(jugador.getHabilidades().at(3).getUsosRestantes()) +
+        "/" + std::to_string(jugador.getHabilidades().at(3).getUsosTotales()) +
+        ") ",
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Evasion: " + std::to_string(jugador.getEvasion()) + "%" + " (+" +
+        std::to_string(cantidadMejoraEvasion) + "%)",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "   -" + jugador.getHabilidades().at(3).getDescripcion() + " " ,
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Precision: " + std::to_string(jugador.getPrecision()) + "%",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "  " + jugador.getHabilidades().at(4).getNombre() + ". Usos (" +
+        std::to_string(jugador.getHabilidades().at(4).getUsosRestantes()) +
+        "/" + std::to_string(jugador.getHabilidades().at(4).getUsosTotales()) +
+        ") ",
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+
+    pantallaMejora.append(centrarTexto(
+        "Critico: " + std::to_string(jugador.getCritico()) + "%",
+        (anchoPantalla) / 2, tuberia, " "));
+    pantallaMejora.append(alinearIzquierda(
+        "   -" + jugador.getHabilidades().at(4).getDescripcion() + " " ,
+        (anchoPantalla) / 2, " ", tuberia) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+    pantallaMejora.append(centrarTexto("", anchoPantalla) + "\n");
+    pantallaMejora.append(
+    "└──────────────────────────────────────────────────────────────────────────────┘\n");
+
+    /* Asignacion de valores de las mejoras  al jugador */
+    jugador.aumentarVidaMaxima(cantidadMejoraVida);
+    jugador.aumentarVida(cantidadMejoraVida);
+    jugador.aumentarAtaqueFisico(cantidadMejoraAtaque);
+    jugador.aumentarAtaqueMagico(cantidadMejoraAtaqueM);
+    jugador.aumentarDefensaFisica(cantidadMejoraDefensa);
+    jugador.aumentarDefensaMagica(cantidadMejoraDefensaM);
+    jugador.aumentarVelocidad(cantidadMejoraVelocidad);
+    jugador.aumentarEvasion(cantidadMejoraEvasion);
+
+    return pantallaMejora;
+}

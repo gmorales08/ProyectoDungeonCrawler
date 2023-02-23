@@ -97,8 +97,11 @@ public:
     /* Aumentar y disminuir atributos se van a usar para aumentar o disminuir
      * todos los atributos 0, 1 o 2 puntos. Estos metodos se usa cada vez que
      * se sube de nivel, y en determinados eventos.
+     *
+     * aumentarAtributos devuelve un vector con los atributos aumentados para
+     * poder representarlo en una pantalla de mejora.
      */
-    void aumentarAtributos();
+    std::vector<int> aumentarAtributos();
     void disminuirAtributos();
 
     /* GENERAR_BARRA_DE_VIDA
@@ -211,6 +214,14 @@ public:
      */
     std::string usarMagia(Personaje& p);
     std::string usarMagia(Personaje& p, int ataqueMagico);
+
+    /* HA_ESQUIVADO y HA_ACERTADO
+     *
+     * Metodos para determinar si el ataque acierta en base a la evasion y
+     * precision del personaje
+     */
+    bool haEsquivado();
+    bool haAcertado();
 
 
 protected:

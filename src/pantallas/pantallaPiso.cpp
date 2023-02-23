@@ -3,6 +3,7 @@
 #include "../../include/pantallaEvento.hpp"
 #include "../../include/combate.hpp"
 #include "../../include/pantallaInformacionPersonaje.hpp"
+#include "../../include/pantallaMejoraPersonaje.hpp"
 
 std::string pantallaPiso(int numeroPiso, int pisosRestantes) {
     std::string pantalla = "";
@@ -66,6 +67,15 @@ void menuPantallaPiso(std::string opcion, Partida* partida) {
             int tirada = Personaje::tirarDado(10);
             if (tirada <= 8) {
                 bool jugadorVivo = iniciarCombate(partida);
+                if (jugadorVivo == false) {
+                    partida->setPartidaTerminada(true);
+                } else {
+                    /* Si el jugador sobrevive al combate, sube de nivel */
+                    partida->getJugador().subirDeNivel();
+                    Jugador* jug (&partida->getJugador());
+                    imprimirPantallaEstatica(pantallaSubidaDeNivel(
+                        *jug));
+                }
             } else {
                 // Evento
                 /* Se muestra la pantalla del evento y se lee si el usuario lo

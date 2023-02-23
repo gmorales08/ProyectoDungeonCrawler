@@ -22,7 +22,7 @@ void Enemigo::setProbabilidades(std::vector<int> _probabilidades) {
 }
 
 void Enemigo::generarAtributos(int nivel) {
-    setVidaMaxima((escogerDados(4) + escogerDados(4)) * 10);
+    setVidaMaxima((escogerDados(3, 2) + escogerDados(3, 2)) * 10);
 	setVida(getVidaMaxima());
 	setAtaqueFisico(escogerDados(2));
 	setAtaqueMagico(escogerDados(2));
@@ -30,6 +30,9 @@ void Enemigo::generarAtributos(int nivel) {
 	setDefensaMagica(escogerDados(2));
 	setVelocidad(escogerDados(2));
     setEvasion(escogerDados(2));
+    setEvasion(escogerDados(2));
+    setPrecision(90);
+    setCritico(10);
 
     for (int i = 0; i < nivel; i++) {
         aumentarAtributos();
@@ -52,14 +55,22 @@ std::string Enemigo::elegirAccion(Jugador& j) {
     for (int i = 0; i < (int) probabilidades.size(); i++) {
         if (accion <= probabilidades.at(0)) {
             log = "Ha realizado un ataque fisico.\n";
-            log.append(this->atacar(j) + "\n");
+                if (haAcertado() == true) {
+                    if (j.haEsquivado() == false) {
+                        log.append(this->atacar(j) + "\n");
+                    } else {
+                        log.append("Pero el jugador esquiva el ataque.\n");
+                    }
+                } else {
+                    log.append("Pero ha fallado el ataque.\n");
+                }
             break;
         } else if (accion <= probabilidades.at(i)) {
             if (getHabilidades().at(i - 1).getUsosRestantes() > 0) {
-                log = "Ha usado una habilidad.\n";
+                log = "Ha usado " + getHabilidades().at(i - 1).getDescripcion() + "\n";
                 log.append(getHabilidades().at(i - 1).usar(j, *this));
             } else {
-                elegirAccion(j);
+                return elegirAccion(j);
             }
             break;
         }
@@ -69,61 +80,77 @@ std::string Enemigo::elegirAccion(Jugador& j) {
 }
 
 std::string Enemigo::atacar(Personaje& p) {
+    std::string log = "";
+    bool critico = esCritico();
     /* Bonuses */
-    float bonuses = 0; // %
-    if (esCritico() == true) {
-        bonuses += 0.5;
+    float bonuses = 0.0f; // %
+
+    if (critico == true) {
+        bonuses += 0.5f;
     }
 
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.05;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.05;
+        bonuses -= 0.05f;
     }
 
     /* Variacion */
-    float variacion = generarAleatorio(80, 120) / 100;
+    float variacion = static_cast<float>(generarAleatorio(80, 120)) / 100.0f;
 
     /* Formula de dano */
     int dmg = (getAtaqueFisico() * getAtaqueFisico() / (getAtaqueFisico() +
-              p.getDefensaFisica()));
-    dmg = dmg * static_cast<int>(bonuses + variacion);
+              p.getDefensaFisica())) * 4;
+    dmg = static_cast<int>(static_cast<float>(dmg) * (bonuses + variacion));
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = "Ha realizado " + std::to_string(dmg) +
-                      " puntos de dano.";
+    if (critico == false) {
+        log = "Ha realizado " + std::to_string(static_cast<int>(dmg))
+            + " puntos de dano.";
+    } else {
+        log = "Golpe critico. " + std::to_string(static_cast<int>(dmg)) +
+              " puntos de dano.";
+    }
 
     return log;
 }
 
 std::string Enemigo::atacar(Personaje& p, int ataqueFisico) {
+    std::string log = "";
+    bool critico = esCritico();
     /* Bonuses */
-    float bonuses = 0; // %
-    if (esCritico() == true) {
-        bonuses += 0.5;
+    float bonuses = 0.0f; // %
+
+    if (critico == true) {
+        bonuses += 0.5f;
     }
 
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.05;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.05;
+        bonuses -= 0.05f;
     }
 
     /* Variacion */
-    float variacion = generarAleatorio(80, 120) / 100;
+    float variacion = static_cast<float>(generarAleatorio(80, 120)) / 100.0f;
 
     /* Formula de dano */
     int dmg = (ataqueFisico * ataqueFisico / (ataqueFisico +
-              p.getDefensaFisica()));
-    dmg = dmg * static_cast<int>(bonuses + variacion);
+              p.getDefensaFisica())) * 4;
+    dmg = static_cast<int>(static_cast<float>(dmg) * (bonuses + variacion));
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = "Ha realizado " + std::to_string(dmg) +
-                      " puntos de dano.";
+    if (critico == false) {
+        log = "Ha realizado " + std::to_string(static_cast<int>(dmg))
+            + " puntos de dano.";
+    } else {
+        log = "Golpe critico. " + std::to_string(static_cast<int>(dmg)) +
+              " puntos de dano.";
+    }
 
     return log;
 }

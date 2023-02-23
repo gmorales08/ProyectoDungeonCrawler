@@ -51,7 +51,7 @@ FORMULA DE DANO:
 
 Ataque normal (fisico): A ataca a B
 
-	dmg = (atA * atA / (atA + dfB)) * (bonuses) * (var)
+	dmg = (atA * atA / (atA + dfB)) * (bonuses) * (var) * 3
 	var -> variacion 80%-120%
 	
 	bonuses: 
@@ -62,7 +62,7 @@ Ataque normal (fisico): A ataca a B
     Posible formula alternativa: a / ((d+100) / 100)
 
 Ataque magico: A ataca a B
-       dmg = (atmA * atmA / (atmA + dfmB)) * (bonuses) * (var)
+       dmg = (atmA * atmA / (atmA + dfmB)) * (bonuses) * (var) * 3
        var -> variacion 90%-110%
        
        bonuses:

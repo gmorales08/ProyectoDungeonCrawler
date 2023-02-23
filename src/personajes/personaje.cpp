@@ -186,17 +186,34 @@ void Personaje::subirDeNivel() {
     setNivel(getNivel() + 1);
 }
 
-void Personaje::aumentarAtributos() {
-    int vida = (tirarDado(3) - 1) * 10;
-    aumentarVidaMaxima(vida);
-    aumentarVida(vida);
-    aumentarAtaqueFisico(tirarDado(3) - 1);
-    aumentarAtaqueMagico(tirarDado(3) - 1);
-    aumentarDefensaFisica(tirarDado(3) - 1);
-    aumentarDefensaMagica(tirarDado(3) - 1);
-    aumentarVelocidad(tirarDado(3) - 1);
-    aumentarEvasion(tirarDado(3) - 1);
-    //Precision y critico los dejo igual
+std::vector<int> Personaje::aumentarAtributos() {
+    int aumentoVida          = (tirarDado(3) - 1) * 10;
+    int aumentoAtaque        = tirarDado(3) - 1;
+    int aumentoAtaqueMagico  = tirarDado(3) - 1;
+    int aumentoDefensa       = tirarDado(3) - 1;
+    int aumentoDefensaMagica = tirarDado(3) - 1;
+    int aumentoVelocidad     = tirarDado(3) - 1;
+    int aumentoEvasion       = tirarDado(2) - 1;
+
+    aumentarVidaMaxima(aumentoVida);
+    aumentarVida(aumentoVida);
+    aumentarAtaqueFisico(aumentoAtaque);
+    aumentarAtaqueMagico(aumentoAtaqueMagico);
+    aumentarDefensaFisica(aumentoDefensa);
+    aumentarDefensaMagica(aumentoDefensaMagica);
+    aumentarVelocidad(aumentoVelocidad);
+    aumentarEvasion(aumentoEvasion);
+
+    std::vector<int> atributosMejorados;
+    atributosMejorados.push_back(aumentoVida);
+    atributosMejorados.push_back(aumentoAtaque);
+    atributosMejorados.push_back(aumentoAtaqueMagico);
+    atributosMejorados.push_back(aumentoDefensa);
+    atributosMejorados.push_back(aumentoDefensaMagica);
+    atributosMejorados.push_back(aumentoVelocidad);
+    atributosMejorados.push_back(aumentoEvasion);
+
+    return atributosMejorados;
 }
 
 void Personaje::disminuirAtributos() {
@@ -290,10 +307,11 @@ int Personaje::escogerDados(int numeroTiradas, int dadosAEscoger) {
         numeros.push_back(tirarDado());
     }
     std::sort(numeros.begin(), numeros.end());
+    std::reverse(numeros.begin(), numeros.end());
 
     int sumaTotal = 0;
     for (int i = 0; i < dadosAEscoger; i++) {
-        sumaTotal += (numeros[numeros.size()] - 1 - i);
+        sumaTotal += numeros.at(i);
     }
 
     return sumaTotal;
@@ -356,46 +374,62 @@ float Personaje::efectividadElemental(Elemento e1, Elemento e2) {
 
 std::string Personaje::usarMagia(Personaje& p) {
     /* Bonuses */
-    float bonuses = 0;
+    float bonuses = 0.0f;
     bonuses += efectividadElemental(getElemento(), p.getElemento());
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.5;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.5;
+        bonuses -= 0.05f;
     }
     /* Variacion */
-    float variacion = generarAleatorio(90,110) / 100;
+    float variacion = static_cast<float>(generarAleatorio(90,110)) / 100.0f;
     /* Formula de dano */
     int magdmg = (getAtaqueMagico() * getAtaqueMagico() / (getAtaqueMagico() +
-                  p.getDefensaMagica()));
-    magdmg = magdmg * static_cast<int>(bonuses + variacion);
+                  p.getDefensaMagica())) * 4;
+    magdmg = static_cast<int>(static_cast<float>(magdmg) * (bonuses + variacion));
     /* Aplicar el dano */
-    p.aumentarVida((-1) * magdmg);
-    std::string log = "Ha realizado " + std::to_string(magdmg) +
-                      " puntos de dano.\n";
+    p.aumentarVida(-1 * magdmg);
+    std::string log = "Ha realizado " + std::to_string(magdmg) + " puntos de dano.";
 
     return log;
 }
 
 std::string Personaje::usarMagia(Personaje& p, int ataqueMagico) {
     /* Bonuses */
-    float bonuses = 0;
+    float bonuses = 0.0f;
     bonuses += efectividadElemental(getElemento(), p.getElemento());
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.5;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.5;
+        bonuses -= 0.05f;
     }
     /* Variacion */
-    float variacion = generarAleatorio(90,110) / 100;
+    float variacion = static_cast<float>(generarAleatorio(90,110)) / 100.0f;
     /* Formula de dano */
     int magdmg = (ataqueMagico * ataqueMagico / (ataqueMagico +
-                  p.getDefensaMagica()));
-    magdmg = magdmg * static_cast<int>(bonuses + variacion);
+                  p.getDefensaMagica())) * 4;
+    magdmg = static_cast<int>(static_cast<float>(magdmg) * (bonuses + variacion));
     /* Aplicar el dano */
-    p.aumentarVida((-1) * magdmg);
-    std::string log = "Ha realizado " + std::to_string(magdmg) +
-                      " puntos de dano.\n";
+    p.aumentarVida(-1 * magdmg);
+    std::string log = "Ha realizado " + std::to_string(magdmg) + " puntos de dano.";
 
     return log;
+}
+
+bool Personaje::haEsquivado() {
+    int tirada = tirarDado(100);
+    if (getEvasion() >= tirada) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Personaje::haAcertado() {
+    int tirada = tirarDado(100);
+    if (getPrecision() >= tirada) {
+        return true;
+    } else {
+        return false;
+    }
 }

@@ -49,8 +49,8 @@ public:
      * usando ataque fisico o magico
      */
     Habilidad (Habilidad::Usuario usuario, std::string nombre,
-               std::string descripcion, Tipo tipo, Atributo atributo,
-               int valor);
+               std::string descripcion, Tipo tipo,
+               Habilidad::Atributo atributo, int valor);
     /*
      * Constructor alternativo para crear las magias
      * Se indica el elemento de la magia como parametro adicional
@@ -64,8 +64,8 @@ public:
      * nombre ni descripcion
      */
     Habilidad(Habilidad::Usuario usuario, Tipo tipo, int valor);
-    Habilidad(Habilidad::Usuario usuario, Tipo tipo, Atributo atributo,
-              int valor);
+    Habilidad(Habilidad::Usuario usuario, Tipo tipo,
+              Habilidad::Atributo atributo, int valor);
     Habilidad(Habilidad::Usuario usuario, Tipo tipo,
               Personaje::Elemento elemento);
 

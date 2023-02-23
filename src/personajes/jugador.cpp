@@ -253,7 +253,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia no elemental",
-                "",
+                "magia no elemental",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::NEUTRO
             );
@@ -270,7 +270,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de tierra",
-                "",
+                "magia de tierra",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::TIERRA
             );
@@ -287,7 +287,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de hielo",
-                "",
+                "magia de hielo",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::HIELO
             );
@@ -303,7 +303,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de fuego",
-                "",
+                "magia de fuego",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::FUEGO
             );
@@ -320,7 +320,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de agua",
-                "",
+                "magia de agua",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::AGUA
             );
@@ -336,7 +336,7 @@ void Jugador::generarHabilidades() {
             getHabilidades().emplace_back(
                 Habilidad::Usuario::USUARIO_JUGADOR,
                 "Magia de rayo",
-                "",
+                "magia de rayo",
                 Habilidad::Tipo::MAGIA,
                 Personaje::Elemento::RAYO
             );
@@ -516,75 +516,85 @@ void Jugador::generarHabilidades() {
 }
 
 std::string Jugador::atacar(Personaje& p) {
+    std::string log = "";
+    bool critico = esCritico();
     /* Bonuses */
-    float bonuses = 0; // %
+    float bonuses = 0.0f; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {
         if (getArma() == getAfinidades().at(i)) {
-            bonuses += 0.05;
+            bonuses += 0.05f;
             break;
         }
     }
 
-    if (esCritico() == true) {
-        bonuses += 0.5;
+    if (critico == true) {
+        bonuses += 0.5f;
     }
 
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.05;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.05;
+        bonuses -= 0.05f;
     }
 
     /* Variacion */
-    float variacion = generarAleatorio(80, 120) / 100;
+    float variacion = static_cast<float>(generarAleatorio(80, 120)) / 100.0f;
 
     /* Formula de dano */
     int dmg = (getAtaqueFisico() * getAtaqueFisico() / (getAtaqueFisico() +
-              p.getDefensaFisica()));
-    dmg = dmg * static_cast<int>(bonuses + variacion);
+              p.getDefensaFisica())) * 3;
+    dmg = static_cast<int>(static_cast<float>(dmg) * (bonuses + variacion));
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = "Ha realizado " + std::to_string(dmg) +
-                      " puntos de dano.";
+    if (critico == false) {
+        log = "Ha realizado " + std::to_string(dmg) + " puntos de dano.";
+    } else {
+        log = "Golpe critico. " + std::to_string(dmg) + " puntos de dano.";
+    }
 
     return log;
 }
 
 std::string Jugador::atacar(Personaje& p, int ataqueFisico) {
+    std::string log = "";
+    bool critico = esCritico();
     /* Bonuses */
-    float bonuses = 0; // %
+    float bonuses = 0.0f; // %
     for (int i = 0; i < (int) getAfinidades().size(); i++) {
         if (getArma() == getAfinidades().at(i)) {
-            bonuses += 0.05;
+            bonuses += 0.05f;
             break;
         }
     }
 
-    if (esCritico() == true) {
-        bonuses += 0.5;
+    if (critico == true) {
+        bonuses += 0.5f;
     }
 
     if (getNivel() > p.getNivel()) {
-        bonuses += 0.05;
+        bonuses += 0.05f;
     } else if (getNivel() < p.getNivel()) {
-        bonuses -= 0.05;
+        bonuses -= 0.05f;
     }
 
     /* Variacion */
-    float variacion = generarAleatorio(80, 120) / 100;
+    float variacion = static_cast<float>(generarAleatorio(80, 120)) / 100.0f;
 
     /* Formula de dano */
     int dmg = (ataqueFisico * ataqueFisico / (ataqueFisico +
-              p.getDefensaFisica()));
-    dmg = dmg * static_cast<int>(bonuses + variacion);
+              p.getDefensaFisica())) * 3;
+    dmg = static_cast<int>(static_cast<float>(dmg) * (bonuses + variacion));
 
     /* Realizar el ataque */
     p.aumentarVida(-1 * dmg);
 
-    std::string log = " Ha realizado " + std::to_string(dmg) +
-                      " puntos de dano.";
+    if (critico == false) {
+        log = "Ha realizado " + std::to_string(dmg) + " puntos de dano.";
+    } else {
+        log = "Golpe critico. " + std::to_string(dmg) + " puntos de dano.";
+    }
 
     return log;
 }

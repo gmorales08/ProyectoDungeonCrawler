@@ -18,6 +18,9 @@ public:
     Jugador&  getJugador();
     int       getPisoActual();
 
+    /* Setters */
+    void setPartidaTerminada(bool partidaTerminada);
+
     /*
      * INICIAR_PARTIDA
      *
@@ -74,7 +77,6 @@ private:
     void setJugador(Jugador& jugador);
     void setPisoActual(int pisoActual);
     void setPisosRestantes(int pisosRestantes);
-    void setPartidaTerminada(bool partidaTerminada);
 
     /* Metodos */
     /* GENERAR_LISTA_ENEMIGOS

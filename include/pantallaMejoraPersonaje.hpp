@@ -34,4 +34,12 @@ std::string pantallaMejoraPersonaje(Jugador& jugador, std::vector<int> mejoras);
 std::string pantallaPersonajeMejorado(Jugador& jugador,
                                       std::vector<int> mejoras);
 
+/*
+ * PANTALLA_SUBIDA_DE_NIVEL
+ *
+ * Igual que la anterior, pero el vector de mejoras se obtiene
+ * automaticamente
+ */
+std::string pantallaSubidaDeNivel(Jugador& jugador);
+
 #endif // PANTALLA_MEJORA_PERSONAJE
