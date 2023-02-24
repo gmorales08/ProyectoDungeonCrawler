@@ -223,12 +223,18 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 		case Subclase::MERCENARIO: dadosVelocidad     += 1; break;
 	}
 
+    int mejoraAtaqueFisico = 1;
+    int mejoraAtaqueMagico = 0;
 	switch (arma) {
         case Arma::ESPADA:   setPrecision(95),  setCritico(15); break;
 		case Arma::ESTOQUE:  setPrecision(100), setCritico(10); break;
 		case Arma::DAGA:     setPrecision(90),  setCritico(20); break;
 		case Arma::MANDOBLE: setPrecision(90),  setCritico(20); break;
-		case Arma::BACULO:   setPrecision(90),  setCritico(20); break;
+		case Arma::BACULO:
+            setPrecision(90),  setCritico(20);
+            mejoraAtaqueFisico = 0;
+            mejoraAtaqueMagico = 3;
+            break;
 		case Arma::HACHA:    setPrecision(90),  setCritico(20); break;
 		case Arma::LANZA:    setPrecision(95),  setCritico(15); break;
 		case Arma::ARCO:     setPrecision(100), setCritico(10); break;
@@ -238,8 +244,8 @@ void Jugador::generarAtributos(Jugador::Clase clase, Jugador::Subclase subclase,
 
 	setVidaMaxima((escogerDados(5) + escogerDados(5)) * 10);
 	setVida(getVidaMaxima());
-	setAtaqueFisico(escogerDados(dadosAtaqueFisico));
-	setAtaqueMagico(escogerDados(dadosAtaqueMagico));
+	setAtaqueFisico(escogerDados(dadosAtaqueFisico) + mejoraAtaqueFisico);
+	setAtaqueMagico(escogerDados(dadosAtaqueMagico) + mejoraAtaqueMagico);
 	setDefensaFisica(escogerDados(dadosDefensaFisica));
 	setDefensaMagica(escogerDados(dadosDefensaMagica));
 	setVelocidad(escogerDados(dadosVelocidad));
