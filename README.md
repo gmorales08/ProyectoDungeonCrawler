@@ -8,6 +8,10 @@ El juego esta diseñado para ejecutarse en un tamaño de terminal de 80x24 carac
 
 ## Como jugar
 
+Los aspectos básicos del juego se explican en el [manual](MANUAL.md).
+
+Para poder ejecutar el ejecutar el juego, debe seguir los siguientes pasos:
+
 ### Para terminales bash:
 
 Primero hay que descargar el ejecutable `pdg` ubicado en `bin/`
@@ -56,9 +60,9 @@ Primero se pregunta si el personaje sera creado manualmente o de manera aleatori
 
 ![pantallaCreacion0](doc/img/creacionDelPersonaje0.png)
 
-Si se elige crearlo manualmente se muestran las siguientes pantallas para configurarlo.
+Si se elige crearlo manualmente se muestran las siguientes pantallas para configurarlo:
 
-![pantallaCreacion1](doc/img/creacionDelPersonaje.png)
+![pantallaCreacion1](doc/img/creacionDelPersonaje1.png)
 
 ![pantallaCreacion2](doc/img/creacionDelPersonaje2.png)
 
