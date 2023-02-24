@@ -37,6 +37,17 @@ void Enemigo::generarAtributos(int nivel) {
     for (int i = 0; i < nivel; i++) {
         aumentarAtributos();
     }
+
+    /* Los enemigos de mas de nivel 5 tienen un aumento extra de atributos
+     * por cada nivel que sobrepase el 5.
+     * Ejemplo: enemigo de nivel 5 -> un aumeto extra
+     *          enemigo de nivel 8 -> tres aumentos extra
+     */
+    if (getNivel() > 5) {
+        for (int i = 0; i < (getNivel() - 5); i++) {
+            aumentarAtributos();
+        }
+    }
 }
 
 std::string Enemigo::elegirAccion(Jugador& j) {

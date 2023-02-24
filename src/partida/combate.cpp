@@ -178,9 +178,13 @@ bool iniciarCombate(Partida* partida) {
             logFinal.clear();
             pausar(650);
             /* Accion enemigo */
-            logEnemigo = "> " + e.getNombre() + ":\n";
-            logEnemigo.append(e.elegirAccion(j));
-            logFinal.append(logTurno + logJugador + logEnemigo);
+            if (e.getVida() > 0) {
+                logEnemigo = "> " + e.getNombre() + ":\n";
+                logEnemigo.append(e.elegirAccion(j));
+                logFinal.append(logTurno + logJugador + logEnemigo);
+            } else {
+                logFinal.append(logTurno + logJugador + "\n\n\n");
+            }
         } else {
             /* Accion enemigo */
             logEnemigo = "> " + e.getNombre() + ":\n";
@@ -191,20 +195,9 @@ bool iniciarCombate(Partida* partida) {
             logFinal.clear();
             pausar(650);
             /* Accion jugador */
-            logJugador.append("> " + j.getNombre() + ":\n");
-            if (comando == "a" || comando == "A") {
-                logJugador.append("Ha atacado con el arma equipada.\n");
-                if (jugadorAcierta == true) {
-                    if (enemigoEsquiva == false) {
-                        logJugador.append(j.atacar(e) + "\n");
-                    } else {
-                        logJugador.append("Pero el enemigo esquiva el ataque.\n");
-                    }
-                } else {
-                    logJugador.append("Pero ha fallado el ataque.\n");
-                }
-            } else if (comando == "1") {
-                if (j.getHabilidades().at(0).getUsosRestantes() == 0) {
+            if (j.getVida() > 0) {
+                logJugador.append("> " + j.getNombre() + ":\n");
+                if (comando == "a" || comando == "A") {
                     logJugador.append("Ha atacado con el arma equipada.\n");
                     if (jugadorAcierta == true) {
                         if (enemigoEsquiva == false) {
@@ -215,82 +208,98 @@ bool iniciarCombate(Partida* partida) {
                     } else {
                         logJugador.append("Pero ha fallado el ataque.\n");
                     }
-                } else {
-                    logJugador.append("Ha usado " +
-                        /* magia */
-                        j.getHabilidades().at(0).getDescripcion() + ".\n");
-                }
-                logJugador.append(j.getHabilidades().at(0).usar(j, e));
-            }  else if (comando == "2") {
-                if (j.getHabilidades().at(1).getUsosRestantes() == 0) {
-                    logJugador.append("Ha atacado con el arma equipada.\n");
-                    if (jugadorAcierta == true) {
-                        if (enemigoEsquiva == false) {
-                            logJugador.append(j.atacar(e) + "\n");
+                } else if (comando == "1") {
+                    if (j.getHabilidades().at(0).getUsosRestantes() == 0) {
+                        logJugador.append("Ha atacado con el arma equipada.\n");
+                        if (jugadorAcierta == true) {
+                            if (enemigoEsquiva == false) {
+                                logJugador.append(j.atacar(e) + "\n");
+                            } else {
+                                logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            }
                         } else {
-                            logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            logJugador.append("Pero ha fallado el ataque.\n");
                         }
                     } else {
-                        logJugador.append("Pero ha fallado el ataque.\n");
+                        logJugador.append("Ha usado " +
+                            /* magia */
+                            j.getHabilidades().at(0).getDescripcion() + ".\n");
                     }
-                } else {
-                    logJugador.append("Ha usado " +
-                        j.getHabilidades().at(1).getNombre() + ".\n");
-                }
-                logJugador.append(j.getHabilidades().at(1).usar(j, e));
-            } else if (comando == "3") {
-            if (j.getHabilidades().at(2).getUsosRestantes() == 0) {
-                    logJugador.append("Ha atacado con el arma equipada.\n");
-                    if (jugadorAcierta == true) {
-                        if (enemigoEsquiva == false) {
-                            logJugador.append(j.atacar(e) + "\n");
+                    logJugador.append(j.getHabilidades().at(0).usar(j, e));
+                }  else if (comando == "2") {
+                    if (j.getHabilidades().at(1).getUsosRestantes() == 0) {
+                        logJugador.append("Ha atacado con el arma equipada.\n");
+                        if (jugadorAcierta == true) {
+                            if (enemigoEsquiva == false) {
+                                logJugador.append(j.atacar(e) + "\n");
+                            } else {
+                                logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            }
                         } else {
-                            logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            logJugador.append("Pero ha fallado el ataque.\n");
                         }
                     } else {
-                        logJugador.append("Pero ha fallado el ataque.\n");
+                        logJugador.append("Ha usado " +
+                            j.getHabilidades().at(1).getNombre() + ".\n");
                     }
-                } else {
-                    logJugador.append("Ha usado " +
-                        j.getHabilidades().at(2).getNombre() + ".\n");
-                }
-                logJugador.append(j.getHabilidades().at(2).usar(j, e));
-            } else if (comando == "4") {
-                if (j.getHabilidades().at(3).getUsosRestantes() == 0) {
-                    logJugador.append("Ha atacado con el arma equipada.\n");
-                    if (jugadorAcierta == true) {
-                        if (enemigoEsquiva == false) {
-                            logJugador.append(j.atacar(e) + "\n");
+                    logJugador.append(j.getHabilidades().at(1).usar(j, e));
+                } else if (comando == "3") {
+                if (j.getHabilidades().at(2).getUsosRestantes() == 0) {
+                        logJugador.append("Ha atacado con el arma equipada.\n");
+                        if (jugadorAcierta == true) {
+                            if (enemigoEsquiva == false) {
+                                logJugador.append(j.atacar(e) + "\n");
+                            } else {
+                                logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            }
                         } else {
-                            logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            logJugador.append("Pero ha fallado el ataque.\n");
                         }
                     } else {
-                        logJugador.append("Pero ha fallado el ataque.\n");
+                        logJugador.append("Ha usado " +
+                            j.getHabilidades().at(2).getNombre() + ".\n");
                     }
-                } else {
-                    logJugador.append("Ha usado " +
-                        j.getHabilidades().at(3).getNombre() + ".\n");
-                }
-                logJugador.append(j.getHabilidades().at(3).usar(j, e));
-            } else if (comando == "5") {
-                if (j.getHabilidades().at(4).getUsosRestantes() == 0) {
-                    logJugador.append("Ha atacado con el arma equipada.\n");
-                    if (jugadorAcierta == true) {
-                        if (enemigoEsquiva == false) {
-                            logJugador.append(j.atacar(e) + "\n");
+                    logJugador.append(j.getHabilidades().at(2).usar(j, e));
+                } else if (comando == "4") {
+                    if (j.getHabilidades().at(3).getUsosRestantes() == 0) {
+                        logJugador.append("Ha atacado con el arma equipada.\n");
+                        if (jugadorAcierta == true) {
+                            if (enemigoEsquiva == false) {
+                                logJugador.append(j.atacar(e) + "\n");
+                            } else {
+                                logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            }
                         } else {
-                            logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            logJugador.append("Pero ha fallado el ataque.\n");
                         }
                     } else {
-                        logJugador.append("Pero ha fallado el ataque.\n");
+                        logJugador.append("Ha usado " +
+                            j.getHabilidades().at(3).getNombre() + ".\n");
                     }
-                } else {
-                    logJugador.append("Ha usado " +
-                        j.getHabilidades().at(4).getNombre() + ".\n");
+                    logJugador.append(j.getHabilidades().at(3).usar(j, e));
+                } else if (comando == "5") {
+                    if (j.getHabilidades().at(4).getUsosRestantes() == 0) {
+                        logJugador.append("Ha atacado con el arma equipada.\n");
+                        if (jugadorAcierta == true) {
+                            if (enemigoEsquiva == false) {
+                                logJugador.append(j.atacar(e) + "\n");
+                            } else {
+                                logJugador.append("Pero el enemigo esquiva el ataque.\n");
+                            }
+                        } else {
+                            logJugador.append("Pero ha fallado el ataque.\n");
+                        }
+                    } else {
+                        logJugador.append("Ha usado " +
+                            j.getHabilidades().at(4).getNombre() + ".\n");
+                    }
+                    logJugador.append(j.getHabilidades().at(4).usar(j, e));
                 }
-                logJugador.append(j.getHabilidades().at(4).usar(j, e));
+                logFinal.append(logTurno + logJugador + logEnemigo);
+            /* El jugador no ha sobrevivido al ataque */
+            } else {
+                logFinal.append(logTurno + "\n\n\n" + logEnemigo);
             }
-            logFinal.append(logTurno + logJugador + logEnemigo);
         }
 
 

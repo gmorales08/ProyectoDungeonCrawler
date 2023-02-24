@@ -271,7 +271,7 @@ std::string Habilidad::usar(Jugador& j, Enemigo& e) {
                 log = e.usarMagia(j, valorHabilidad);
             }
         } else if (getTipo() == Tipo::BUFF) {
-            if (getAtributo() == Atributo::ATAQUE) {
+            if (getAtributo() == Atributo::ATAQUES) {
                 e.aumentarAtaqueFisico(valorHabilidad);
                 log = "Su ataque aumenta " + std::to_string(valorHabilidad) +
                     " puntos.";
