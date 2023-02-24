@@ -65,10 +65,6 @@ void Evento::setEventoNegativo(Evento::EventoNegativo evento) {
 }
 /* Fin setters */
 
-void Evento::iniciarEvento() {
-
-}
-
 int Evento::aceptarEvento(Jugador& jugador, Partida* partida) {
     int salida = -1;
     if (isResultadoPositivoAsegurado() == true) {
@@ -121,5 +117,12 @@ int Evento::aceptarEvento(Jugador& jugador, Partida* partida) {
             salida = 1;
         }
     }
+    partida->setEventosPresenciados(partida->getEventosPresenciados() + 1);
+    if (salida == 0) {
+        partida->setEventosExitosos(partida->getEventosExitosos() + 1);
+    } else if (salida == 1) {
+        partida->setEventosFallidos(partida->getEventosFallidos() + 1);
+    }
+
     return salida;
 }

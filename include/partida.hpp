@@ -17,9 +17,17 @@ public:
     /* Getters */
     Jugador&  getJugador();
     int       getPisoActual();
+    int       getEnemigosDerrotados();
+    int       getEventosPresenciados();
+    int       getEventosExitosos();
+    int       getEventosFallidos();
 
     /* Setters */
     void setPartidaTerminada(bool partidaTerminada);
+    void setEnemigosDerrotados(int enemigos);
+    void setEventosPresenciados(int eventos);
+    void setEventosExitosos(int eventos);
+    void setEventosFallidos(int eventos);
 
     /*
      * INICIAR_PARTIDA
@@ -50,6 +58,12 @@ public:
      * Lee un evento de la lista de eventos y lo devuelve
      */
     Evento& generarEvento();
+    /*
+     * GENERAR_ESTADISTICAS
+     *
+     * Se genera la pantalla de estadisticas y se imprime por pantalla
+     */
+    void generarEstadisticas();
 
 private:
     /* Atributos */
@@ -68,6 +82,11 @@ private:
      */
     std::vector<std::vector<Enemigo>> listaEnemigos;
     std::vector<Evento>               listaEventos;
+    /* Atributos de estadisticas de la partida */
+    int enemigosDerrotados;
+    int eventosPresenciados;
+    int eventosExitosos;
+    int eventosFallidos;
 
     /* Getters */
     int       getPisosRestantes();

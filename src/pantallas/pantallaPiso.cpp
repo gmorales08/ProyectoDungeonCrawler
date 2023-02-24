@@ -101,6 +101,7 @@ void menuPantallaPiso(std::string opcion, Partida* partida) {
         imprimirPantallaEstatica(pantallaInformacion(partida->getJugador()));
         partida->retrocederPiso();
     } else if (opcion == "e" || opcion == "E") {
-        // estadisticas
+        partida->generarEstadisticas();
+        partida->retrocederPiso();
     }
 }

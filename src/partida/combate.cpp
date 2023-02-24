@@ -354,6 +354,7 @@ bool iniciarCombate(Partida* partida) {
             partida->getJugador().getHabilidades().at(i).setUsosRestantes(
                 j.getHabilidades().at(i).getUsosRestantes());
         }
+        partida->setEnemigosDerrotados(partida->getEnemigosDerrotados() + 1);
     }
 
     return jugadorSobrevive;

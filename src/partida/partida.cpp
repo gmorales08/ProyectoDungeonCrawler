@@ -8,6 +8,10 @@ Partida::Partida(Jugador& jugador) {
     setPisoActual(1);
     setPisosRestantes(10);
     setPartidaTerminada(false);
+    setEnemigosDerrotados(0);
+    setEventosPresenciados(0);
+    setEventosExitosos(0);
+    setEventosFallidos(0);
     generarListaEnemigos();
     generarListaEventos();
 }
@@ -25,6 +29,18 @@ int Partida::getPisosRestantes() {
 bool Partida::getPartidaTerminada() {
     return partidaTerminada;
 }
+int Partida::getEnemigosDerrotados() {
+    return enemigosDerrotados;
+}
+int Partida::getEventosPresenciados() {
+    return eventosPresenciados;
+}
+int Partida::getEventosExitosos() {
+    return eventosExitosos;
+}
+int Partida::getEventosFallidos() {
+    return eventosFallidos;
+}
 
 /* Setters */
 void Partida::setJugador(Jugador& _jugador) {
@@ -38,6 +54,18 @@ void Partida::setPisosRestantes(int _pisosRestantes) {
 }
 void Partida::setPartidaTerminada(bool _partidaTerminada) {
     partidaTerminada = _partidaTerminada;
+}
+void Partida::setEnemigosDerrotados(int _enemigos) {
+    enemigosDerrotados = _enemigos;
+}
+void Partida::setEventosPresenciados(int _eventos) {
+    eventosPresenciados = _eventos;
+}
+void Partida::setEventosExitosos(int _eventos) {
+    eventosExitosos = _eventos;
+}
+void Partida::setEventosFallidos(int _eventos) {
+    eventosFallidos = _eventos;
 }
 
 /* Metodos */
@@ -366,4 +394,46 @@ Evento& Partida::generarEvento() {
         int aleatorio = Personaje::tirarDado(6);
         return listaEventos.at(aleatorio);
     }
+}
+
+void Partida::generarEstadisticas() {
+    std::string pantallaEstadisticas =
+"┌──────────────────────────────────────────────────────────────────────────────┐\n"
+"│                                                                              │\n"
+"│                              ┌───────────────┐                               │\n"
+"│                              │ ESTADISITICAS │                               │\n"
+"│                              └───────────────┘                               │\n"
+"│                                                                              │\n"
+"│                                                                              │\n"
+"│                                                                              │\n";
+    pantallaEstadisticas.append(centrarTexto("Pisos superados:      " +
+                                std::to_string(getPisoActual() - 1),
+                                anchoPantalla, tuberia, tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("", anchoPantalla, tuberia,
+                                             tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("Enemigos derrotados:  " +
+                                std::to_string(getEnemigosDerrotados()),
+                                anchoPantalla, tuberia, tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("", anchoPantalla, tuberia,
+                                             tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("Eventos presenciados: " +
+                                std::to_string(getEventosPresenciados()),
+                                anchoPantalla, tuberia, tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("", anchoPantalla, tuberia,
+                                             tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("  -Eventos exitosos:  " +
+                                std::to_string(getEventosExitosos()),
+                                anchoPantalla, tuberia, tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("", anchoPantalla, tuberia,
+                                             tuberia) + "\n");
+    pantallaEstadisticas.append(centrarTexto("  -Eventos fallidos:  " +
+                                std::to_string(getEventosFallidos()),
+                                anchoPantalla, tuberia, tuberia) + "\n");
+    pantallaEstadisticas.append(
+"│                                                                              │\n"
+"│                                                                              │\n"
+"│                                                                              │\n"
+"└──────────────────────────────────────────────────────────────────────────────┘\n");
+
+    imprimirPantallaEstatica(pantallaEstadisticas);
 }

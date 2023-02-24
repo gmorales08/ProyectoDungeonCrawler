@@ -56,12 +56,12 @@ public:
     void setEventoPositivo(EventoPositivo evento);
     void setEventoNegativo(EventoNegativo evento);
 
-    /*
-     * INICIAR_EVENTO
-     *
-     * Se lanza la pantalla de evento con la informacion del evento producido.
-     */
-    void iniciarEvento();
+    // /*
+    //  * INICIAR_EVENTO
+    //  *
+    //  * Se lanza la pantalla de evento con la informacion del evento producido.
+    //  */
+    // void iniciarEvento();
     /*
      * ACEPTAR_EVENTO
      *
